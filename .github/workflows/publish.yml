@@ -11,9 +11,9 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        scala: [2.12.15]
+        scala: [2.13.12]
         java: [zulu@1.17]
-    runs-on: ${{ matrix.os }}
+    runs-on: harana-dev-linux
     steps:
       - name: Cleanup Ref
         id: ref

@@ -70,8 +70,8 @@ object ParameterValue {
 
 	@JsonCodec
 	case class Long(value: scala.Long) extends AnyVal with ParameterValue
-	implicit def long(x: Long) = x.value
-	implicit def optLong(x: Option[Long]) = x.map(_.value)
+	implicit def long(x: Long): scala.Long = x.value
+	implicit def optLong(x: Option[Long]): Option[scala.Long] = x.map(_.value)
 
 	@JsonCodec
 	case class LongList(value: List[scala.Long]) extends AnyVal with ParameterValue
