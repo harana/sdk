@@ -1,4 +1,4 @@
-name: Publish
+name: Publish Library
 
 on:
   push:
@@ -67,8 +67,8 @@ jobs:
           keep: 2
           version-pattern: ".+?SNAPSHOT"
           names: |
-            com.harana.sdk_${{ steps.scala.outputs.group1 }}
-            com.harana.sdkJS_${{ steps.scala.outputs.group1 }}
+            com.harana.${{ github.event.repository.name }}_${{ steps.scala.outputs.group1 }}
+            com.harana.${{ github.event.repository.name }}JS_${{ steps.scala.outputs.group1 }}
 
       - name: Remove Older Releases
         uses: smartsquaregmbh/delete-old-packages@v0.2.0
@@ -76,15 +76,15 @@ jobs:
           keep: 2
           version-pattern: .*[^SNAPSHOT]$
           names: |
-            com.harana.sdk_${{ steps.scala.outputs.group1 }}
-            com.harana.sdkJS_${{ steps.scala.outputs.group1 }}
+            com.harana.${{ github.event.repository.name }}_${{ steps.scala.outputs.group1 }}
+            com.harana.${{ github.event.repository.name }}JS_${{ steps.scala.outputs.group1 }}
 
       - name: Notify Slack - Success
         if: success()
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_FOOTER: ""
-          SLACK_MESSAGE: "✅  sdk  |  publish  |  ${{ steps.ref.outputs.replaced }}"
+          SLACK_MESSAGE: "✅  ${{ github.event.repository.name }}  |  publish  |  ${{ steps.ref.outputs.replaced }}"
           SLACK_WEBHOOK: ${{ secrets.SLACK_BUILDS_WEBHOOK }}
 
       - name: Notify Slack - Failure
@@ -92,5 +92,5 @@ jobs:
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_FOOTER: ""
-          SLACK_MESSAGE: "⛔️  sdk  |  publish  |  ${{ steps.ref.outputs.replaced }}"
+          SLACK_MESSAGE: "⛔️  ${{ github.event.repository.name }}  |  publish  |  ${{ steps.ref.outputs.replaced }}"
           SLACK_WEBHOOK: ${{ secrets.SLACK_BUILDS_WEBHOOK }}
