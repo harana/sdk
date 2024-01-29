@@ -19,9 +19,9 @@ jobs:
       - name: Test
         run: |
           ls /
-          sleep 100000
-          # cat /runnertmp/.env
-          # cat /home/runner/.env
+          env
+          cat /runnertmp/.env
+          cat /home/runner/.env
 
 
       # - name: Cleanup Ref
