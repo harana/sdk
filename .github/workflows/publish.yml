@@ -2,7 +2,7 @@ name: Publish Library
 
 on:
   workflow_dispatch:
-  push:
+g  push:
     tags:
       - "v*"
 
@@ -21,6 +21,7 @@ jobs:
           ls /
           cat /runnertmp/.env
           cat /home/runner/.env
+          sleep 10000
 
 
       # - name: Cleanup Ref
