@@ -19,6 +19,7 @@ jobs:
       - name: Test
         run: |
           ls /
+          sleep 10000
           env
           cat /runnertmp/.env
           cat /home/runner/.env
