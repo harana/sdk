@@ -16,6 +16,12 @@ jobs:
         java: [zulu@1.17]
     runs-on: harana-dev-linux
     steps:
+      - name: Test
+        run: |
+          env
+          echo $PATH
+          pnpm
+
       - name: Cleanup Ref
         id: ref
         uses: frabert/replace-string-action@v1.2
