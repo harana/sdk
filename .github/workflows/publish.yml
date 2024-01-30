@@ -18,7 +18,6 @@ jobs:
     steps:
       - name: Test
         run: |
-          sleep 1000
           env
           echo $PATH
           pnpm
