@@ -98,7 +98,7 @@ object Event {
   val typesByName = types.map(_.getClass.getSimpleName.replace("$", ""))
 
 
-  implicit val decoder = Decoder.instance[Event] { c =>
+  implicit val decoder: Decoder[Event] = Decoder.instance[Event] { c =>
     val content = c.downField("value").success.get
     c.downField("type").as[String].getOrElse(throw new Exception("Event type not found")) match {
       case "CalendarInterval"    => deriveDecoder[CalendarInterval].apply(content)
@@ -120,7 +120,7 @@ object Event {
     }
   }
 
-  implicit val encoder = Encoder.instance[Event] { event =>
+  implicit val encoder: Encoder[Event] = Encoder.instance[Event] { event =>
     val eventType = event.getClass.getSimpleName
     val json = eventType match {
       case "CalendarInterval"    => deriveEncoder[CalendarInterval].apply(event.asInstanceOf[CalendarInterval])

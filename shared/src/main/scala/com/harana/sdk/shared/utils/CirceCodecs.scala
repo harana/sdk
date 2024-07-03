@@ -16,12 +16,12 @@ import com.harana.sdk.shared.plugin.Service
 import io.circe._
 import io.circe.derivation.{deriveDecoder, deriveEncoder}
 import io.circe.syntax._
-import squants.market.{Money, defaultMoneyContext}
+import squants.market.{Money, MoneyContext, defaultMoneyContext}
 import com.harana.sdk.utils.ReflectUtils
 
 object CirceCodecs {
 
-	implicit val moneyContext = defaultMoneyContext
+	implicit val moneyContext: MoneyContext = defaultMoneyContext
 
 	implicit val decodeComponent: Decoder[Component] = Decoder.instance[Component] { c =>
 		val content = c.downField("component").success.get
@@ -316,7 +316,7 @@ object CirceCodecs {
 		)
 	}
 
-	implicit val optionStringKeyEncoder = new KeyEncoder[Option[String]] { override def apply(key: Option[String]) = key.getOrElse("") }
+	implicit val optionStringKeyEncoder: KeyEncoder[Option[String]] = (key: Option[String]) => key.getOrElse("")
 
 	implicit def decodeSubEntity[A <: Entity]: Decoder[Entity] = decodeEntity
 	implicit val decodeMoney: Decoder[Money] = Decoder.decodeString.emap { str => Money(str).toEither.leftMap(_ => "Malformed Money") }

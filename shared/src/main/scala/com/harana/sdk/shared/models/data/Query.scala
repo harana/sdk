@@ -1,11 +1,11 @@
-package com.harana.sdk.shared.models.designer.data
+package com.harana.sdk.shared.models.data
 
 import java.time.Instant
 
 import com.harana.sdk.shared.models.common.Entity.EntityId
 import com.harana.sdk.shared.models.common.User.UserId
 import com.harana.sdk.shared.models.common.{Entity, Status, Visibility}
-import com.harana.sdk.shared.models.designer.data.Query.QueryId
+import com.harana.sdk.shared.models.data.Query.QueryId
 import com.harana.sdk.shared.utils.Random
 import com.harana.sdk.shared.utils.CirceCodecs._
 import io.circe.generic.JsonCodec

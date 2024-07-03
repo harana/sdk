@@ -1,7 +1,7 @@
 package com.harana.sdk.shared.utils
 
 import shapeless.poly._
-import shapeless.{Id, Poly1}
+import shapeless.{Id, Poly1, poly}
 
 /**
  * Heterogeneous map with type-level key/value associations that are fixed by an arbitrary relation `R`.
@@ -26,7 +26,7 @@ case class HMap[R[_, _]](underlying : Map[Any, Any] = Map.empty) extends Poly1 {
   def -[K](k : K) : HMap[R] = new HMap[R](underlying-k)
   def ++(hmap: HMap[R]) : HMap[R] = new HMap[R](underlying ++ hmap.underlying)
 
-  implicit def caseRel[K, V](implicit ev : R[K, V]) = Case1[this.type, K, V](get(_).get)
+  implicit def caseRel[K, V](implicit ev : R[K, V]): poly.Case1.Aux[HMap.this.type, K, V] = Case1[this.type, K, V](get(_).get)
 
   override def equals(obj: Any) =
     obj match {

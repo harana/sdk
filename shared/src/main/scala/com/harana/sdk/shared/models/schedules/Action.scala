@@ -95,7 +95,7 @@ object Action {
   def newWithName(name: String) = types.find(_.getClass.getSimpleName == name).get
   val typesByName = types.map(_.getClass.getSimpleName.replace("$", ""))
 
-  implicit val decoder = Decoder.instance[Action] { c =>
+  implicit val decoder: Decoder[Action] = Decoder.instance[Action] { c =>
     val content = c.downField("value").success.get
     c.downField("type").as[String].getOrElse(throw new Exception("Action type not found")) match {
       case "DataSync"          => deriveDecoder[DataSync].apply(content)
@@ -120,7 +120,7 @@ object Action {
     }
   }
 
-  implicit val encoder = Encoder.instance[Action] { action =>
+  implicit val encoder: Encoder[Action] = Encoder.instance[Action] { action =>
     val actionType = action.getClass.getSimpleName
     val json = actionType match {
       case "DataSync"          => deriveEncoder[DataSync].apply(action.asInstanceOf[DataSync])

@@ -1,13 +1,12 @@
 package com.harana.sdk.shared.models.common
 
-import java.lang.{String => JString}
-import java.time.Instant
-
 import com.harana.sdk.shared.models.common.Parameter.ParameterName
 import com.harana.sdk.shared.models.data.DataSourceType
 import com.harana.sdk.shared.utils.HMap
 import io.circe.generic.JsonCodec
-import com.harana.sdk.shared.utils.CirceCodecs._
+
+import java.lang.{String => JString}
+import java.time.Instant
 
 sealed trait Parameter {
   type Value <: ParameterValue
@@ -23,50 +22,51 @@ object Parameter {
   val ParameterValues = HMap[ParametersMap]
 
   class ParametersMap[Parameter, V]
-  implicit val parameter = new ParametersMap[Parameter, ParameterValue]
-  implicit def parameterValue[K <: Parameter] = new ParametersMap[K, K#Value]
+  implicit val parameter: ParametersMap[Parameter, ParameterValue] = new ParametersMap[Parameter, ParameterValue]
+  implicit def parameterValue[K <: Parameter]: ParametersMap[K, K#Value] = new ParametersMap[K, K#Value]
 
-  implicit val boolean = parameterValue[Boolean]
-  implicit val code = parameterValue[Code]
-  implicit val color = parameterValue[Color]
-  implicit val country = parameterValue[Country]
-  implicit val dataTable = parameterValue[DataTable]
-  implicit val date = parameterValue[Date]
-  implicit val dateRange = parameterValue[DateRange]
-  implicit val dateTime = parameterValue[DateTime]
-  implicit val decimal = parameterValue[Decimal]
-  implicit val decimalRange = parameterValue[DecimalRange]
-  implicit val email = parameterValue[Email]
-  implicit val emoji = parameterValue[Emoji]
-  implicit val file = parameterValue[File]
-  implicit val geoCoordinate = parameterValue[GeoCoordinate]
-  implicit val geoLocation = parameterValue[GeoLocation]
-  implicit val html = parameterValue[Html]
-  implicit val image = parameterValue[Image]
-  implicit val integer = parameterValue[Integer]
-  implicit val integerRange = parameterValue[IntegerRange]
-  implicit val ipAddress = parameterValue[IPAddress]
-  implicit val ipAddressList = parameterValue[IPAddressList]
-  implicit val json = parameterValue[Json]
-  implicit val long = parameterValue[Long]
-  implicit val longRange = parameterValue[LongRange]
-  implicit val markdown = parameterValue[Markdown]
-  implicit val money = parameterValue[Money]
-  implicit val newPassword = parameterValue[NewPassword]
+  implicit val boolean: ParametersMap[Boolean, ParameterValue.Boolean] = parameterValue[Boolean]
+  implicit val code: ParametersMap[Code, ParameterValue.String] = parameterValue[Code]
+  implicit val color: ParametersMap[Color, ParameterValue.String] = parameterValue[Color]
+  implicit val country: ParametersMap[Country, ParameterValue.String] = parameterValue[Country]
+  implicit val dataSource: ParametersMap[DataSource, ParameterValue.DataSourceId] = parameterValue[DataSource]
+  implicit val dataTable: ParametersMap[DataTable, ParameterValue.String] = parameterValue[DataTable]
+  implicit val date: ParametersMap[Date, ParameterValue.Instant] = parameterValue[Date]
+  implicit val dateRange: ParametersMap[DateRange, ParameterValue.InstantRange] = parameterValue[DateRange]
+  implicit val dateTime: ParametersMap[DateTime, ParameterValue.Instant] = parameterValue[DateTime]
+  implicit val decimal: ParametersMap[Decimal, ParameterValue.Decimal] = parameterValue[Decimal]
+  implicit val decimalRange: ParametersMap[DecimalRange, ParameterValue.DecimalRange] = parameterValue[DecimalRange]
+  implicit val email: ParametersMap[Email, ParameterValue.String] = parameterValue[Email]
+  implicit val emoji: ParametersMap[Emoji, ParameterValue.String] = parameterValue[Emoji]
+  implicit val file: ParametersMap[File, ParameterValue.String] = parameterValue[File]
+  implicit val geoAddress: ParametersMap[GeoAddress, ParameterValue.GeoAddress] = parameterValue[GeoAddress]
+  implicit val geoCoordinate: ParametersMap[GeoCoordinate, ParameterValue.GeoCoordinate] = parameterValue[GeoCoordinate]
+  implicit val geoLocation: ParametersMap[GeoLocation, ParameterValue.GeoCoordinate] = parameterValue[GeoLocation]
+  implicit val html: ParametersMap[Html, ParameterValue.String] = parameterValue[Html]
+  implicit val image: ParametersMap[Image, ParameterValue.String] = parameterValue[Image]
+  implicit val integer: ParametersMap[Integer, ParameterValue.Integer] = parameterValue[Integer]
+  implicit val integerRange: ParametersMap[IntegerRange, ParameterValue.IntegerRange] = parameterValue[IntegerRange]
+  implicit val ipAddress: ParametersMap[IPAddress, ParameterValue.IPAddress] = parameterValue[IPAddress]
+  implicit val ipAddressList: ParametersMap[IPAddressList, ParameterValue.IPAddressList] = parameterValue[IPAddressList]
+  implicit val json: ParametersMap[Json, ParameterValue.String] = parameterValue[Json]
+  implicit val long: ParametersMap[Long, ParameterValue.Long] = parameterValue[Long]
+  implicit val longRange: ParametersMap[LongRange, ParameterValue.LongRange] = parameterValue[LongRange]
+  implicit val markdown: ParametersMap[Markdown, ParameterValue.String] = parameterValue[Markdown]
+  implicit val money: ParametersMap[Money, ParameterValue.Money] = parameterValue[Money]
+  implicit val newPassword: ParametersMap[NewPassword, ParameterValue.String] = parameterValue[NewPassword]
 //  implicit val obj = parameterValue[Object]
-  implicit val page = parameterValue[Page]
-  implicit val password = parameterValue[Password]
-  implicit val searchQuery = parameterValue[SearchQuery]
-  implicit val string = parameterValue[String]
-  implicit val stringList = parameterValue[StringList]
-  implicit val stringMap = parameterValue[StringMap]
-  implicit val tags = parameterValue[Tags]
-  implicit val time = parameterValue[Time]
-  implicit val timeZone = parameterValue[TimeZone]
-  implicit val uri = parameterValue[Uri]
-  implicit val user = parameterValue[User]
-  implicit val video = parameterValue[Video]
-
+  implicit val page: ParametersMap[Page, ParameterValue.PageId] = parameterValue[Page]
+  implicit val password: ParametersMap[Password, ParameterValue.String] = parameterValue[Password]
+  implicit val searchQuery: ParametersMap[SearchQuery, ParameterValue.String] = parameterValue[SearchQuery]
+  implicit val string: ParametersMap[String, ParameterValue.String] = parameterValue[String]
+  implicit val stringList: ParametersMap[StringList, ParameterValue.StringList] = parameterValue[StringList]
+  implicit val stringMap: ParametersMap[StringMap, ParameterValue.StringMap] = parameterValue[StringMap]
+  implicit val tags: ParametersMap[Tags, ParameterValue.StringList] = parameterValue[Tags]
+  implicit val time: ParametersMap[Time, ParameterValue.Instant] = parameterValue[Time]
+  implicit val timeZone: ParametersMap[TimeZone, ParameterValue.String] = parameterValue[TimeZone]
+  implicit val uri: ParametersMap[Uri, ParameterValue.URI] = parameterValue[Uri]
+  implicit val user: ParametersMap[User, ParameterValue.UserId] = parameterValue[User]
+  implicit val video: ParametersMap[Video, ParameterValue.VideoId] = parameterValue[Video]
 
   @JsonCodec
   case class Boolean(name: ParameterName,
@@ -122,6 +122,15 @@ object Parameter {
                        required: scala.Boolean = false,
                        validators: List[ParameterValidator] = List()) extends Parameter {
     type Value = ParameterValue.InstantRange
+  }
+
+  @JsonCodec
+  case class DataSource(name: ParameterName,
+                        dataSourceType: DataSourceType,
+                        default: Option[ParameterValue.DataSourceId] = None,
+                        required: scala.Boolean = false,
+                        validators: List[ParameterValidator] = List()) extends Parameter {
+    type Value = ParameterValue.DataSourceId
   }
 
   @JsonCodec
@@ -186,6 +195,14 @@ object Parameter {
                   allowFiles: scala.Boolean = true,
                   validators: List[ParameterValidator] = List()) extends Parameter {
     type Value = ParameterValue.String
+  }
+
+  @JsonCodec
+  case class GeoAddress(name: ParameterName,
+                        default: Option[ParameterValue.GeoAddress] = None,
+                        required:  scala.Boolean = false,
+                        validators: List[ParameterValidator] = List()) extends Parameter {
+    type Value = ParameterValue.GeoAddress
   }
 
   @JsonCodec
@@ -362,7 +379,7 @@ object Parameter {
   case class String(name: ParameterName,
                     default: Option[ParameterValue.String] = None,
                     required: scala.Boolean = false,
-                    options: List[(JString, ParameterValue.String)] = List(),
+                    options: List[(JString, JString)] = List(),
                     placeholder: Option[JString] = None,
                     maxLength: Option[Int] = None,
                     multiLine: scala.Boolean = false,
