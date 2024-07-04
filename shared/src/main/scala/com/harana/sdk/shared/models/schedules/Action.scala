@@ -1,6 +1,6 @@
 package com.harana.sdk.shared.models.schedules
 
-import com.harana.sdk.shared.models.data.DataSource.DataSourceId
+import com.harana.sdk.shared.models.data.Connection.ConnectionId
 import Schedule.ScheduleId
 import com.harana.sdk.shared.models.flow.Flow.FlowId
 import io.circe.derivation.{deriveDecoder, deriveEncoder}
@@ -16,7 +16,7 @@ object Action {
 
   type ActionId = String
 
-  case class DataSync(dataSourceId: Option[DataSourceId] = None) extends Action
+  case class DataSync(dataSourceId: Option[ConnectionId] = None) extends Action
 
   case class ExecuteCommand(command: Option[String] = None) extends Action
 

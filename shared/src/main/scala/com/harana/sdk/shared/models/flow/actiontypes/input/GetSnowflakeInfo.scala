@@ -1,7 +1,7 @@
 package com.harana.sdk.shared.models.flow.actiontypes.input
 
 import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup, ParameterValue}
-import com.harana.sdk.shared.models.data.DataSourceTypes
+import com.harana.sdk.shared.models.data.ConnectionTypes
 import com.harana.sdk.shared.models.flow.actiontypes.logGroup
 
 class GetSnowflakeInfo extends InputActionTypeInfo {
@@ -9,11 +9,11 @@ class GetSnowflakeInfo extends InputActionTypeInfo {
   val tags = Set()
 
   // General
-  val dataSourceType = DataSourceTypes.Snowflake
-  val dataSourceParameter = Parameter.DataSource("data-source", dataSourceType, required = true)
+  val dataSourceType = ConnectionTypes.Snowflake
+  val dataSourceParameter = Parameter.Connection("data-source", dataSourceType, required = true)
   val modeParameter = Parameter.String("mode", required = true, options = List(
-    ("query", "query"),
-    ("table", "table")
+    ("query", ParameterValue.String("query")),
+    ("table", ParameterValue.String("table"))
   ))
   val queryParameter = Parameter.String("query", multiLine = true)
   val tableParameter = Parameter.String("table")

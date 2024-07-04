@@ -1,15 +1,15 @@
 package com.harana.sdk.shared.models.flow.actiontypes.input
 
 import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup, ParameterValue}
-import com.harana.sdk.shared.models.data.DataSourceTypes
+import com.harana.sdk.shared.models.data.ConnectionTypes
 import com.harana.sdk.shared.models.flow.actiontypes._
 
 class GetSftpInfo extends InputActionTypeInfo {
 
   val tags = Set()
-  val dataSourceType = DataSourceTypes.Sftp
+  val dataSourceType = ConnectionTypes.Sftp
 
-  val dataSourceParameter = Parameter.DataSource("data-source", dataSourceType, required = true)
+  val dataSourceParameter = Parameter.Connection("data-source", dataSourceType, required = true)
   val fileTypeParameter = Parameter.String("file-type", options = List(
     ("avro", ParameterValue.String("avro")),
     ("csv", ParameterValue.String("csv")),

@@ -3,7 +3,7 @@ package com.harana.sdk.shared.models.flow
 import com.harana.sdk.shared.models.common.Entity.EntityId
 import com.harana.sdk.shared.models.common.User.UserId
 import com.harana.sdk.shared.models.common.{Background, Entity, Status, Visibility}
-import com.harana.sdk.shared.models.data.DataSource
+import com.harana.sdk.shared.models.data.Connection
 import com.harana.sdk.shared.models.flow.Flow.FlowId
 import com.harana.sdk.shared.utils.Random
 import io.circe.generic.JsonCodec
@@ -14,7 +14,7 @@ import java.time.Instant
 @JsonCodec
 case class Flow(title: String,
                 description: String,
-                connections: List[DataSource] = List(),
+                connections: List[Connection] = List(),
                 actions: List[Action] = List(),
                 links: List[Link] = List(),
                 zoomLevel: Option[Int],
@@ -38,7 +38,7 @@ object Flow {
 
   def apply(title: String,
             description: String,
-            connections: List[DataSource],
+            connections: List[Connection],
             actions: List[Action],
             links: List[Link],
             createdBy: Option[UserId],

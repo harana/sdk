@@ -3,7 +3,7 @@ package com.harana.sdk.shared.models.query
 import com.harana.sdk.shared.models.common.Entity.EntityId
 import com.harana.sdk.shared.models.common.User.UserId
 import com.harana.sdk.shared.models.common.{Entity, Status, Visibility}
-import com.harana.sdk.shared.models.data.DataSource
+import com.harana.sdk.shared.models.data.Connection
 import DataSet.DataSetId
 import com.harana.sdk.shared.utils.Random
 import io.circe.generic.JsonCodec
@@ -25,7 +25,7 @@ case class DataSet(title: String,
 									 relationships: Map[String, EntityId])
 	extends Entity with Serializable {
 
-	type EntityType = DataSource
+	type EntityType = Connection
 }
 
 object DataSet {

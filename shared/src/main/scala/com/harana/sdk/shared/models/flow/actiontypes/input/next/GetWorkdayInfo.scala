@@ -1,7 +1,7 @@
 package com.harana.sdk.shared.models.flow.actiontypes.input.next
 
 import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup}
-import com.harana.sdk.shared.models.data.{DataSourceType, DataSourceTypes}
+import com.harana.sdk.shared.models.data.{ConnectionType, ConnectionTypes}
 import com.harana.sdk.shared.models.flow.actiontypes.input.InputActionTypeInfo
 
 class GetWorkdayInfo extends InputActionTypeInfo {
@@ -9,8 +9,8 @@ class GetWorkdayInfo extends InputActionTypeInfo {
   val tags = Set()
 
   // General
-  val dataSourceType = DataSourceTypes.Workday
-  val dataSourceParameter = Parameter.DataSource("data-source", dataSourceType, required = true)
+  val dataSourceType = ConnectionTypes.Workday
+  val dataSourceParameter = Parameter.Connection("data-source", dataSourceType, required = true)
   val requestParameter = Parameter.String("request")
   val objectTagPathParameter = Parameter.String("objectTagPath")
   val detailsTagPathParameter = Parameter.String("detailsTagPath")

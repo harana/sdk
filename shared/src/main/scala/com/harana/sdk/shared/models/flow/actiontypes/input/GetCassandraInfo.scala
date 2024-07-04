@@ -1,16 +1,16 @@
 package com.harana.sdk.shared.models.flow.actiontypes.input
 
 import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup, ParameterValue}
-import com.harana.sdk.shared.models.data.DataSourceTypes
+import com.harana.sdk.shared.models.data.ConnectionTypes
 import com.harana.sdk.shared.models.flow.actiontypes.logGroup
 
 class GetCassandraInfo extends InputActionTypeInfo {
 
   val tags = Set("cassandra")
-  val dataSourceType = DataSourceTypes.Cassandra
+  val dataSourceType = ConnectionTypes.Cassandra
 
   // General
-  val dataSourceParameter = Parameter.DataSource("data-source", dataSourceType, required = true)
+  val dataSourceParameter = Parameter.Connection("data-source", dataSourceType, required = true)
   val keyspaceParameter = Parameter.String("keyspace", required = true)
   val tableParameter = Parameter.String("table", required = true)
   val generalGroup = ParameterGroup("general", List(dataSourceParameter, keyspaceParameter, tableParameter))

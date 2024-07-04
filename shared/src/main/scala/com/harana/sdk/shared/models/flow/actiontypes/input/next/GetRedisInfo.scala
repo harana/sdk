@@ -1,7 +1,7 @@
 package com.harana.sdk.shared.models.flow.actiontypes.input.next
 
 import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup, ParameterValue}
-import com.harana.sdk.shared.models.data.DataSourceTypes
+import com.harana.sdk.shared.models.data.ConnectionTypes
 import com.harana.sdk.shared.models.flow.actiontypes.input.InputActionTypeInfo
 
 class GetRedisInfo extends InputActionTypeInfo {
@@ -9,8 +9,8 @@ class GetRedisInfo extends InputActionTypeInfo {
   val tags = Set()
 
   // General
-  val dataSourceType = DataSourceTypes.Redis
-  val dataSourceParameter = Parameter.DataSource("data-source", dataSourceType, required = true)
+  val dataSourceType = ConnectionTypes.Redis
+  val dataSourceParameter = Parameter.Connection("data-source", dataSourceType, required = true)
   val tableParameter = Parameter.String("table", required = true)
   val generalGroup = ParameterGroup("general", List(dataSourceParameter, tableParameter))
 

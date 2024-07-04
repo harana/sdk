@@ -24,7 +24,7 @@ case class DataSet(title: String,
 									 relationships: Map[String, EntityId])
 	extends Entity with Serializable {
 
-	type EntityType = DataSource
+	type EntityType = Connection
 }
 
 object DataSet {

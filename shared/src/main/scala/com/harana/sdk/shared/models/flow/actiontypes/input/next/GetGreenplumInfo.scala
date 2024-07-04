@@ -1,16 +1,16 @@
 package com.harana.sdk.shared.models.flow.actiontypes.input.next
 
 import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup}
-import com.harana.sdk.shared.models.data.DataSourceTypes
+import com.harana.sdk.shared.models.data.ConnectionTypes
 import com.harana.sdk.shared.models.flow.actiontypes.input.InputActionTypeInfo
 
 class GetGreenplumInfo extends InputActionTypeInfo {
 
   val tags = Set()
-  val dataSourceType = DataSourceTypes.Greenplum
+  val dataSourceType = ConnectionTypes.Greenplum
 
   // General
-  val dataSourceParameter = Parameter.DataSource("data-source", dataSourceType, required = true)
+  val dataSourceParameter = Parameter.Connection("data-source", dataSourceType, required = true)
   val generalGroup = ParameterGroup("general", List(dataSourceParameter))
 
   // Advanced

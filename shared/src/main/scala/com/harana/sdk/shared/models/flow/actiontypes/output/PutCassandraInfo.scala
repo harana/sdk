@@ -1,16 +1,16 @@
 package com.harana.sdk.shared.models.flow.actiontypes.output
 
-import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup}
+import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup, ParameterValue}
 import com.harana.sdk.shared.models.flow.actiontypes.{ActionTypeGroup, logGroup}
-import com.harana.sdk.shared.models.data.DataSourceTypes
+import com.harana.sdk.shared.models.data.ConnectionTypes
 
 class PutCassandraInfo extends OutputActionTypeInfo {
 
   val tags = Set()
-  val dataSourceType = DataSourceTypes.Cassandra
+  val dataSourceType = ConnectionTypes.Cassandra
 
   // General
-  val dataSourceParameter = Parameter.DataSource("data-source", dataSourceType, required = true)
+  val dataSourceParameter = Parameter.Connection("data-source", dataSourceType, required = true)
   val keyspaceParameter = Parameter.String("keyspace", required = true)
   val tableParameter = Parameter.String("table", required = true)
   val generalGroup = ParameterGroup("general", List(dataSourceParameter, keyspaceParameter, tableParameter))
@@ -18,14 +18,14 @@ class PutCassandraInfo extends OutputActionTypeInfo {
   // Advanced
   val consistencyLevelParameter = Parameter.String("consistency-level", options =
     List(
-      ("all", "ALL"),
-      ("each-quorum", "EACH_QUORUM"),
-      ("quorum", "QUORUM"),
-      ("local-quorum", "LOCAL_QUORUM"),
-      ("one", "ONE"),
-      ("two", "TWO"),
-      ("local-one", "LOCAL_ONE"),
-      ("any", "ANY")
+      ("all", ParameterValue.String("ALL")),
+      ("each-quorum", ParameterValue.String("EACH_QUORUM")),
+      ("quorum", ParameterValue.String("QUORUM")),
+      ("local-quorum", ParameterValue.String("LOCAL_QUORUM")),
+      ("one", ParameterValue.String("ONE")),
+      ("two", ParameterValue.String("TWO")),
+      ("local-one", ParameterValue.String("LOCAL_ONE")),
+      ("any", ParameterValue.String("ANY"))
     ))
   val ttlParameter = Parameter.Long("ttl", placeholder = Some(0))
   val concurrentWritesParameter = Parameter.Long("concurrent-writes", placeholder = Some(5))
@@ -34,9 +34,9 @@ class PutCassandraInfo extends OutputActionTypeInfo {
   val batchGroupingBufferSizeParameter = Parameter.Long("batch-grouping-buffer-size", placeholder = Some(1000))
   val batchGroupingKeyParameter = Parameter.String("batch-grouping-key", options =
     List(
-      ("none", "none"),
-      ("replica-set", "replica_set"),
-      ("partition", "partition")
+      ("none", ParameterValue.String("none")),
+      ("replica-set", ParameterValue.String("replica_set")),
+      ("partition", ParameterValue.String("partition"))
     ))
 
   val batchSizeBytesParameter = Parameter.Long("batch-size-bytes", placeholder = Some(1024))
@@ -44,9 +44,9 @@ class PutCassandraInfo extends OutputActionTypeInfo {
   val throughputMBPerSecParameter = Parameter.Long("throughput-mb-per-sec")
   val directJoinSettingParameter = Parameter.String("direct-join-setting", options =
     List(
-      ("on", "on"),
-      ("off", "off"),
-      ("auto", "auto")
+      ("on", ParameterValue.String("on")),
+      ("off", ParameterValue.String("off")),
+      ("auto", ParameterValue.String("auto"))
     ))
   val directJoinSizeRatioParameter = Parameter.Decimal("direct-join-size-ratio")
   val ignoreMissingMetaColumnsParameter = Parameter.Boolean("ignore-missing-meta-columns")

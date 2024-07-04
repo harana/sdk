@@ -12,10 +12,10 @@ class JoinInfo extends ActionTypeInfo {
   val outputPorts = List(Port.DataFrame("out"))
 
   val modeParameter = Parameter.String("mode", Some(ParameterValue.String("left")), required = true, options = List(
-    ("inner", "inner"),
-    ("left", "left"),
-    ("right", "right"),
-    ("outer", "outer")
+    ("inner", ParameterValue.String("inner")),
+    ("left", ParameterValue.String("left")),
+    ("right", ParameterValue.String("right")),
+    ("outer", ParameterValue.String("outer"))
   ))
   val columnsParameter = Parameter.StringList("columns", required = true)
   val parameterGroups = List(ParameterGroup("general", List(modeParameter, columnsParameter)), logGroup)

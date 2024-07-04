@@ -1,19 +1,19 @@
 package com.harana.sdk.shared.models.flow
 
-import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup, ParameterGroupLayout}
+import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup, ParameterGroupLayout, ParameterValue}
 
 package object actiontypes {
 
   val formatParameter = Parameter.String("format", required = true, options = List(
-    ("avro", "avro"),
-    ("binary-file", "binaryFile"),
-    ("csv", "csv"),
-    ("image", "image"),
-    ("json", "json"),
-    ("libsvm", "libsvm"),
-    ("orc", "orc"),
-    ("parquet", "parquet"),
-    ("text", "text")
+    ("avro", ParameterValue.String("avro")),
+    ("binary-file", ParameterValue.String("binaryFile")),
+    ("csv", ParameterValue.String("csv")),
+    ("image", ParameterValue.String("image")),
+    ("json", ParameterValue.String("json")),
+    ("libsvm", ParameterValue.String("libsvm")),
+    ("orc", ParameterValue.String("orc")),
+    ("parquet", ParameterValue.String("parquet")),
+    ("text", ParameterValue.String("text"))
   ))
 
   val pathParameter = Parameter.String("path", multiLine = true)

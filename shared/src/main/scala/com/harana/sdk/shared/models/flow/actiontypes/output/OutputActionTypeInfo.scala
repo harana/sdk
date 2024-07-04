@@ -1,6 +1,6 @@
 package com.harana.sdk.shared.models.flow.actiontypes.output
 
-import com.harana.sdk.shared.models.common.Parameter
+import com.harana.sdk.shared.models.common.{Parameter, ParameterValue}
 import com.harana.sdk.shared.models.flow.actiontypes.ActionTypeGroup
 import com.harana.sdk.shared.models.flow.{ActionTypeInfo, Port}
 
@@ -10,9 +10,9 @@ abstract class OutputActionTypeInfo extends ActionTypeInfo {
   val outputPorts = List()
 
   val saveModeParameter = Parameter.String("save-mode", required = true, options = List(
-    ("overwrite", "overwrite"),
-    ("append", "append"),
-    ("error-if-exists", "errorIfExists"),
-    ("ignore", "ignore")
+    ("overwrite", ParameterValue.String("overwrite")),
+    ("append", ParameterValue.String("append")),
+    ("error-if-exists", ParameterValue.String("errorIfExists")),
+    ("ignore", ParameterValue.String("ignore"))
   ))
 }

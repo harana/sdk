@@ -1,16 +1,16 @@
 package com.harana.sdk.shared.models.flow.actiontypes.output
 
 import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup, ParameterValue}
-import com.harana.sdk.shared.models.data.DataSourceTypes
+import com.harana.sdk.shared.models.data.ConnectionTypes
 import com.harana.sdk.shared.models.flow.actiontypes.logGroup
 
 class PutMongoDbInfo extends OutputActionTypeInfo {
 
   val tags = Set()
-  val dataSourceType = DataSourceTypes.MongoDb
+  val dataSourceType = ConnectionTypes.MongoDb
 
   // General
-  val dataSourceParameter = Parameter.DataSource("data-source", dataSourceType, required = true)
+  val dataSourceParameter = Parameter.Connection("data-source", dataSourceType, required = true)
   val databaseParameter = Parameter.String("database", required = true)
   val collectionParameter = Parameter.String("collection", required = true)
   val generalGroup = ParameterGroup("general", List(dataSourceParameter, databaseParameter, collectionParameter))

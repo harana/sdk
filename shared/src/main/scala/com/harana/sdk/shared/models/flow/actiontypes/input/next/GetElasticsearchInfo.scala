@@ -1,17 +1,17 @@
 package com.harana.sdk.shared.models.flow.actiontypes.input.next
 
 import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup}
-import com.harana.sdk.shared.models.data.DataSourceTypes
+import com.harana.sdk.shared.models.data.ConnectionTypes
 import com.harana.sdk.shared.models.flow.actiontypes._
 import com.harana.sdk.shared.models.flow.actiontypes.input.InputActionTypeInfo
 
 class GetElasticsearchInfo extends InputActionTypeInfo {
 
   val tags = Set("search")
-  val dataSourceType = DataSourceTypes.Elasticsearch
+  val dataSourceType = ConnectionTypes.Elasticsearch
 
   // General
-  val dataSourceParameter = Parameter.DataSource("data-source", dataSourceType, required = true)
+  val dataSourceParameter = Parameter.Connection("data-source", dataSourceType, required = true)
   val queryParameter = Parameter.String("query", multiLine = true, placeholder = Some("?q=Smith"))
   val generalGroup = ParameterGroup("general", List(dataSourceParameter, pathParameter, queryParameter))
 

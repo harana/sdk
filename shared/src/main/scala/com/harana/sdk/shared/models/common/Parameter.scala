@@ -2,7 +2,7 @@ package com.harana.sdk.shared.models.common
 
 import com.harana.sdk.shared.utils.CirceCodecs._
 import com.harana.sdk.shared.models.common.Parameter.ParameterName
-import com.harana.sdk.shared.models.data.DataSourceType
+import com.harana.sdk.shared.models.data.ConnectionType
 import com.harana.sdk.shared.utils.HMap
 import io.circe.generic.JsonCodec
 
@@ -30,7 +30,7 @@ object Parameter {
   implicit val code: ParametersMap[Code, ParameterValue.String] = parameterValue[Code]
   implicit val color: ParametersMap[Color, ParameterValue.String] = parameterValue[Color]
   implicit val country: ParametersMap[Country, ParameterValue.String] = parameterValue[Country]
-  implicit val dataSource: ParametersMap[DataSource, ParameterValue.DataSourceId] = parameterValue[DataSource]
+  implicit val dataSource: ParametersMap[Connection, ParameterValue.ConnectionId] = parameterValue[Connection]
   implicit val dataTable: ParametersMap[DataTable, ParameterValue.String] = parameterValue[DataTable]
   implicit val date: ParametersMap[Date, ParameterValue.Instant] = parameterValue[Date]
   implicit val dateRange: ParametersMap[DateRange, ParameterValue.InstantRange] = parameterValue[DateRange]
@@ -126,12 +126,12 @@ object Parameter {
   }
 
   @JsonCodec
-  case class DataSource(name: ParameterName,
-                        dataSourceType: DataSourceType,
-                        default: Option[ParameterValue.DataSourceId] = None,
+  case class Connection(name: ParameterName,
+                        dataSourceType: ConnectionType,
+                        default: Option[ParameterValue.ConnectionId] = None,
                         required: scala.Boolean = false,
                         validators: List[ParameterValidator] = List()) extends Parameter {
-    type Value = ParameterValue.DataSourceId
+    type Value = ParameterValue.ConnectionId
   }
 
   @JsonCodec
@@ -380,7 +380,7 @@ object Parameter {
   case class String(name: ParameterName,
                     default: Option[ParameterValue.String] = None,
                     required: scala.Boolean = false,
-                    options: List[(JString, JString)] = List(),
+                    options: List[(JString, ParameterValue.String)] = List(),
                     placeholder: Option[JString] = None,
                     maxLength: Option[Int] = None,
                     multiLine: scala.Boolean = false,

@@ -1,7 +1,7 @@
 package com.harana.sdk.shared.models.flow.actiontypes.input.next
 
 import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup, ParameterValue}
-import com.harana.sdk.shared.models.data.DataSourceTypes
+import com.harana.sdk.shared.models.data.ConnectionTypes
 import com.harana.sdk.shared.models.flow.actiontypes.input.InputActionTypeInfo
 
 class GetSalesforceInfo extends InputActionTypeInfo {
@@ -9,8 +9,8 @@ class GetSalesforceInfo extends InputActionTypeInfo {
   val tags = Set()
 
   // General
-  val dataSourceType = DataSourceTypes.Salesforce
-  val dataSourceParameter = Parameter.DataSource("data-source", dataSourceType, required = true)
+  val dataSourceType = ConnectionTypes.Salesforce
+  val dataSourceParameter = Parameter.Connection("data-source", dataSourceType, required = true)
   val queryParameter = Parameter.String("query", multiLine = true, required = true)
   val generalGroup = ParameterGroup("general", List(dataSourceParameter, queryParameter))
 

@@ -1,17 +1,17 @@
 package com.harana.sdk.shared.models.flow.actiontypes.input.next
 
 import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup}
-import com.harana.sdk.shared.models.data.DataSourceTypes
-import com.harana.sdk.shared.models.data.DataSourceTypes.Cloudant
+import com.harana.sdk.shared.models.data.ConnectionTypes
+import com.harana.sdk.shared.models.data.ConnectionTypes.Cloudant
 import com.harana.sdk.shared.models.flow.actiontypes.input.InputActionTypeInfo
 
 class GetCloudantInfo extends InputActionTypeInfo {
 
   val tags = Set()
-  val dataSourceType = DataSourceTypes.Cloudant
+  val dataSourceType = ConnectionTypes.Cloudant
 
   // General
-  val dataSourceParameter = Parameter.DataSource("data-source", dataSourceType, required = true)
+  val dataSourceParameter = Parameter.Connection("data-source", dataSourceType, required = true)
   val databaseParameter = Parameter.String("database", required = true)
   val indexParameter = Parameter.String("index", required = true)
   val viewParameter = Parameter.String("view")

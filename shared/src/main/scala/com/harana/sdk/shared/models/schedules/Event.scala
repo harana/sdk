@@ -1,6 +1,6 @@
 package com.harana.sdk.shared.models.schedules
 
-import com.harana.sdk.shared.models.data.DataSource.DataSourceId
+import com.harana.sdk.shared.models.data.Connection.ConnectionId
 import com.harana.sdk.shared.models.flow.Flow.FlowId
 import com.harana.sdk.shared.models.schedules.Action.DataSync
 import com.harana.sdk.shared.models.schedules.Schedule.ScheduleId
@@ -25,11 +25,11 @@ object Event {
                               timeZone: Option[String] = None,
                               exclusionDates: List[String] = List()) extends Event
 
-  case class DataSyncStarted(dataSourceId: Option[DataSourceId] = None) extends Event
+  case class DataSyncStarted(dataSourceId: Option[ConnectionId] = None) extends Event
 
-  case class DataSyncFinished(dataSourceId: Option[DataSourceId] = None) extends Event
+  case class DataSyncFinished(dataSourceId: Option[ConnectionId] = None) extends Event
 
-  case class DataSyncFailed(dataSourceId: Option[DataSourceId] = None,
+  case class DataSyncFailed(dataSourceId: Option[ConnectionId] = None,
                             errorMessage: Option[String] = None) extends Event
 
   case class FileCreated(path: Option[String] = None,
