@@ -10,6 +10,9 @@ import com.harana.sdk.shared.components.structure._
 import com.harana.sdk.shared.components.widgets._
 import com.harana.sdk.shared.models.catalog.{Page, Panel}
 import com.harana.sdk.shared.models.common._
+import com.harana.sdk.shared.models.data.{DataSourceType, DataSourceTypes}
+import com.harana.sdk.shared.models.flow.{ActionTypeInfo, Port}
+import com.harana.sdk.shared.models.flow.actiontypes.ActionTypes
 
 import java.net.URI
 import com.harana.sdk.shared.plugin.Service
@@ -22,6 +25,32 @@ import com.harana.sdk.utils.ReflectUtils
 object CirceCodecs {
 
 	implicit val moneyContext: MoneyContext = defaultMoneyContext
+
+	implicit val parameterGroupEncoder: Encoder.AsObject[ParameterGroup] = deriveEncoder[ParameterGroup]
+	implicit val parameterGroupDecoder: Decoder[ParameterGroup] = deriveDecoder[ParameterGroup]
+
+	implicit val portEncoder: Encoder[Port] = Encoder.instance[Port] { port =>
+		Json.obj(
+			"type" -> Json.fromString(port.getClass.getSimpleName),
+			"name" -> Json.fromString(port.name)
+		)
+	}
+
+	implicit val portDecoder: Decoder[Port] = (c: HCursor) => for {
+		typeField <- c.downField("type").as[String]
+		nameField <- c.downField("name").as[String]
+	} yield {
+		typeField match {
+			case "DataFrame" => Port.DataFrame(nameField)
+			case "DataFrameList" => Port.DataFrameList(nameField)
+			case "File" => Port.File(nameField)
+			case "FileList" => Port.FileList(nameField)
+			case "Int" => Port.Int(nameField)
+			case "IntList" => Port.IntList(nameField)
+			case "RDD" => Port.RDD(nameField)
+			case "RDDList" => Port.RDDList(nameField)
+		}
+	}
 
 	implicit val decodeComponent: Decoder[Component] = Decoder.instance[Component] { c =>
 		val content = c.downField("component").success.get
@@ -165,6 +194,7 @@ object CirceCodecs {
 		val value = c.downField("value").success.get
 		c.downField("type").as[String].getOrElse(throw new Exception("Parameter value type not found")) match {
 			case "Boolean" => deriveDecoder[ParameterValue.Boolean].apply(value)
+			case "DataSource" => deriveDecoder[ParameterValue.DataSourceId].apply(value)
 			case "Decimal" => deriveDecoder[ParameterValue.Decimal].apply(value)
 			case "DecimalRange" => deriveDecoder[ParameterValue.DecimalRange].apply(value)
 			case "GeoCoordinate" => deriveDecoder[ParameterValue.GeoCoordinate].apply(value)
@@ -190,6 +220,7 @@ object CirceCodecs {
 		val parameterType = parameter.getClass.getSimpleName
 		val json = parameterType match {
 			case "Boolean" => deriveEncoder[ParameterValue.Boolean].apply(parameter.asInstanceOf[ParameterValue.Boolean])
+			case "DataSource" => deriveEncoder[ParameterValue.DataSourceId].apply(parameter.asInstanceOf[ParameterValue.DataSourceId])
 			case "Decimal" => deriveEncoder[ParameterValue.Decimal].apply(parameter.asInstanceOf[ParameterValue.Decimal])
 			case "DecimalRange" => deriveEncoder[ParameterValue.DecimalRange].apply(parameter.asInstanceOf[ParameterValue.DecimalRange])
 			case "GeoCoordinate" => deriveEncoder[ParameterValue.GeoCoordinate].apply(parameter.asInstanceOf[ParameterValue.GeoCoordinate])
@@ -212,7 +243,6 @@ object CirceCodecs {
 		io.circe.Json.obj("type" -> parameterType.asJson, "value" -> json)
 	}
 
-
 	implicit val decodeParameterType: Decoder[Parameter] = Decoder.instance[Parameter] { c =>
 		val content = c.downField("parameter").success.get
 		c.downField("type").as[String].getOrElse(throw new Exception("Parameter type not found")) match {
@@ -220,6 +250,7 @@ object CirceCodecs {
 			case "Code" => deriveDecoder[Parameter.Code].apply(content)
 			case "Color" => deriveDecoder[Parameter.Color].apply(content)
 			case "Country" => deriveDecoder[Parameter.Country].apply(content)
+			case "DataSource" => deriveDecoder[Parameter.DataSource].apply(content)
 			case "DataTable" => deriveDecoder[Parameter.DataTable].apply(content)
 			case "Date" => deriveDecoder[Parameter.Date].apply(content)
 			case "Decimal" => deriveDecoder[Parameter.Decimal].apply(content)
@@ -259,6 +290,7 @@ object CirceCodecs {
 			case "Code" => deriveEncoder[Parameter.Code].apply(parameter.asInstanceOf[Parameter.Code])
 			case "Color" => deriveEncoder[Parameter.Color].apply(parameter.asInstanceOf[Parameter.Color])
 			case "Country" => deriveEncoder[Parameter.Country].apply(parameter.asInstanceOf[Parameter.Country])
+			case "DataSource" => deriveEncoder[Parameter.DataSource].apply(parameter.asInstanceOf[Parameter.DataSource])
 			case "DataTable" => deriveEncoder[Parameter.DataTable].apply(parameter.asInstanceOf[Parameter.DataTable])
 			case "Date" => deriveEncoder[Parameter.Date].apply(parameter.asInstanceOf[Parameter.Date])
 			case "Decimal" => deriveEncoder[Parameter.Decimal].apply(parameter.asInstanceOf[Parameter.Decimal])
@@ -318,11 +350,15 @@ object CirceCodecs {
 
 	implicit val optionStringKeyEncoder: KeyEncoder[Option[String]] = (key: Option[String]) => key.getOrElse("")
 
+	implicit def decodeActionTypeInfo[A <: ActionTypeInfo]: Decoder[A] = Decoder.decodeString.emap { str => Either.catchNonFatal(ActionTypes.get(str).asInstanceOf[A]).leftMap(e => { e.printStackTrace(); "" } )}
+	implicit def decodeDataSourceType[A <: DataSourceType]: Decoder[A] = Decoder.decodeString.emap { str => Either.catchNonFatal(DataSourceTypes.get(str).asInstanceOf[A]).leftMap(e => { e.printStackTrace(); "" } ) }
 	implicit def decodeSubEntity[A <: Entity]: Decoder[Entity] = decodeEntity
 	implicit val decodeMoney: Decoder[Money] = Decoder.decodeString.emap { str => Money(str).toEither.leftMap(_ => "Malformed Money") }
 	implicit def decodeService[A <: Service]: Decoder[A] = Decoder.decodeString.emap { str => Either.catchNonFatal(ReflectUtils.classForName[A](str)).leftMap(_ => "Invalid Service") }
 	implicit val decodeUri: Decoder[URI] = Decoder.decodeString.emap { str => Either.catchNonFatal(URI.create(str)).leftMap(_ => "Malformed URL") }
 
+	implicit def encodeActionTypeInfo[A <: ActionTypeInfo]: Encoder[A] = Encoder.encodeString.contramap[A](ActionTypes.name(_))
+	implicit def encodeDataSourceType[A <: DataSourceType]: Encoder[A] = Encoder.encodeString.contramap[A](DataSourceTypes.name(_))
 	implicit def encodeSubEntity[A <: Entity]: Encoder[Entity] = encodeEntity
 	implicit val encodeMoney: Encoder[Money] = Encoder.encodeString.contramap[Money](_.toString)
 	implicit def encodeService[A <: Service]: Encoder[A] = Encoder.encodeString.contramap[A](_.getClass.getName)
