@@ -6,6 +6,8 @@ import com.harana.sdk.shared.models.flow.actiontypes.input.InputActionTypeInfo
 
 class GetZuoraInfo extends InputActionTypeInfo {
 
+  val id = "31E8FCEA-F067-48F9-8863-0C2D5B88F417"
+
   val tags = Set()
 
   // General

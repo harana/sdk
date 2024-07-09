@@ -6,6 +6,8 @@ import com.harana.sdk.shared.models.flow.{ActionTypeInfo, Port}
 
 class ExecuteSQLInfo extends ActionTypeInfo {
 
+  val id = "D569049B-765E-4A3B-9E66-A5FEB51D35EA"
+
   val tags = Set()
   val group = ActionTypeGroup.Query
   val inputPorts = List(Port.DataFrame("in"))

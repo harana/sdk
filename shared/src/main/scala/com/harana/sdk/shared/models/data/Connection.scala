@@ -1,12 +1,12 @@
 package com.harana.sdk.shared.models.data
 
 import com.harana.sdk.shared.models.common.Entity.EntityId
-import com.harana.sdk.shared.models.common.Parameter.{ParameterName, ParameterValues}
+import com.harana.sdk.shared.models.common.Parameter.{ParameterName, ParameterValues, ParametersMap}
 import com.harana.sdk.shared.models.common.User.UserId
-import com.harana.sdk.shared.models.common.{Background, Entity, ParameterValue, Status, Visibility}
+import com.harana.sdk.shared.models.common.{Background, Entity, Parameter, ParameterValue, Status, Visibility}
 import com.harana.sdk.shared.models.data.Connection.ConnectionId
 import com.harana.sdk.shared.models.data.ConnectionType.ConnectionTypeId
-import com.harana.sdk.shared.utils.Random
+import com.harana.sdk.shared.utils.{HMap, Random}
 import io.circe.generic.JsonCodec
 import com.harana.sdk.shared.utils.CirceCodecs._
 
@@ -34,13 +34,17 @@ case class Connection(title: String,
 
 	type EntityType = Connection
 
-	def parameters = {
-		val connection = ConnectionTypes.get
-		parameterValues.map { case (name, value) =>
-
-		}
+	val allParameterValues = {
+		val connection = ConnectionTypes.getById(connectionType)
+		val parameters = parameterValues.map { case (name, value) =>
+			connection.parameterGroups.flatten(_.parameters).find(_.name == name).head -> value
+		} ++ Map(
+			Parameter.title -> ParameterValue.String(title),
+			Parameter.description -> ParameterValue.String(description),
+			Parameter.tags -> ParameterValue.StringList(tags.toList)
+		)
+		HMap[ParametersMap](parameters.asInstanceOf[Map[Any, Any]])
 	}
-
 }
 
 object Connection {

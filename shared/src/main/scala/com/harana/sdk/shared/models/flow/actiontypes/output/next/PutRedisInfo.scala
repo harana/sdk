@@ -6,6 +6,8 @@ import com.harana.sdk.shared.models.flow.actiontypes.output.OutputActionTypeInfo
 
 class PutRedisInfo extends OutputActionTypeInfo {
 
+  val id = "56CE7D7A-F4B6-4CEC-B508-AFB23FBB28AA"
+
   val tags = Set()
 
   // General

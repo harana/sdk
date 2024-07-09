@@ -6,6 +6,8 @@ import com.harana.sdk.shared.models.flow.actiontypes.input.InputActionTypeInfo
 
 class GetWorkdayInfo extends InputActionTypeInfo {
 
+  val id = "4ADD93B9-C9D0-4E41-9394-172B4EFB13FC"
+
   val tags = Set()
 
   // General

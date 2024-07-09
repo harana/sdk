@@ -6,6 +6,8 @@ import com.harana.sdk.shared.models.flow.actiontypes.input.InputActionTypeInfo
 
 class GetCephInfo extends InputActionTypeInfo {
 
+  val id = "B0861CD8-0051-4003-8199-55FF737E9ADA"
+
   val tags = Set()
   val dataSourceType = ConnectionTypes.Ceph
   val dataSourceParameter = Parameter.Connection("data-source", dataSourceType, required = true)

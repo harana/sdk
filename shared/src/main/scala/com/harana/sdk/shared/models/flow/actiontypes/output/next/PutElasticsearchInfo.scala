@@ -7,6 +7,8 @@ import com.harana.sdk.shared.models.flow.actiontypes.output.OutputActionTypeInfo
 
 class PutElasticsearchInfo extends OutputActionTypeInfo {
 
+  val id = "B2B71DBB-681F-4DB4-84D0-AD3B2C3BBADB"
+
   val tags = Set()
   val dataSourceType = ConnectionTypes.Elasticsearch
 

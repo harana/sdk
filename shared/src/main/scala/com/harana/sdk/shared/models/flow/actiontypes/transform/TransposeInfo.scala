@@ -6,6 +6,8 @@ import com.harana.sdk.shared.models.flow.{ActionTypeInfo, Port}
 
 class TransposeInfo extends ActionTypeInfo {
 
+  val id = "CD902E78-FD15-4327-A1C6-0A03979ED943"
+
   val tags = Set()
   val group = ActionTypeGroup.Transform
   val inputPorts = List(Port.DataFrame("in"))

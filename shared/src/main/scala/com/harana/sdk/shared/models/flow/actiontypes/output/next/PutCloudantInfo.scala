@@ -8,6 +8,8 @@ import com.harana.sdk.shared.models.flow.actiontypes.output.OutputActionTypeInfo
 
 class PutCloudantInfo extends OutputActionTypeInfo {
 
+  val id = "19BCCD18-DA73-4DB1-B559-6C3283B7F10A"
+
   val tags = Set()
   val dataSourceType = ConnectionTypes.Cloudant
 

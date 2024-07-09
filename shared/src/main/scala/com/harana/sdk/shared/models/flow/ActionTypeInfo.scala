@@ -4,6 +4,7 @@ import com.harana.sdk.shared.models.common.ParameterGroup
 import com.harana.sdk.shared.models.flow.actiontypes.ActionTypeGroup
 
 trait ActionTypeInfo {
+  val id: String
   val tags: Set[String]
   val group: ActionTypeGroup
   val inputPorts: List[Port]

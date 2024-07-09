@@ -6,6 +6,8 @@ import com.harana.sdk.shared.models.flow.actiontypes.output.OutputActionTypeInfo
 
 class PutExasolInfo extends OutputActionTypeInfo {
 
+  val id = "80DDC371-7D57-4C39-A51A-70C46FE8A697"
+
   val tags = Set()
 
   // General

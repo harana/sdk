@@ -8,6 +8,8 @@ import scala.scalajs.reflect.annotation.EnableReflectiveInstantiation
 @EnableReflectiveInstantiation
 class Exasol extends ConnectionType {
 
+  val id = "C200D8E1-A64E-4EB3-97F3-F91512E58B8A"
+
   // General
   val hostParameter = Parameter.IPAddress("host", port = true, portDefault = Some(8563))
   val usernameParameter = Parameter.String("username")

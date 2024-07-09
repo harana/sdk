@@ -8,6 +8,8 @@ import scala.scalajs.reflect.annotation.EnableReflectiveInstantiation
 @EnableReflectiveInstantiation
 class Netsuite extends ConnectionType {
 
+  val id = "A85D2408-55E1-4066-A019-DC7843D11EEB"
+
   val emailParameter = Parameter.String("email", required = true)
   val passwordParameter = Parameter.Password("password", required = true)
   val accountParameter = Parameter.String("account", required = true)
@@ -16,4 +18,5 @@ class Netsuite extends ConnectionType {
   val generalGroup = ParameterGroup("general", List(emailParameter, passwordParameter, accountParameter, applicationIdParameter, roleIdParameter))
 
   val parameterGroups = List(generalGroup)
+
 }

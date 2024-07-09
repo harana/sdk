@@ -7,6 +7,8 @@ import com.harana.sdk.shared.models.flow.actiontypes.output.OutputActionTypeInfo
 
 class PutBigQueryInfo extends OutputActionTypeInfo {
 
+  val id = "A251F7E8-C9EE-465E-B48C-58EEEC0D8610"
+
   val tags = Set()
   val dataSourceType = ConnectionTypes.BigQuery
 

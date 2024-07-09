@@ -6,6 +6,8 @@ import com.harana.sdk.shared.models.flow.{ActionTypeInfo, Port}
 
 class RenameColumnInfo extends ActionTypeInfo {
 
+  val id = "44E97852-97B0-4D87-8320-9F56BF686BE9"
+
   val tags = Set()
   val group = ActionTypeGroup.Transform
   val inputPorts = List(Port.DataFrame("in"))

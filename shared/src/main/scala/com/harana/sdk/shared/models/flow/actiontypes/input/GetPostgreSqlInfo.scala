@@ -6,6 +6,8 @@ import com.harana.sdk.shared.models.flow.actiontypes.logGroup
 
 class GetPostgreSqlInfo extends JdbcInputActionTypeInfo {
 
+  val id = "0E032D3E-9938-47CA-8C3E-B11EFD55F01C"
+
   val tags = Set()
   val dataSourceType = ConnectionTypes.PostgreSql
 

@@ -6,6 +6,8 @@ import com.harana.sdk.shared.models.data.ConnectionTypes
 
 class PutSftpInfo extends OutputActionTypeInfo {
 
+  val id = "054760D0-C32B-4A86-8813-EC3120D827A3"
+
   val tags = Set()
 
   // General

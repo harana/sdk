@@ -7,6 +7,8 @@ import com.harana.sdk.shared.models.flow.actiontypes.input.InputActionTypeInfo
 
 class GetCloudantInfo extends InputActionTypeInfo {
 
+  val id = "18563E59-ECFB-4A9A-8D0F-598C16C03F65"
+
   val tags = Set()
   val dataSourceType = ConnectionTypes.Cloudant
 

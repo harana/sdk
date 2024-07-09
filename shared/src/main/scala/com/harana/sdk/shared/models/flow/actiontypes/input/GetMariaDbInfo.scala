@@ -6,6 +6,8 @@ import com.harana.sdk.shared.models.flow.actiontypes.logGroup
 
 class GetMariaDbInfo extends JdbcInputActionTypeInfo {
 
+  val id = "ADB7F00C-AC95-495A-88B6-CCCE47B71D06"
+
   val tags = Set()
   val dataSourceType = ConnectionTypes.MariaDb
 

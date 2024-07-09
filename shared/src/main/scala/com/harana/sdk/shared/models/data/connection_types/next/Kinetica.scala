@@ -8,6 +8,8 @@ import scala.scalajs.reflect.annotation.EnableReflectiveInstantiation
 @EnableReflectiveInstantiation
 class Kinetica extends ConnectionType {
 
+  val id = "93AAD83A-98FD-4A11-BA41-75ABF6E86482"
+
   // General
   val hostParameter = Parameter.IPAddress("host", port = true, portDefault = Some(9191), required = true)
   val usernameParameter = Parameter.String("username", required = true)
@@ -22,4 +24,5 @@ class Kinetica extends ConnectionType {
   val advancedGroup = ParameterGroup("advanced", List(primaryHostParameter, streamHostParameter, retryCountParameter, timeoutParameter))
 
   val parameterGroups = List(generalGroup, advancedGroup)
+
 }

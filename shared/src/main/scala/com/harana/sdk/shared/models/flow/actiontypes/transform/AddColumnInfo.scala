@@ -6,6 +6,8 @@ import com.harana.sdk.shared.models.flow.{ActionTypeInfo, Port}
 
 class AddColumnInfo extends ActionTypeInfo {
 
+  val id = "92F5F68A-5A1A-4545-A258-E2AE5D01BBAF"
+
   val tags = Set()
   val group = ActionTypeGroup.Transform
   val inputPorts = List(Port.DataFrame("in"))

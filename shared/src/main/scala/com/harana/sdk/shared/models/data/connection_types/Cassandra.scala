@@ -5,6 +5,8 @@ import com.harana.sdk.shared.models.data.ConnectionType
 
 class Cassandra extends ConnectionType {
 
+  val id = "EA338258-5644-4CC5-AB36-74F89B9A857C"
+
   // General
   val hostsParameter = Parameter.IPAddressList("hosts", required = true)
   val usernameParameter = Parameter.String("username", required = true)

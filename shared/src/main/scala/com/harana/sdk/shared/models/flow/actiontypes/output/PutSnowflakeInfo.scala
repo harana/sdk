@@ -6,6 +6,8 @@ import com.harana.sdk.shared.models.data.ConnectionTypes
 
 class PutSnowflakeInfo extends OutputActionTypeInfo {
 
+  val id = "DD256968-2FF0-41E7-B113-00B20ADB7DF7"
+
   val tags = Set()
   val dataSourceType = ConnectionTypes.Snowflake
 

@@ -6,6 +6,8 @@ import com.harana.sdk.shared.models.flow.actiontypes.output.OutputActionTypeInfo
 
 class PutMemSqlInfo extends OutputActionTypeInfo {
 
+  val id = "51FE2117-EBF4-48C3-8502-5E9809486832"
+
   val tags = Set()
   val dataSourceType = ConnectionTypes.MemSql
 

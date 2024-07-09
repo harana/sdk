@@ -8,6 +8,8 @@ import scala.scalajs.reflect.annotation.EnableReflectiveInstantiation
 @EnableReflectiveInstantiation
 class Neo4j extends ConnectionType {
 
+  val id = "356541DB-0BAC-48D4-BEC1-C7C502D3BDDD"
+
   // General
   val hostParameter = Parameter.IPAddress("host", port = true, portDefault = Some(7473), required = true)
   val usernameParameter = Parameter.String("username", required = true)
@@ -19,4 +21,5 @@ class Neo4j extends ConnectionType {
   val advancedGroup = ParameterGroup("advanced", List(encryptedParameter))
 
   val parameterGroups = List(generalGroup, advancedGroup)
+
 }

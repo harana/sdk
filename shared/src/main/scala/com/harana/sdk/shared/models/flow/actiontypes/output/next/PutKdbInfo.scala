@@ -7,6 +7,8 @@ import com.harana.sdk.shared.models.flow.actiontypes.output.OutputActionTypeInfo
 
 class PutKdbInfo extends OutputActionTypeInfo {
 
+  val id = "C17B683C-E89A-4407-89F8-55CC0B75351C"
+
   val tags = Set()
   val dataSourceType = ConnectionTypes.Kdb
   val dataSourceParameter = Parameter.Connection("data-source", dataSourceType, required = true)

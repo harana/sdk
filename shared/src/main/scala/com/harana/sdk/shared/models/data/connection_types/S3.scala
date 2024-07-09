@@ -5,6 +5,8 @@ import com.harana.sdk.shared.models.data.ConnectionType
 
 class S3 extends ConnectionType {
 
+  val id = "29D9A38E-C137-4F2E-84A0-15BF2E6F6DB8"
+
   val regionParameter = Parameter.String("region", required = true, options = List(
     ("us-east-1", ParameterValue.String("us-east-1")),
     ("us-east-2", ParameterValue.String("us-east-2")),

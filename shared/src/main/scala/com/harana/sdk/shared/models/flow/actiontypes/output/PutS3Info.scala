@@ -6,6 +6,8 @@ import com.harana.sdk.shared.models.flow.actiontypes._
 
 class PutS3Info extends OutputActionTypeInfo {
 
+  val id = "33F99B35-48E8-4DF4-AFBB-111E4E588753"
+
   val tags = Set("aws")
   val dataSourceType = ConnectionTypes.S3
 

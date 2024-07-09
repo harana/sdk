@@ -6,6 +6,8 @@ import com.harana.sdk.shared.models.flow.actiontypes._
 
 class PutHaranaFilesInfo extends OutputActionTypeInfo {
 
+  val id = "09BF675D-AB4D-4749-9FED-EC14EFE48556"
+
   val tags = Set("harana")
   val dataSourceType = ConnectionTypes.HaranaFiles
 

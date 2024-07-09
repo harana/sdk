@@ -8,6 +8,8 @@ import scala.scalajs.reflect.annotation.EnableReflectiveInstantiation
 @EnableReflectiveInstantiation
 class Workday extends ConnectionType {
 
+  val id = "B543C116-AAA6-4124-A239-66A131CC99EC"
+
   // General
   val endpointParameter = Parameter.String("endpoint", required = true)
   val usernameParameter = Parameter.String("username", required = true)
@@ -15,4 +17,5 @@ class Workday extends ConnectionType {
   val generalGroup = ParameterGroup("general", List(endpointParameter, usernameParameter, passwordParameter))
 
   val parameterGroups = List(generalGroup)
+
 }

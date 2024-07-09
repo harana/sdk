@@ -6,6 +6,8 @@ import com.harana.sdk.shared.models.flow.actiontypes.input.InputActionTypeInfo
 
 class GetNetsuiteInfo extends InputActionTypeInfo {
 
+  val id = "986CE84A-7D7F-44DA-83A7-2E3BB44F6931"
+
   val tags = Set()
   val dataSourceType = ConnectionTypes.Netsuite
   val dataSourceParameter = Parameter.Connection("data-source", dataSourceType, required = true)

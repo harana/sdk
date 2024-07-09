@@ -8,6 +8,8 @@ import scala.scalajs.reflect.annotation.EnableReflectiveInstantiation
 @EnableReflectiveInstantiation
 class Kdb extends ConnectionType {
 
+  val id = "D6F4F823-6EFF-41E1-899F-4746F13EE737"
+
   // General
   val hostParameter = Parameter.IPAddress("host", port = true, portDefault = Some(8086))
   val usernameParameter = Parameter.String("username")
@@ -20,4 +22,5 @@ class Kdb extends ConnectionType {
   val advancedGroup = ParameterGroup("advanced", List(queryTimeoutParameter))
 
   val parameterGroups = List(generalGroup, advancedGroup)
+
 }

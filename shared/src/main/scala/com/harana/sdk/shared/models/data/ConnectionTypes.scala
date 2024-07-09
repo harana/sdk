@@ -70,4 +70,5 @@ object ConnectionTypes {
   def get(name: String) = connectionTypesByName(name)
   def get(connectionType: ConnectionType) = connectionTypesByName(name(connectionType))
   def name(connectionType: ConnectionType) = connectionType.getClass.getSimpleName
+  def getById(id: String) = connectionTypes.find(_.id == id).head
 }

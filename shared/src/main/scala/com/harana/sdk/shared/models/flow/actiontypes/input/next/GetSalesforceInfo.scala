@@ -6,6 +6,8 @@ import com.harana.sdk.shared.models.flow.actiontypes.input.InputActionTypeInfo
 
 class GetSalesforceInfo extends InputActionTypeInfo {
 
+  val id = "08C581AA-1C1A-44C8-A560-9B7E3B0DB514"
+
   val tags = Set()
 
   // General

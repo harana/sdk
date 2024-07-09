@@ -6,6 +6,8 @@ import com.harana.sdk.shared.models.flow.actiontypes.logGroup
 
 class GetSnowflakeInfo extends InputActionTypeInfo {
 
+  val id = "78AE6457-21C1-49B1-BA9D-A8F733256344"
+
   val tags = Set()
 
   // General

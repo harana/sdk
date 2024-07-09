@@ -6,6 +6,8 @@ import com.harana.sdk.shared.models.flow.actiontypes.input.InputActionTypeInfo
 
 class GetKineticaInfo extends InputActionTypeInfo {
 
+  val id = "C2490CEB-62C1-4CDA-AB49-1AAC0F239BC2"
+
   val tags = Set()
   val dataSourceType = ConnectionTypes.Kinetica
 

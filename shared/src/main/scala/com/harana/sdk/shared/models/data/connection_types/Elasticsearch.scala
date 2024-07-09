@@ -5,6 +5,8 @@ import com.harana.sdk.shared.models.data.ConnectionType
 
 class Elasticsearch extends ConnectionType {
 
+  val id = "F3E070A2-8BB3-4B6A-98C3-E3F699D53530"
+
   // General
   val hostsParameter = Parameter.IPAddressList("hosts", required = true, port = true, portDefault = Some(9600))
   val sslParameter = Parameter.Boolean("ssl", Some(ParameterValue.Boolean(false)), required = true)

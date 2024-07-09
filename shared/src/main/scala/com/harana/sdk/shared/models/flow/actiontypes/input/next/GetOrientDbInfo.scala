@@ -6,6 +6,8 @@ import com.harana.sdk.shared.models.flow.actiontypes.input.JdbcInputActionTypeIn
 
 class GetOrientDbInfo extends JdbcInputActionTypeInfo {
 
+  val id = "B06FCC43-E988-4037-BA5C-473507B4411A"
+
   val tags = Set()
   val dataSourceType = ConnectionTypes.OrientDb
 

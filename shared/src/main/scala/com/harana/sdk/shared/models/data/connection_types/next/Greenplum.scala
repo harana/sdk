@@ -8,6 +8,8 @@ import scala.scalajs.reflect.annotation.EnableReflectiveInstantiation
 @EnableReflectiveInstantiation
 class Greenplum extends ConnectionType {
 
+  val id = "8676D520-7163-441E-B8A3-A585613800AB"
+
   val hostParameter = Parameter.IPAddress("host", port = true, portDefault = Some(5432))
   val usernameParameter = Parameter.String("username")
   val passwordParameter = Parameter.Password("password")
@@ -15,4 +17,5 @@ class Greenplum extends ConnectionType {
   val generalGroup = ParameterGroup("general", List(hostParameter, usernameParameter, passwordParameter, schemaParameter))
 
   val parameterGroups = List(generalGroup)
+
 }

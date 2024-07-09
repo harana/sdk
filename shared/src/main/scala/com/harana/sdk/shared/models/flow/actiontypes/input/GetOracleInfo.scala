@@ -6,6 +6,8 @@ import com.harana.sdk.shared.models.flow.actiontypes.logGroup
 
 class GetOracleInfo extends JdbcInputActionTypeInfo {
 
+  val id = "144EC842-A795-4A3C-923F-88BF2BB1CB5B"
+
   val tags = Set()
   val dataSourceType = ConnectionTypes.Oracle
 

@@ -6,6 +6,8 @@ import com.harana.sdk.shared.models.flow.actiontypes._
 
 class GetSftpInfo extends InputActionTypeInfo {
 
+  val id = "99D0EED6-7382-42F7-B489-35899067F95B"
+
   val tags = Set()
   val dataSourceType = ConnectionTypes.Sftp
 

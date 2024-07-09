@@ -6,6 +6,8 @@ import com.harana.sdk.shared.models.flow.actiontypes.input.InputActionTypeInfo
 
 class GetBigQueryInfo extends InputActionTypeInfo {
 
+  val id = "DF1A8923-6DCE-42FE-9EF2-2836B25032AD"
+
   val tags = Set("google", "gcp")
   val dataSourceType = ConnectionTypes.BigQuery
 

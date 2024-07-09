@@ -8,6 +8,8 @@ import scala.scalajs.reflect.annotation.EnableReflectiveInstantiation
 @EnableReflectiveInstantiation
 class MemSql extends ConnectionType {
 
+  val id = "4922272A-E622-4D5F-A41D-5666A2E21C12"
+
   // General
   val hostParameter = Parameter.IPAddress("host", port = true, portDefault = Some(3306), required = true)
   val usernameParameter = Parameter.String("username", required = true)
@@ -32,4 +34,5 @@ class MemSql extends ConnectionType {
   val advancedGroup = ParameterGroup("advanced", List(defaultDatabaseParameter, defaultSaveModeParameter, disablePartitionPushdownParameter, defaultCreateModeParameter, trustServerCertificate, disableSslHostnameVerification))
 
   val parameterGroups = List(generalGroup, advancedGroup)
+
 }

@@ -7,6 +7,8 @@ import com.harana.sdk.shared.models.flow.actiontypes.output.OutputActionTypeInfo
 
 class PutNetsuiteInfo extends OutputActionTypeInfo {
 
+  val id = "30C4949E-8ED2-4804-A61A-E872153443C9"
+
   val tags = Set()
   val dataSourceType = ConnectionTypes.Netsuite
   val dataSourceParameter = Parameter.Connection("data-source", dataSourceType, required = true)

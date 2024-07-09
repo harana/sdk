@@ -6,6 +6,8 @@ import com.harana.sdk.shared.models.flow.actiontypes.input.InputActionTypeInfo
 
 class GetRedisInfo extends InputActionTypeInfo {
 
+  val id = "D34B7039-3EEF-425C-BCFB-86021FCC0A8D"
+
   val tags = Set()
 
   // General

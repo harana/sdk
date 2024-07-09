@@ -6,6 +6,8 @@ import com.harana.sdk.shared.models.flow.actiontypes.output.OutputActionTypeInfo
 
 class PutSalesforceInfo extends OutputActionTypeInfo {
 
+  val id = "7CBE4AE9-6D8A-4E75-BFC5-BBF451537C3A"
+
   val tags = Set()
 
   // General

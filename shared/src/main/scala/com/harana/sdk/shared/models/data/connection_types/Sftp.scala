@@ -6,6 +6,8 @@ import com.harana.sdk.shared.models.common.Parameter
 
 class Sftp extends ConnectionType {
 
+  val id = "4EDAD65D-5779-4D41-84BD-1D24BC974D79"
+
   // General
   val hostParameter = Parameter.IPAddress("host", port = true, portDefault = Some(22), required = true)
   val usernameParameter = Parameter.String("username", required = true)

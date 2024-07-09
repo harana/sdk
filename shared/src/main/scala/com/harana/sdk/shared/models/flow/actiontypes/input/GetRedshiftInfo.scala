@@ -6,6 +6,8 @@ import com.harana.sdk.shared.models.flow.actiontypes.logGroup
 
 class GetRedshiftInfo extends JdbcInputActionTypeInfo {
 
+  val id = "215283DC-CFA2-4E15-AE22-231E61D2F792"
+
   val tags = Set()
   val dataSourceType = ConnectionTypes.Redshift
 

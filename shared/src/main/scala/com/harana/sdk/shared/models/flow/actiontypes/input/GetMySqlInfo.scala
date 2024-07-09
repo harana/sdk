@@ -6,6 +6,8 @@ import com.harana.sdk.shared.models.flow.actiontypes.logGroup
 
 class GetMySqlInfo extends JdbcInputActionTypeInfo {
 
+  val id = "43D0543E-146C-4FF5-A3CC-55F79A4E2CBA"
+
   val tags = Set()
   val dataSourceType = ConnectionTypes.MySql
 

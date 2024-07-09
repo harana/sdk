@@ -5,6 +5,8 @@ import com.harana.sdk.shared.models.data.ConnectionType
 
 class Snowflake extends ConnectionType {
 
+  val id = "C794A6C7-B762-4303-94FA-BCA015BF35E7"
+
   // General
   val regionParameter = Parameter.String("region", required = true)
   val accountNameParameter = Parameter.String("account-name", required = true)

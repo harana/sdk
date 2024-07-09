@@ -26,6 +26,10 @@ object Parameter {
   implicit val parameter: ParametersMap[Parameter, ParameterValue] = new ParametersMap[Parameter, ParameterValue]
   implicit def parameterValue[K <: Parameter]: ParametersMap[K, K#Value] = new ParametersMap[K, K#Value]
 
+  val title = Parameter.String("title")
+  val description = Parameter.String("description")
+  val tags = Parameter.StringList("tags")
+
   implicit val boolean: ParametersMap[Boolean, ParameterValue.Boolean] = parameterValue[Boolean]
   implicit val code: ParametersMap[Code, ParameterValue.String] = parameterValue[Code]
   implicit val color: ParametersMap[Color, ParameterValue.String] = parameterValue[Color]
@@ -62,7 +66,6 @@ object Parameter {
   implicit val string: ParametersMap[String, ParameterValue.String] = parameterValue[String]
   implicit val stringList: ParametersMap[StringList, ParameterValue.StringList] = parameterValue[StringList]
   implicit val stringMap: ParametersMap[StringMap, ParameterValue.StringMap] = parameterValue[StringMap]
-  implicit val tags: ParametersMap[Tags, ParameterValue.StringList] = parameterValue[Tags]
   implicit val time: ParametersMap[Time, ParameterValue.Instant] = parameterValue[Time]
   implicit val timeZone: ParametersMap[TimeZone, ParameterValue.String] = parameterValue[TimeZone]
   implicit val uri: ParametersMap[Uri, ParameterValue.URI] = parameterValue[Uri]
@@ -412,16 +415,6 @@ object Parameter {
                        pattern: Option[JString] = None,
                        validators: List[ParameterValidator] = List()) extends Parameter {
     type Value = ParameterValue.StringMap
-  }
-
-  @JsonCodec
-  case class Tags(name: ParameterName,
-                  default: Option[ParameterValue.StringList] = None,
-                  required: scala.Boolean = false,
-                  limit: Option[Int] = None,
-                  allowDuplicates: scala.Boolean = true,
-                  validators: List[ParameterValidator] = List()) extends Parameter {
-    type Value = ParameterValue.StringList
   }
 
   @JsonCodec

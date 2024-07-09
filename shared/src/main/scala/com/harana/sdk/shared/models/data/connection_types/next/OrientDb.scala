@@ -8,6 +8,8 @@ import scala.scalajs.reflect.annotation.EnableReflectiveInstantiation
 @EnableReflectiveInstantiation
 class OrientDb extends JdbcConnectionType {
 
+  val id = "264E2721-0AF0-4627-80E8-1A392885D217"
+
   val hostParameter = Parameter.IPAddress("host", port = true, portDefault = Some(2424))
   val generalGroup = ParameterGroup("general", List(hostParameter, usernameParameter, passwordParameter))
   val parameterGroups = List(generalGroup, jdbcAdvancedGroup)

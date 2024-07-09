@@ -6,6 +6,8 @@ import com.harana.sdk.shared.models.flow.actiontypes.input.InputActionTypeInfo
 
 class GetAzureKustoInfo extends InputActionTypeInfo {
 
+  val id = "EC52CFC9-ADFE-4ED3-8E8A-9CDFBB7BAC05"
+
   val tags = Set("azure")
   val parameterTypes = List()
 

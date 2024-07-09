@@ -6,6 +6,8 @@ import com.harana.sdk.shared.models.flow.actiontypes.logGroup
 
 class GetMongoDbInfo extends InputActionTypeInfo {
 
+  val id = "DB2FE265-F548-4A7A-BE55-6644BAF18ED6"
+
   val tags = Set()
   val dataSourceType = ConnectionTypes.MongoDb
 

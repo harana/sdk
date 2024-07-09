@@ -6,6 +6,8 @@ import com.harana.sdk.shared.models.data.ConnectionTypes
 
 class PutCassandraInfo extends OutputActionTypeInfo {
 
+  val id = "2254B1F2-6158-423E-9A3E-53B7FBD9D168"
+
   val tags = Set()
   val dataSourceType = ConnectionTypes.Cassandra
 

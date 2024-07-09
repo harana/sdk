@@ -6,6 +6,8 @@ import com.harana.sdk.shared.models.flow.{ActionTypeInfo, Port}
 
 class JoinInfo extends ActionTypeInfo {
 
+  val id = "9436A3DD-6478-497F-8ACA-A53FCD963806"
+
   val tags = Set()
   val group = ActionTypeGroup.Transform
   val inputPorts = List(Port.DataFrame("left-in"), Port.DataFrame("right-in"))

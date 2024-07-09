@@ -6,6 +6,8 @@ import com.harana.sdk.shared.models.flow.actiontypes.logGroup
 
 class GetCassandraInfo extends InputActionTypeInfo {
 
+  val id = "BF9F07F7-86B9-4578-A9AB-6896864A8139"
+
   val tags = Set("cassandra")
   val dataSourceType = ConnectionTypes.Cassandra
 

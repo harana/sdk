@@ -8,6 +8,8 @@ import scala.scalajs.reflect.annotation.EnableReflectiveInstantiation
 @EnableReflectiveInstantiation
 class GoogleAnalytics extends ConnectionType {
 
+  val id = "86CF8517-BEEE-4622-A765-6DF88C6E2C30"
+
   val serviceAccountIdParameter = Parameter.String("serviceAccountId", required = true)
   val pemPrivateKeyParameter = Parameter.String("pemPrivateKey", multiLine = true)
   val clientIdParameter = Parameter.String("clientId")

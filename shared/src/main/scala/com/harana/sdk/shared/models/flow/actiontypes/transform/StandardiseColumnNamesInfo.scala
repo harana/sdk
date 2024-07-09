@@ -6,6 +6,8 @@ import com.harana.sdk.shared.models.flow.{ActionTypeInfo, Port}
 
 class StandardiseColumnNamesInfo extends ActionTypeInfo {
 
+  val id = "D1AF1420-25CE-4CEC-A757-7FC839D29E24"
+
   val tags = Set()
   val group = ActionTypeGroup.Transform
   val inputPorts = List(Port.DataFrame("in"))

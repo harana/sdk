@@ -6,6 +6,8 @@ import com.harana.sdk.shared.models.flow.actiontypes.input.InputActionTypeInfo
 
 class GetMarketoInfo extends InputActionTypeInfo {
 
+  val id = "BDDD819C-25FC-432D-89C6-A39BBDC53EBA"
+
   val tags = Set()
   val dataSourceType = ConnectionTypes.Marketo
 

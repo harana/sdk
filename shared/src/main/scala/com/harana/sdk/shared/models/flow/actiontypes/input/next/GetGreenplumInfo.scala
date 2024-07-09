@@ -6,6 +6,8 @@ import com.harana.sdk.shared.models.flow.actiontypes.input.InputActionTypeInfo
 
 class GetGreenplumInfo extends InputActionTypeInfo {
 
+  val id = "5706F301-7385-4A62-8885-DB55F2E56A21"
+
   val tags = Set()
   val dataSourceType = ConnectionTypes.Greenplum
 

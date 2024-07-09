@@ -6,6 +6,8 @@ import com.harana.sdk.shared.models.flow.actiontypes.output.OutputActionTypeInfo
 
 class PutGreenplumInfo extends OutputActionTypeInfo {
 
+  val id = "16F91D2A-50A9-45B2-A13E-218ABABA95AA"
+
   val tags = Set()
 
   // General

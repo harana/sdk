@@ -5,6 +5,8 @@ import com.harana.sdk.shared.models.data.{ConnectionType, JdbcConnectionType}
 
 class SqlServer extends JdbcConnectionType {
 
+  val id = "9AC195C0-F309-4CF8-930F-0C6BAE318000"
+
   // General
   val hostParameter = Parameter.IPAddress("host", required = true, port = true, portDefault = Some(1433))
   val generalGroup = ParameterGroup("general", List(hostParameter) ++ jdbcGeneralParameters)
@@ -19,4 +21,5 @@ class SqlServer extends JdbcConnectionType {
   val advancedGroup = ParameterGroup("advanced", jdbcAdvancedParameters ++ List(reliabilityLevelParameter, dataPoolConnectionParameter, tableLockParameter))
 
   val parameterGroups = List(generalGroup, advancedGroup)
+
 }

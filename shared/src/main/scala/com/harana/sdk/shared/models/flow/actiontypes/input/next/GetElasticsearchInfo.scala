@@ -7,6 +7,8 @@ import com.harana.sdk.shared.models.flow.actiontypes.input.InputActionTypeInfo
 
 class GetElasticsearchInfo extends InputActionTypeInfo {
 
+  val id = "AC0CDEAA-D9AB-4E96-AE87-CB5DF178FE0F"
+
   val tags = Set("search")
   val dataSourceType = ConnectionTypes.Elasticsearch
 

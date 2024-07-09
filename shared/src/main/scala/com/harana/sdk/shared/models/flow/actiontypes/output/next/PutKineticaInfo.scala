@@ -6,6 +6,8 @@ import com.harana.sdk.shared.models.flow.actiontypes.output.OutputActionTypeInfo
 
 class PutKineticaInfo extends OutputActionTypeInfo {
 
+  val id = "D83B82F1-9C90-4BF1-9815-CFE1B0B6BD4C"
+
   val tags = Set()
   val dataSourceType = ConnectionTypes.Kinetica
 

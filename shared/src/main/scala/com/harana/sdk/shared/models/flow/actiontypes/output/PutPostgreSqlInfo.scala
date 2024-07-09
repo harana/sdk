@@ -6,6 +6,8 @@ import com.harana.sdk.shared.models.data.ConnectionTypes
 
 class PutPostgreSqlInfo extends JdbcOutputActionTypeInfo {
 
+  val id = "317565A4-AE36-415A-B167-19D141D488D6"
+
   val tags = Set()
   val dataSourceType = ConnectionTypes.PostgreSql
   val dataSourceParameter = Parameter.Connection("data-source", dataSourceType, required = true)

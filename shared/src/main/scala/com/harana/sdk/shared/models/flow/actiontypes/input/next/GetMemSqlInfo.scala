@@ -6,6 +6,8 @@ import com.harana.sdk.shared.models.flow.actiontypes.input.InputActionTypeInfo
 
 class GetMemSqlInfo extends InputActionTypeInfo {
 
+  val id = "08CE49C0-5B5C-4B5B-8526-FFF2BC74E515"
+
   val tags = Set()
   val dataSourceType = ConnectionTypes.MemSql
   val dataSourceParameter = Parameter.Connection("data-source", dataSourceType, required = true)
