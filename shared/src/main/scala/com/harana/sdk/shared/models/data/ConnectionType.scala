@@ -19,7 +19,7 @@ object ConnectionType {
   type ConnectionTypeId = String
 
   implicit def decoder[A <: ConnectionType]: Decoder[A] = Decoder.decodeString.emap { str => Either.catchNonFatal(ConnectionTypes.get(str).asInstanceOf[A]).leftMap(e => { e.printStackTrace(); "" } ) }
-  implicit def encoder[A <: ConnectionType]: Encoder[A] = Encoder.encodeString.contramap[A](ConnectionTypes.name(_))
+  implicit def encoder[A <: ConnectionType]: Encoder[A] = Encoder.encodeString.contramap[A](_.id)
 }
 
 
