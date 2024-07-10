@@ -21,4 +21,5 @@ class GetAzureKustoInfo extends InputActionTypeInfo {
   val generalGroup = ParameterGroup("general", List(dataSourceParameter, databaseParameter, tableParameter, queryParameter))
 
   val parameterGroups = List(generalGroup)
+
 }

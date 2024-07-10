@@ -1,7 +1,7 @@
 package com.harana.sdk.shared.models.data.connection_types
 
 import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup}
-import com.harana.sdk.shared.models.data.ConnectionType
+import com.harana.sdk.shared.models.data.{ConnectionType, SyncDirection}
 import com.harana.sdk.shared.models.common.Parameter
 
 class Sftp extends ConnectionType {
@@ -15,5 +15,6 @@ class Sftp extends ConnectionType {
   val generalGroup = ParameterGroup("general", List(hostParameter, usernameParameter, passwordParameter))
 
   val parameterGroups = List(generalGroup)
+  val syncDirection = SyncDirection.Bidirectional
 
 }

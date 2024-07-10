@@ -1,7 +1,7 @@
 package com.harana.sdk.shared.models.data.connection_types.next
 
 import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup}
-import com.harana.sdk.shared.models.data.ConnectionType
+import com.harana.sdk.shared.models.data.{ConnectionType, SyncDirection}
 
 import scala.scalajs.reflect.annotation.EnableReflectiveInstantiation
 
@@ -17,5 +17,6 @@ class Couchbase extends ConnectionType {
   val generalGroup = ParameterGroup("general", List(hostsParameter, usernameParameter, passwordParameter))
 
   val parameterGroups = List(generalGroup)
+  val syncDirection = SyncDirection.Bidirectional
 
 }

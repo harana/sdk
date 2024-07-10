@@ -2,7 +2,7 @@ package com.harana.sdk.shared.models.common
 
 import com.harana.sdk.shared.utils.CirceCodecs._
 import com.harana.sdk.shared.models.common.Parameter.ParameterName
-import com.harana.sdk.shared.models.data.ConnectionType
+import com.harana.sdk.shared.models.data.{ConnectionType, SyncDirection}
 import com.harana.sdk.shared.utils.HMap
 import io.circe.generic.JsonCodec
 

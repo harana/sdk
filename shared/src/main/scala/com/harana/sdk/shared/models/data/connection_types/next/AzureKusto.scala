@@ -1,7 +1,7 @@
 package com.harana.sdk.shared.models.data.connection_types.next
 
 import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup, ParameterValue}
-import com.harana.sdk.shared.models.data.ConnectionType
+import com.harana.sdk.shared.models.data.{ConnectionType, SyncDirection}
 
 import scala.scalajs.reflect.annotation.EnableReflectiveInstantiation
 
@@ -30,4 +30,5 @@ class AzureKusto extends ConnectionType {
   val advancedGroup = ParameterGroup("advanced", List(asyncParameter))
 
   val parameterGroups = List(generalGroup, advancedGroup)
+  val syncDirection = SyncDirection.Bidirectional
 }

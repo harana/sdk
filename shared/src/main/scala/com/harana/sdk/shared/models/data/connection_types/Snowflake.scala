@@ -1,7 +1,7 @@
 package com.harana.sdk.shared.models.data.connection_types
 
 import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup, ParameterValue}
-import com.harana.sdk.shared.models.data.ConnectionType
+import com.harana.sdk.shared.models.data.{ConnectionType, SyncDirection}
 
 class Snowflake extends ConnectionType {
 
@@ -34,4 +34,6 @@ class Snowflake extends ConnectionType {
     roleParameter, timezoneParameter, customTimezoneParameter))
 
   val parameterGroups = List(generalGroup, advancedGroup)
+  val syncDirection = SyncDirection.Bidirectional
+
 }

@@ -22,5 +22,4 @@ class PutSalesforceInfo extends OutputActionTypeInfo {
   val generalGroup = ParameterGroup("general", List(dataSourceParameter, datasetParameter, objectParameter))
 
   val parameterGroups = List(generalGroup)
-
 }

@@ -10,6 +10,7 @@ import scala.scalajs.reflect.annotation.EnableReflectiveInstantiation
 trait ConnectionType {
   val parameterGroups: List[ParameterGroup]
   val id: ConnectionTypeId
+  val syncDirection: SyncDirection
 }
 
 object ConnectionType {
@@ -21,5 +22,6 @@ sealed abstract class SyncDirection(val value: String) extends StringEnumEntry
 object SyncDirection extends StringEnum[SyncDirection] with StringCirceEnum[SyncDirection] {
   case object Source extends SyncDirection("source")
   case object Destination extends SyncDirection("destination")
+  case object Bidirectional extends SyncDirection("bidirectional")
   val values = findValues
 }

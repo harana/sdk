@@ -1,7 +1,7 @@
 package com.harana.sdk.shared.models.data.connection_types
 
 import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup, ParameterValue}
-import com.harana.sdk.shared.models.data.ConnectionType
+import com.harana.sdk.shared.models.data.{ConnectionType, SyncDirection}
 
 class Elasticsearch extends ConnectionType {
 
@@ -32,4 +32,6 @@ class Elasticsearch extends ConnectionType {
 
   // Groups
   val parameterGroups = List(generalGroup, advancedGroup)
+  val syncDirection = SyncDirection.Bidirectional
+
 }

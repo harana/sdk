@@ -1,7 +1,7 @@
 package com.harana.sdk.shared.models.data.connection_types
 
 import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup, ParameterValue}
-import com.harana.sdk.shared.models.data.ConnectionType
+import com.harana.sdk.shared.models.data.{ConnectionType, SyncDirection}
 
 class S3 extends ConnectionType {
 
@@ -40,4 +40,6 @@ class S3 extends ConnectionType {
   val generalGroup = ParameterGroup("general", List(regionParameter, bucketParameter,accessKeyParameter, secretKeyParameter))
 
   val parameterGroups = List(generalGroup)
+  val syncDirection = SyncDirection.Bidirectional
+
 }

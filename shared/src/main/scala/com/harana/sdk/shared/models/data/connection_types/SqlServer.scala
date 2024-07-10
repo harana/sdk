@@ -1,7 +1,7 @@
 package com.harana.sdk.shared.models.data.connection_types
 
 import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup, ParameterValue}
-import com.harana.sdk.shared.models.data.{ConnectionType, JdbcConnectionType}
+import com.harana.sdk.shared.models.data.{ConnectionType, JdbcConnectionType, SyncDirection}
 
 class SqlServer extends JdbcConnectionType {
 
@@ -21,5 +21,6 @@ class SqlServer extends JdbcConnectionType {
   val advancedGroup = ParameterGroup("advanced", jdbcAdvancedParameters ++ List(reliabilityLevelParameter, dataPoolConnectionParameter, tableLockParameter))
 
   val parameterGroups = List(generalGroup, advancedGroup)
+  val syncDirection = SyncDirection.Bidirectional
 
 }
