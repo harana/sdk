@@ -1,6 +1,6 @@
 package com.harana.sdk.shared.models.flow
 
-import com.harana.sdk.shared.models.common.Parameter.ParameterName
+import com.harana.sdk.shared.models.common.Parameter.{ParameterName, ParameterValues}
 import com.harana.sdk.shared.models.common.ParameterValue
 import com.harana.sdk.shared.models.flow.Action.ActionId
 import com.harana.sdk.shared.utils.Random
@@ -24,6 +24,6 @@ object Action {
 						title: Option[String],
 						description: Option[String],
 						overrideColor: Option[String],
-						parameterValues: Map[ParameterName, ParameterValue]): Action =
-		apply(Random.long, actionType, position, title, description, overrideColor, parameterValues)
+						parameterValues: ParameterValues): Action =
+		apply(Random.long, actionType, position, title, description, overrideColor, parameterValues.underlying.asInstanceOf[Map[ParameterName, ParameterValue]])
 }

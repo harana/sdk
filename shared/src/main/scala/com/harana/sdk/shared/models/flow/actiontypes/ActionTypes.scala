@@ -100,14 +100,8 @@ object ActionTypes {
     new TransposeInfo
   )
 
-  private val actionTypesByName = actionTypes.map(at => name(at) -> at).toMap
+  private val actionTypesById = actionTypes.map(at => at.id -> at).toMap
   
-  def list = SortedMap[String, ActionTypeInfo]() ++ actionTypesByName
-  def get(name: String) = actionTypesByName(name)
-  def get(actionTypeInfo: ActionTypeInfo) = actionTypesByName(name(actionTypeInfo))
-
-  def name(actionTypeInfo: ActionTypeInfo) = {
-    val cls = actionTypeInfo.getClass.getSimpleName
-    cls.substring(0, cls.length - 4)
-  }
+  def list = SortedMap[String, ActionTypeInfo]() ++ actionTypesById
+  def get(id: String) = actionTypesById(id)
 }

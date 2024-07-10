@@ -5,6 +5,7 @@ import com.harana.sdk.shared.models.common.Id
 import com.harana.sdk.shared.models.flow.Flow.FlowId
 import com.harana.sdk.shared.models.flow.FlowExecution.FlowExecutionId
 import com.harana.sdk.shared.models.flow.execution._
+import com.harana.sdk.shared.models.flow.execution.spark.ExecutionLog
 import com.harana.sdk.shared.utils.Random
 import io.circe.generic.JsonCodec
 

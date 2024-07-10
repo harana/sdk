@@ -348,14 +348,12 @@ object CirceCodecs {
 
 	implicit val optionStringKeyEncoder: KeyEncoder[Option[String]] = (key: Option[String]) => key.getOrElse("")
 
-	implicit def decodeActionTypeInfo[A <: ActionTypeInfo]: Decoder[A] = Decoder.decodeString.emap { str => Either.catchNonFatal(ActionTypes.get(str).asInstanceOf[A]).leftMap(e => { e.printStackTrace(); "" } )}
 	implicit def decodeConnectionType[A <: ConnectionType]: Decoder[A] = Decoder.decodeString.emap { str => Either.catchNonFatal(ConnectionTypes.get(str).asInstanceOf[A]).leftMap(e => { e.printStackTrace(); "" } ) }
 	implicit def decodeSubEntity[A <: Entity]: Decoder[Entity] = decodeEntity
 	implicit val decodeMoney: Decoder[Money] = Decoder.decodeString.emap { str => Money(str).toEither.leftMap(_ => "Malformed Money") }
 	implicit def decodeService[A <: Service]: Decoder[A] = Decoder.decodeString.emap { str => Either.catchNonFatal(ReflectUtils.classForName[A](str)).leftMap(_ => "Invalid Service") }
 	implicit val decodeUri: Decoder[URI] = Decoder.decodeString.emap { str => Either.catchNonFatal(URI.create(str)).leftMap(_ => "Malformed URL") }
 
-	implicit def encodeActionTypeInfo[A <: ActionTypeInfo]: Encoder[A] = Encoder.encodeString.contramap[A](ActionTypes.name(_))
 	implicit def encodeConnectionType[A <: ConnectionType]: Encoder[A] = Encoder.encodeString.contramap[A](ConnectionTypes.name(_))
 	implicit def encodeSubEntity[A <: Entity]: Encoder[Entity] = encodeEntity
 	implicit val encodeMoney: Encoder[Money] = Encoder.encodeString.contramap[Money](_.toString)
