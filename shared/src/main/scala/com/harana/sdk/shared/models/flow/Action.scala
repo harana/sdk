@@ -26,4 +26,13 @@ object Action {
 						overrideColor: Option[String],
 						parameterValues: ParameterValues): Action =
 		apply(Random.long, actionType, position, title, description, overrideColor, parameterValues.underlying.asInstanceOf[Map[ParameterName, ParameterValue]])
+
+	def apply(id: ActionId,
+						actionType: ActionTypeInfo,
+						position: (Int, Int),
+						title: Option[String],
+						description: Option[String],
+						overrideColor: Option[String],
+						parameterValues: ParameterValues): Action =
+		apply(id, actionType, position, title, description, overrideColor, parameterValues.underlying.asInstanceOf[Map[ParameterName, ParameterValue]])
 }
