@@ -1,6 +1,7 @@
 package com.harana.sdk.shared.models.common
 
 import enumeratum.{CirceEnum, Enum, EnumEntry}
+import io.circe.generic.JsonCodec
 
 sealed trait ParameterGroupLayout extends EnumEntry
 case object ParameterGroupLayout extends Enum[ParameterGroupLayout] with CirceEnum[ParameterGroupLayout] {
@@ -9,4 +10,5 @@ case object ParameterGroupLayout extends Enum[ParameterGroupLayout] with CirceEn
   val values = findValues
 }
 
+@JsonCodec
 case class ParameterGroup(name: String, parameters: List[Parameter], layout: ParameterGroupLayout = ParameterGroupLayout.List)

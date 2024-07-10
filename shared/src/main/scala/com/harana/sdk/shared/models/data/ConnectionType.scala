@@ -1,8 +1,10 @@
 package com.harana.sdk.shared.models.data
 
-import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup}
+import cats.syntax.either._
+import com.harana.sdk.shared.models.common.ParameterGroup
 import com.harana.sdk.shared.models.data.ConnectionType.ConnectionTypeId
 import enumeratum.values.{StringCirceEnum, StringEnum, StringEnumEntry}
+import io.circe.{Decoder, Encoder}
 
 import scala.scalajs.reflect.annotation.EnableReflectiveInstantiation
 
@@ -15,6 +17,9 @@ trait ConnectionType {
 
 object ConnectionType {
   type ConnectionTypeId = String
+
+  implicit def decodeConnectionType[A <: ConnectionType]: Decoder[A] = Decoder.decodeString.emap { str => Either.catchNonFatal(ConnectionTypes.get(str).asInstanceOf[A]).leftMap(e => { e.printStackTrace(); "" } ) }
+  implicit def encodeConnectionType[A <: ConnectionType]: Encoder[A] = Encoder.encodeString.contramap[A](ConnectionTypes.name(_))
 }
 
 
