@@ -3,9 +3,8 @@ package com.harana.sdk.shared.models.jwt
 import com.harana.sdk.shared.models.common.{MarketingChannel, UserBilling, UserResources}
 
 import java.time.Instant
-import io.circe.generic.JsonCodec
 
-@JsonCodec
+
 case class HaranaClaims(
   audiences: List[String],
   beta: Boolean,

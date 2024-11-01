@@ -8,12 +8,11 @@ import com.harana.sdk.shared.models.schedules.Event.EventId
 import com.harana.sdk.shared.models.schedules.Notifier.NotifierId
 import com.harana.sdk.shared.models.schedules.Schedule.ScheduleId
 import com.harana.sdk.shared.utils.Random
-import io.circe.generic.JsonCodec
 import com.harana.sdk.shared.utils.CirceCodecs._
-
+import io.circe.{Decoder, Encoder}
 import java.time.Instant
 
-@JsonCodec
+
 case class Schedule(title: String,
                     description: String,
                     events: List[(EventId, Event)],
@@ -34,7 +33,7 @@ case class Schedule(title: String,
                     background: Option[Background],
                     tags: Set[String],
                     relationships: Map[String, EntityId])
-  extends Entity with Serializable {
+  extends Entity with Serializable derives Decoder, Encoder {
 
   type EntityType = Schedule
 }

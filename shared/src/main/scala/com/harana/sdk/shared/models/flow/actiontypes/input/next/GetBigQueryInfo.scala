@@ -1,6 +1,6 @@
 package com.harana.sdk.shared.models.flow.actiontypes.input.next
 
-import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup, ParameterValue}
+import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup}
 import com.harana.sdk.shared.models.data.ConnectionTypes
 import com.harana.sdk.shared.models.flow.actiontypes.input.InputActionTypeInfo
 
@@ -23,8 +23,8 @@ class GetBigQueryInfo extends InputActionTypeInfo {
   val viewsEnabledParameter = Parameter.Boolean("viewsEnabled")
   val materializationProjectParameter = Parameter.String("materializationProject")
   val readDataFormatParameter = Parameter.String("readDataFormat", options = List(
-    ("arrow", ParameterValue.String("arrow")),
-    ("avro", ParameterValue.String("avro"))
+    ("arrow", "arrow"),
+    ("avro", "avro")
   ))
   val optimizedEmptyProjectionParameter = Parameter.Boolean("optimizedEmptyProjection")
 

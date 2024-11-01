@@ -1,6 +1,6 @@
 package com.harana.sdk.shared.models.flow.actiontypes.input
 
-import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup, ParameterValue}
+import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup}
 import com.harana.sdk.shared.models.data.ConnectionTypes
 import com.harana.sdk.shared.models.flow.actiontypes.logGroup
 
@@ -14,8 +14,8 @@ class GetSnowflakeInfo extends InputActionTypeInfo {
   val dataSourceType = ConnectionTypes.Snowflake
   val dataSourceParameter = Parameter.Connection("data-source", dataSourceType, required = true)
   val modeParameter = Parameter.String("mode", required = true, options = List(
-    ("query", ParameterValue.String("query")),
-    ("table", ParameterValue.String("table"))
+    ("query", "query"),
+    ("table", "table")
   ))
   val queryParameter = Parameter.String("query", multiLine = true)
   val tableParameter = Parameter.String("table")
@@ -23,8 +23,8 @@ class GetSnowflakeInfo extends InputActionTypeInfo {
 
   // Advanced
   val compressParameter = Parameter.Boolean("compress")
-  val maxFileSizeParameter = Parameter.Long("max-file-size", Some(ParameterValue.Long(10)))
-  val parallelismParameter = Parameter.Long("parallelism", Some(ParameterValue.Long(4)))
+  val maxFileSizeParameter = Parameter.Long("max-file-size", Some(10))
+  val parallelismParameter = Parameter.Long("parallelism", Some(4))
   val advancedGroup = ParameterGroup("advanced", List(compressParameter, maxFileSizeParameter, parallelismParameter))
 
   val parameterGroups = List(generalGroup, advancedGroup, logGroup)

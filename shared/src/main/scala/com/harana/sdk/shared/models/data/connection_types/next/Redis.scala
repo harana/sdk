@@ -1,6 +1,6 @@
 package com.harana.sdk.shared.models.data.connection_types.next
 
-import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup, ParameterValue}
+import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup}
 import com.harana.sdk.shared.models.data.{ConnectionType, SyncDirection}
 
 import scala.scalajs.reflect.annotation.EnableReflectiveInstantiation
@@ -17,9 +17,9 @@ class Redis extends ConnectionType {
   val generalGroup = ParameterGroup("general", List(hostParameter, usernameParameter, passwordParameter))
 
   // Advanced
-  val connectionTimeoutParameter = Parameter.Long("connectionTimeout", default = Some(ParameterValue.Long(2000)))
-  val maxPipelineSizeParameter = Parameter.Long("maxPipelineSize", default = Some(ParameterValue.Long(100)))
-  val scanCountParameter = Parameter.Long("scanCount", default = Some(ParameterValue.Long(100)))
+  val connectionTimeoutParameter = Parameter.Long("connectionTimeout", default = Some(2000))
+  val maxPipelineSizeParameter = Parameter.Long("maxPipelineSize", default = Some(100))
+  val scanCountParameter = Parameter.Long("scanCount", default = Some(100))
   val advancedGroup = ParameterGroup("advanced", List(connectionTimeoutParameter, maxPipelineSizeParameter, scanCountParameter))
 
   // Groups

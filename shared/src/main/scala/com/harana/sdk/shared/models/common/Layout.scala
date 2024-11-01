@@ -4,21 +4,20 @@ import com.harana.sdk.shared.models.catalog.Panel.PanelSlotId
 import com.harana.sdk.shared.models.catalog.UserPanelType.UserPanelTypeId
 import com.harana.sdk.shared.plugin.PanelType.PanelTypeId
 import enumeratum._
-import io.circe.generic.JsonCodec
 import com.harana.sdk.shared.utils.CirceCodecs._
 
-@JsonCodec
+
 case class Layout(rows: List[Row])
 
-@JsonCodec
+
 case class Row(columns: List[Column])
 
-@JsonCodec
+
 case class Column(contents: List[PanelSlot],
                   width: ColumnWidth,
                   offset: ColumnOffset = ColumnOffset.None)
 
-@JsonCodec
+
 case class PanelSlot(panelSlotId: PanelSlotId,
                      panelType: Either[PanelTypeId, UserPanelTypeId],
                      minimumHeight: Int)

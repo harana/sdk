@@ -1,8 +1,7 @@
 package com.harana.sdk.shared.models.common
 
-import io.circe.generic.JsonCodec
+import io.circe.{Decoder, Encoder}
 
-@JsonCodec
 case class GeoAddress(unitNumber: String,
                       streetNumber: String,
                       streetName: String,
@@ -10,4 +9,4 @@ case class GeoAddress(unitNumber: String,
                       postalCode: String,
                       city: String,
                       state: String,
-                      country: String)
+                      country: String) derives Decoder, Encoder

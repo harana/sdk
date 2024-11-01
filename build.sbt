@@ -7,7 +7,6 @@ val sdk = haranaCrossProject("sdk").in(file("."))
       Library.circe.value ++
         Library.testing.value :+
         Library.izumiReflect.value :+
-        Library.shapeless.value :+
         Library.squants.value
   )
   .jsSettings(
@@ -34,8 +33,7 @@ val sdk = haranaCrossProject("sdk").in(file("."))
       Library.junixSocketCommon.value :+
       Library.nscalaTime.value :+
       Library.reflections.value :+
-      Library.scalajsStubs.value :+
-      Library.svmSubs.value,
+      Library.scalajsStubs.value,
     unmanagedBase := baseDirectory.value / "lib"
   )
 

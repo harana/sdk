@@ -6,12 +6,11 @@ import com.harana.sdk.shared.models.common.{Background, Entity, Status, Visibili
 import com.harana.sdk.shared.models.data.Connection
 import com.harana.sdk.shared.models.flow.Flow.FlowId
 import com.harana.sdk.shared.utils.Random
-import io.circe.generic.JsonCodec
 import com.harana.sdk.shared.utils.CirceCodecs._
-
+import io.circe.{Decoder, Encoder}
 import java.time.Instant
 
-@JsonCodec
+
 case class Flow(title: String,
                 description: String,
                 connections: List[Connection] = List(),
@@ -29,7 +28,7 @@ case class Flow(title: String,
                 background: Background,
                 tags: Set[String],
                 relationships: Map[String, EntityId])
-  extends Entity with Serializable {
+  extends Entity with Serializable derives Decoder, Encoder {
   type EntityType = Flow
 }
 

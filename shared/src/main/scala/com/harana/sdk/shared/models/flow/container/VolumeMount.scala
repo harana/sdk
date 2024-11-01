@@ -1,8 +1,7 @@
 package com.harana.sdk.shared.models.flow.container
 
-import io.circe.generic.JsonCodec
 
-@JsonCodec
+
 case class VolumeMount(mountPath: Option[String] = None,
                        mountPropagation: Option[String] = None,
                        name: String,

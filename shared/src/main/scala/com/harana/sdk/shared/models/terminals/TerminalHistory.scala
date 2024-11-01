@@ -1,8 +1,6 @@
 package com.harana.sdk.shared.models.terminals
 
-import io.circe.generic.JsonCodec
-
 import java.time.Instant
+import io.circe.{Decoder, Encoder}
 
-@JsonCodec
-case class TerminalHistory(message: String, created: Instant = Instant.now)
+case class TerminalHistory(message: String, created: Instant = Instant.now) derives Decoder, Encoder

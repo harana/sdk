@@ -1,8 +1,7 @@
 package com.harana.sdk.shared.models.flow.execution.spark
 
-import io.circe.generic.JsonCodec
+import io.circe.{Decoder, Encoder}
 
-@JsonCodec
 case class SparkMetrics(info: Option[ApplicationInfo],
                         metrics: Option[AggregateMetrics],
                         executorCount: Option[Int],
@@ -13,5 +12,5 @@ case class SparkMetrics(info: Option[ApplicationInfo],
                         hostMap: Map[String, HostTimespan],
                         executorMap: Map[String, ExecutorTimespan],
                         jobMap: Map[Long, JobTimespan],
-                        stageMap: Map[Int, StageTimespan])
+                        stageMap: Map[Int, StageTimespan]) derives Decoder, Encoder
 

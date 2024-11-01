@@ -10,25 +10,25 @@ import scala.collection.mutable.{ListBuffer => MutableList}
 
 abstract class Plugin extends BundleActivator {
 
-  def ids: Map[Class[_ <: Service], ServiceId]
+	def ids: Map[Class[? <: Service], ServiceId]
 
-	def authenticationServices: Set[Class[_ <: AuthenticationHandler]]
-	def backupTypes: Set[Class[_ <: BackupHandler]]
-	def connectionTypes: Set[Class[_ <: Connection]]
-	def eventHandlers: Set[Class[_ <: EventHandler]]
-	def healthChecks: Set[Class[_ <: HealthCheck]]
-	def notificationTypes: Set[Class[_ <: NotificationHandler]]
-	def pageExporters: Set[Class[_ <: PageExporter]]
-	def pageImporters: Set[Class[_ <: PageImporter]]
-  def pageTypes: Set[Class[_ <: PageType]]
-	def pageTypeSuppliers: Set[Class[_ <: PageTypeSupplier]]
-	def panelTypes: Set[Class[_ <: PanelType]]
-	def scheduledTasks: Set[Class[_ <: ScheduledTask]]
-  def themes: Set[Class[_ <: Theme]]
+	def authenticationServices: Set[Class[? <: AuthenticationHandler]]
+	def backupTypes: Set[Class[? <: BackupHandler]]
+	def connectionTypes: Set[Class[? <: Connection]]
+	def eventHandlers: Set[Class[? <: EventHandler]]
+	def healthChecks: Set[Class[? <: HealthCheck]]
+	def notificationTypes: Set[Class[? <: NotificationHandler]]
+	def pageExporters: Set[Class[? <: PageExporter]]
+	def pageImporters: Set[Class[? <: PageImporter]]
+	def pageTypes: Set[Class[? <: PageType]]
+	def pageTypeSuppliers: Set[Class[? <: PageTypeSupplier]]
+	def panelTypes: Set[Class[? <: PanelType]]
+	def scheduledTasks: Set[Class[? <: ScheduledTask]]
+	def themes: Set[Class[? <: Theme]]
 
-  private val serviceRegistrations = MutableList[(_, ServiceRegistration[_])]()
+	private val serviceRegistrations = MutableList[(?, ServiceRegistration[?])]()
 
-  final def start(context: BundleContext) = {
+	def start(context: BundleContext) = {
 	  register[AuthenticationHandler](context, classOf[AuthenticationHandler], authenticationServices)
 	  register[BackupHandler](context, classOf[BackupHandler], backupTypes)
 	  register[Connection](context, classOf[Connection], connectionTypes)
@@ -44,7 +44,7 @@ abstract class Plugin extends BundleActivator {
 	  register[Theme](context, classOf[Theme], themes)
 	}
 
-  private def register[T <: Service](context: BundleContext, cls: Class[T], services: Set[Class[_ <: T]]) = {
+	private def register[T <: Service](context: BundleContext, cls: Class[T], services: Set[Class[? <: T]]) = {
     try {
       services.foreach { service =>
         // TODO harden if no ids etc.
@@ -61,13 +61,13 @@ abstract class Plugin extends BundleActivator {
     }
   }
 
-  final def stop(context: BundleContext) = {
-    serviceRegistrations.foreach { service =>
-      service._2.unregister()
-      //    TODO
-      //      service._1 match {
-      //        case s: Service => s.onShutdown()
-      //      }
-    }
-  }
+	def stop(context: BundleContext) = {
+		serviceRegistrations.foreach { service =>
+			service._2.unregister()
+			//    TODO
+			//      service._1 match {
+			//        case s: Service => s.onShutdown()
+			//      }
+		}
+	}
 }

@@ -1,6 +1,6 @@
 package com.harana.sdk.shared.models.data.connection_types.next
 
-import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup, ParameterValue}
+import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup}
 import com.harana.sdk.shared.models.data.{ConnectionType, SyncDirection}
 
 import scala.scalajs.reflect.annotation.EnableReflectiveInstantiation
@@ -17,7 +17,7 @@ class Neo4j extends ConnectionType {
   val generalGroup = ParameterGroup("general", List(hostParameter, usernameParameter, passwordParameter))
 
   // Password
-  val encryptedParameter = Parameter.Boolean("encrypted", default = Some(ParameterValue.Boolean(false)))
+  val encryptedParameter = Parameter.Boolean("encrypted", default = Some(false))
   val advancedGroup = ParameterGroup("advanced", List(encryptedParameter))
 
   val parameterGroups = List(generalGroup, advancedGroup)

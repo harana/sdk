@@ -1,7 +1,7 @@
 package com.harana.sdk.shared.components
 
-import io.circe.generic.JsonCodec
-import enumeratum._
+import enumeratum.*
+import io.circe.{Decoder, Encoder}
 
 sealed trait Border extends EnumEntry
 case object Border extends Enum[Border] with CirceEnum[Border] {
@@ -80,8 +80,6 @@ case object Size extends Enum[Size] with CirceEnum[Size] {
   val values = findValues
 }
 
-@JsonCodec
-case class Percentage(percentage: Double, name: String)
 
-@JsonCodec
-case class Value(value: Double, name: String)
+case class Percentage(percentage: Double, name: String) derives Decoder, Encoder
+case class Value(value: Double, name: String) derives Decoder, Encoder

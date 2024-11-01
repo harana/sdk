@@ -1,38 +1,17 @@
 package com.harana.sdk.shared.models.flow
 
-import com.harana.sdk.shared.models.common.Parameter.{ParameterName, ParameterValues}
-import com.harana.sdk.shared.models.common.ParameterValue
-import com.harana.sdk.shared.models.flow.Action.ActionId
+import com.harana.sdk.shared.models.common.{ParameterMap, ParameterName}
+import com.harana.sdk.shared.models.flow.ActionId
 import com.harana.sdk.shared.utils.Random
-import io.circe.generic.JsonCodec
-import com.harana.sdk.shared.utils.CirceCodecs._
+import com.harana.sdk.shared.utils.CirceCodecs.*
+import io.circe.{Decoder, Encoder}
 
-@JsonCodec
+type ActionId = String
+
 case class Action(id: ActionId,
 									actionType: ActionTypeInfo,
 									position: (Int, Int),
 									title: Option[String],
 									description: Option[String],
 									overrideColor: Option[String],
-									parameterValues: Map[ParameterName, ParameterValue])
-
-object Action {
-	type ActionId = String
-
-	def apply(actionType: ActionTypeInfo,
-						position: (Int, Int),
-						title: Option[String],
-						description: Option[String],
-						overrideColor: Option[String],
-						parameterValues: ParameterValues): Action =
-		apply(Random.long, actionType, position, title, description, overrideColor, parameterValues.underlying.asInstanceOf[Map[ParameterName, ParameterValue]])
-
-	def apply(id: ActionId,
-						actionType: ActionTypeInfo,
-						position: (Int, Int),
-						title: Option[String],
-						description: Option[String],
-						overrideColor: Option[String],
-						parameterValues: ParameterValues): Action =
-		apply(id, actionType, position, title, description, overrideColor, parameterValues.underlying.asInstanceOf[Map[ParameterName, ParameterValue]])
-}
+									parameterValues: Map[ParameterName, Any]) derives Decoder, Encoder

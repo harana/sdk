@@ -1,6 +1,5 @@
 package com.harana.sdk.shared.models.flow.container
 
-import io.circe.generic.JsonCodec
+import io.circe.{Decoder, Encoder}
 
-@JsonCodec
-case class EnvironmentVariable(name: String, value: String)
+case class EnvironmentVariable(name: String, value: String) derives Decoder, Encoder

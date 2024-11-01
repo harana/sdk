@@ -1,6 +1,5 @@
 package com.harana.sdk.shared.models.common
 
-import io.circe.generic.JsonCodec
+import io.circe.{Decoder, Encoder}
 
-@JsonCodec
-case class Application(name: String, version: String)
+case class Application(name: String, version: String) derives Decoder, Encoder

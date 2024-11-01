@@ -1,6 +1,6 @@
 package com.harana.sdk.shared.models.flow.actiontypes.output.next
 
-import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup, ParameterValue}
+import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup}
 import com.harana.sdk.shared.models.data.ConnectionTypes
 import com.harana.sdk.shared.models.flow.actiontypes.output.OutputActionTypeInfo
 
@@ -18,17 +18,17 @@ class PutKineticaInfo extends OutputActionTypeInfo {
   val generalGroup = ParameterGroup("general", List(dataSourceParameter, schemaParameter, tableParameter))
 
   // Advanced
-  val targetTableIsReplicatedParameter = Parameter.Boolean("targetTableIsReplicated", default = Some(ParameterValue.Boolean(false)))
-  val truncateTableParameter = Parameter.Boolean("truncateTable", default = Some(ParameterValue.Boolean(false)))
-  val truncateTableToSizeParameter = Parameter.Boolean("truncateTableToSize", default = Some(ParameterValue.Boolean(false)))
-  val updateOnExistingPrimaryKeyParameter = Parameter.Boolean("updateOnExistingPrimaryKey", default = Some(ParameterValue.Boolean(false)))
-  val analyzeDataParameter = Parameter.Boolean("analyzeData", default = Some(ParameterValue.Boolean(false)))
-  val failOnErrorsParameter = Parameter.Boolean("failOnErrors", default = Some(ParameterValue.Boolean(false)))
-  val flattenSourceSchemaParameter = Parameter.Boolean("flattenSourceSchema", default = Some(ParameterValue.Boolean(false)))
-  val useSnappyCompressionParameter = Parameter.Boolean("useSnappyCompression", default = Some(ParameterValue.Boolean(false)))
+  val targetTableIsReplicatedParameter = Parameter.Boolean("targetTableIsReplicated", default = Some(false))
+  val truncateTableParameter = Parameter.Boolean("truncateTable", default = Some(false))
+  val truncateTableToSizeParameter = Parameter.Boolean("truncateTableToSize", default = Some(false))
+  val updateOnExistingPrimaryKeyParameter = Parameter.Boolean("updateOnExistingPrimaryKey", default = Some(false))
+  val analyzeDataParameter = Parameter.Boolean("analyzeData", default = Some(false))
+  val failOnErrorsParameter = Parameter.Boolean("failOnErrors", default = Some(false))
+  val flattenSourceSchemaParameter = Parameter.Boolean("flattenSourceSchema", default = Some(false))
+  val useSnappyCompressionParameter = Parameter.Boolean("useSnappyCompression", default = Some(false))
   val timeZoneParameter = Parameter.String("timeZone")
-  val appendNewColumnsParameter = Parameter.Boolean("appendNewColumns", default = Some(ParameterValue.Boolean(false)))
-  val mapColumnsByNameParameter = Parameter.Boolean("mapColumnsByName", default = Some(ParameterValue.Boolean(false)))
+  val appendNewColumnsParameter = Parameter.Boolean("appendNewColumns", default = Some(false))
+  val mapColumnsByNameParameter = Parameter.Boolean("mapColumnsByName", default = Some(false))
   val advancedGroup = ParameterGroup("advanced", List(targetTableIsReplicatedParameter, truncateTableParameter, truncateTableToSizeParameter, analyzeDataParameter,
     failOnErrorsParameter, flattenSourceSchemaParameter, useSnappyCompressionParameter, timeZoneParameter, appendNewColumnsParameter, mapColumnsByNameParameter))
 

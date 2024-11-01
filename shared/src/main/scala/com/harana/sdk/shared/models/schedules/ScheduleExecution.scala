@@ -4,27 +4,27 @@ import com.harana.sdk.shared.models.common.Entity.EntityId
 import com.harana.sdk.shared.models.schedules.Action.ActionId
 import com.harana.sdk.shared.models.schedules.Schedule.ScheduleId
 import enumeratum.{CirceEnum, Enum, EnumEntry}
-import io.circe.generic.JsonCodec
 
 import java.time.Instant
 
-@JsonCodec
+import io.circe.{Decoder, Encoder}
+
 case class ScheduleExecution(id: EntityId,
                              scheduleId: ScheduleId,
                              started: Instant,
                              finished: Option[Instant] = None,
                              status: ScheduleExecutionStatus = ScheduleExecutionStatus.None,
                              actionExecutions: Map[ActionId, ScheduleActionExecution] = Map(),
-                             eventExecutions: Map[ActionId, ScheduleEventExecution] = Map())
+                             eventExecutions: Map[ActionId, ScheduleEventExecution] = Map()) derives Decoder, Encoder
 
-@JsonCodec
+
 case class ScheduleActionExecution(started: Instant,
                                    finished: Option[Instant] = None,
-                                   status: ScheduleActionExecutionStatus)
+                                   status: ScheduleActionExecutionStatus) derives Decoder, Encoder
 
-@JsonCodec
+
 case class ScheduleEventExecution(triggered: Instant,
-                                  status: ScheduleEventExecutionStatus)
+                                  status: ScheduleEventExecutionStatus) derives Decoder, Encoder
 
 
 sealed trait ScheduleExecutionStatus extends EnumEntry

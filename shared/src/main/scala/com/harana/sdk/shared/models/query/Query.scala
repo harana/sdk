@@ -5,11 +5,10 @@ import com.harana.sdk.shared.models.common.User.UserId
 import com.harana.sdk.shared.models.common.{Entity, Status, Visibility}
 import Query.QueryId
 import com.harana.sdk.shared.utils.Random
-import io.circe.generic.JsonCodec
-
+import io.circe.{Decoder, Encoder}
 import java.time.Instant
 
-@JsonCodec
+
 case class Query(title: String,
                  description: String,
                  query: String,
@@ -23,7 +22,7 @@ case class Query(title: String,
                  version: Long,
                  tags: Set[String],
                  relationships: Map[String, EntityId])
-  extends Entity with Serializable {
+  extends Entity with Serializable derives Decoder, Encoder {
   type EntityType = Query
 }
 

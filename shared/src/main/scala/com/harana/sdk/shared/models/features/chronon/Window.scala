@@ -1,7 +1,6 @@
 package com.harana.sdk.shared.models.features.chronon
 
-import io.circe.generic.JsonCodec
+import io.circe.{Decoder, Encoder}
 
-@JsonCodec
 case class Window(length: Int,
-                  timeUnit: TimeUnit)
+                  timeUnit: TimeUnit) derives Decoder, Encoder

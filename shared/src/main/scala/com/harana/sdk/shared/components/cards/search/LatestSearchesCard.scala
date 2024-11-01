@@ -1,10 +1,8 @@
 package com.harana.sdk.shared.components.cards.search
 
 import com.harana.sdk.shared.models.common.Component
-import io.circe.generic.JsonCodec
+import io.circe.{Decoder, Encoder}
 
-@JsonCodec
-case class LatestSearchesCard(latestSearches: List[LatestSearch] = List()) extends Component
+case class LatestSearchesCard(latestSearches: List[LatestSearch] = List()) extends Component derives Decoder, Encoder
 
-@JsonCodec
-case class LatestSearch(title: String, subtitle: String)
+case class LatestSearch(title: String, subtitle: String) derives Decoder, Encoder

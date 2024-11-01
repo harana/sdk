@@ -1,6 +1,6 @@
 package com.harana.sdk.shared.models.flow.actiontypes.input.next
 
-import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup, ParameterValue}
+import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup}
 import com.harana.sdk.shared.models.data.ConnectionTypes
 import com.harana.sdk.shared.models.flow.actiontypes.input.InputActionTypeInfo
 
@@ -17,7 +17,7 @@ class GetZuoraInfo extends InputActionTypeInfo {
   val generalGroup = ParameterGroup("general", List(dataSourceParameter, queryParameter))
 
   // Advanced
-  val pageSizeParameter = Parameter.Long("pageSize", default = Some(ParameterValue.Long(1000)))
+  val pageSizeParameter = Parameter.Long("pageSize", default = Some(1000))
   val schemaParameter = Parameter.String("schema")
   val advancedGroup = ParameterGroup("advanced", List(pageSizeParameter, schemaParameter))
 

@@ -1,8 +1,7 @@
 package com.harana.sdk.shared.models.features.chronon
 
-import io.circe.generic.JsonCodec
+import io.circe.{Decoder, Encoder}
 
-@JsonCodec
 case class Join(metaData: Option[MetaData] = None,
                 left: Option[Source] = None,
                 joinParts: List[JoinPart],
@@ -11,4 +10,4 @@ case class Join(metaData: Option[MetaData] = None,
                 labelPart: Option[LabelPart] = None,
                 bootstrapParts: Option[List[BootstrapPart]] = None,
                 rowIds: Option[List[String]] = None,
-                derivations: Option[List[Derivation]] = None)
+                derivations: Option[List[Derivation]] = None) derives Decoder, Encoder

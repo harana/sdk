@@ -1,6 +1,6 @@
 package com.harana.sdk.shared.models.data.connection_types
 
-import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup, ParameterValue}
+import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup}
 import com.harana.sdk.shared.models.data.{ConnectionType, SyncDirection}
 
 class Snowflake extends ConnectionType {
@@ -16,18 +16,18 @@ class Snowflake extends ConnectionType {
 
   // Password
   val authenticationTypeParameter = Parameter.String("authentication-type", required = true, options = List(
-    ("password", ParameterValue.String("password")),
-    ("private-key", ParameterValue.String("private_key")),
-    ("oauth", ParameterValue.String("oauth")),
+    ("password", "password"),
+    ("private-key", "private_key"),
+    ("oauth", "oauth"),
   ))
   val privateKeyParameter = Parameter.String("private-key")
   val oauthTokenParameter = Parameter.String("oauth-token")
   val warehouseParameter = Parameter.String("warehouse")
   val roleParameter = Parameter.String("role")
   val timezoneParameter = Parameter.String("time-zone", options = List(
-    ("spark", ParameterValue.String("spark")),
-    ("snowflake", ParameterValue.String("snowflake")),
-    ("custom", ParameterValue.String("custom"))
+    ("spark", "spark"),
+    ("snowflake", "snowflake"),
+    ("custom", "custom")
   ))
   val customTimezoneParameter = Parameter.String("custom-time-zone")
   val advancedGroup = ParameterGroup("advanced", List(authenticationTypeParameter, privateKeyParameter, oauthTokenParameter, warehouseParameter,

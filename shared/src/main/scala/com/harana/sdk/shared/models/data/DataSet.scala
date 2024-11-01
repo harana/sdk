@@ -7,9 +7,8 @@ import com.harana.sdk.shared.models.common.User.UserId
 import com.harana.sdk.shared.models.common.{Entity, Status, User, Visibility}
 import com.harana.sdk.shared.models.data.DataSet.DataSetId
 import com.harana.sdk.shared.utils.Random
-import io.circe.generic.JsonCodec
+import io.circe.{Decoder, Encoder}
 
-@JsonCodec
 case class DataSet(title: String,
 									 description: String,
 									 createdBy: Option[UserId],
@@ -22,7 +21,7 @@ case class DataSet(title: String,
 									 version: Long,
 									 tags: Set[String],
 									 relationships: Map[String, EntityId])
-	extends Entity with Serializable {
+	extends Entity with Serializable derives Decoder, Encoder {
 
 	type EntityType = Connection
 }

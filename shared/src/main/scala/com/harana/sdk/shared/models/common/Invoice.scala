@@ -6,12 +6,11 @@ import com.harana.sdk.shared.models.common.Entity.EntityId
 import com.harana.sdk.shared.models.common.Invoice.InvoiceId
 import com.harana.sdk.shared.models.common.User.UserId
 import enumeratum._
-import io.circe.generic.JsonCodec
 import squants.Money
 import com.harana.sdk.shared.utils.CirceCodecs._
 import com.harana.sdk.shared.utils.Random
+import io.circe.{Decoder, Encoder}
 
-@JsonCodec
 case class Invoice(name: String,
                    description: String,
                    amount: Money,
@@ -29,7 +28,7 @@ case class Invoice(name: String,
                    version: Long,
                    tags: Set[String],
                    relationships: Map[String, EntityId])
-    extends Entity with Serializable {
+    extends Entity with Serializable derives Decoder, Encoder {
 
   type EntityType = Invoice
 }

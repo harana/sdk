@@ -5,11 +5,10 @@ import java.time.Instant
 import com.harana.sdk.shared.models.common.Entity.EntityId
 import com.harana.sdk.shared.models.common.Image.ImageId
 import com.harana.sdk.shared.models.common.User.UserId
-import io.circe.generic.JsonCodec
 import com.harana.sdk.shared.utils.CirceCodecs._
 import com.harana.sdk.shared.utils.Random
+import io.circe.{Decoder, Encoder}
 
-@JsonCodec
 case class Image(name: String,
                  description: String,
                  fileName: String,
@@ -27,7 +26,7 @@ case class Image(name: String,
 								 version: Long,
 								 tags: Set[String],
                  relationships: Map[String, EntityId])
-    extends Entity with Serializable {
+    extends Entity with Serializable derives Decoder, Encoder {
 
 	type EntityType = Image
 }

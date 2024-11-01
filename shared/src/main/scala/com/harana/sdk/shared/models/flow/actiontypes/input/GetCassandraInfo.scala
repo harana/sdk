@@ -1,6 +1,6 @@
 package com.harana.sdk.shared.models.flow.actiontypes.input
 
-import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup, ParameterValue}
+import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup}
 import com.harana.sdk.shared.models.data.ConnectionTypes
 import com.harana.sdk.shared.models.flow.actiontypes.logGroup
 
@@ -20,14 +20,14 @@ class GetCassandraInfo extends InputActionTypeInfo {
   // Advanced
   val consistencyLevelParameter = Parameter.String("consistency-level", options =
     List(
-      ("all", ParameterValue.String("ALL")),
-      ("quorum", ParameterValue.String("QUORUM")),
-      ("local-quorum", ParameterValue.String("LOCAL_QUORUM")),
-      ("one", ParameterValue.String("ONE")),
-      ("two", ParameterValue.String("TWO")),
-      ("local-one", ParameterValue.String("LOCAL_ONE")),
-      ("serial", ParameterValue.String("SERIAL")),
-      ("local-serial", ParameterValue.String("LOCAL_SERIAL"))
+      ("all", "ALL"),
+      ("quorum", "QUORUM"),
+      ("local-quorum", "LOCAL_QUORUM"),
+      ("one", "ONE"),
+      ("two", "TWO"),
+      ("local-one", "LOCAL_ONE"),
+      ("serial", "SERIAL"),
+      ("local-serial", "LOCAL_SERIAL")
     ))
   val ttlParameter = Parameter.Long("ttl", placeholder = Some(0))
   val concurrentReadsParameter = Parameter.Long("concurrent-reads")
@@ -39,9 +39,9 @@ class GetCassandraInfo extends InputActionTypeInfo {
 
   val directJoinSettingParameter = Parameter.String("direct-join-setting", options =
     List(
-      ("on", ParameterValue.String("on")),
-      ("off", ParameterValue.String("off")),
-      ("auto", ParameterValue.String("auto"))
+      ("on", "on"),
+      ("off", "off"),
+      ("auto", "auto")
     ))
 
   val directJoinSizeRatioParameter = Parameter.Decimal("direct-join-size-ratio")

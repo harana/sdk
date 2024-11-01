@@ -1,6 +1,6 @@
 package com.harana.sdk.shared.models
 
-import com.harana.sdk.shared.models.common.{Parameter, ParameterValue}
+import com.harana.sdk.shared.models.common.{Parameter}
 import enumeratum.{CirceEnum, Enum, EnumEntry}
 
 package object schedules {
@@ -21,14 +21,14 @@ package object schedules {
   val compressionFileTypeParameters = Parameter.String(
     name = "compressionFileType",
     options = List(
-      "bzip2" -> ParameterValue.String("bzip2"),
-      "gzip" -> ParameterValue.String("gzip"),
-      "jar" -> ParameterValue.String("jar"),
-      "rar" -> ParameterValue.String("rar"),
-      "tar" -> ParameterValue.String("tar"),
-      "tarGzip" -> ParameterValue.String("tarGzip"),
-      "xz" -> ParameterValue.String("xz"),
-      "zip" -> ParameterValue.String("zip")
+      "bzip2" -> "bzip2",
+      "gzip" -> "gzip",
+      "jar" -> "jar",
+      "rar" -> "rar",
+      "tar" -> "tar",
+      "tarGzip" -> "tarGzip",
+      "xz" -> "xz",
+      "zip" -> "zip"
     )
   )
 
@@ -51,17 +51,17 @@ package object schedules {
   val fileTypeParameters = Parameter.String(
     name = "fileType",
     options = List(
-      "awsS3" -> ParameterValue.String("awsS3"),
-      "azureBs" -> ParameterValue.String("azureBs"),
-      "ftp" -> ParameterValue.String("ftp"),
-      "ftps" -> ParameterValue.String("ftps"),
-      "gcs" -> ParameterValue.String("gcs"),
-      "harana" -> ParameterValue.String("harana"),
-      "http" -> ParameterValue.String("http"),
-      "https" -> ParameterValue.String("https"),
-      "sftp" -> ParameterValue.String("sftp"),
-      "smb" -> ParameterValue.String("smb"),
-      "webDav" -> ParameterValue.String("webDav")
+      "awsS3" -> "awsS3",
+      "azureBs" -> "azureBs",
+      "ftp" -> "ftp",
+      "ftps" -> "ftps",
+      "gcs" -> "gcs",
+      "harana" -> "harana",
+      "http" -> "http",
+      "https" -> "https",
+      "sftp" -> "sftp",
+      "smb" -> "smb",
+      "webDav" -> "webDav"
     )
   )
 

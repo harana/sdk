@@ -1,6 +1,6 @@
 package com.harana.sdk.shared.models.flow.actiontypes.output
 
-import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup, ParameterValue}
+import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup}
 import com.harana.sdk.shared.models.data.ConnectionTypes
 import com.harana.sdk.shared.models.flow.actiontypes._
 
@@ -17,8 +17,8 @@ class PutS3Info extends OutputActionTypeInfo {
 
   // Advanced
   val encryptionParameter = Parameter.String("encryption", options = List(
-    ("none", ParameterValue.String("none")),
-    ("aes256", ParameterValue.String("AES256"))
+    ("none", "none"),
+    ("aes256", "AES256")
   ))
   val advancedGroup = ParameterGroup("advanced", List(encryptionParameter))
 

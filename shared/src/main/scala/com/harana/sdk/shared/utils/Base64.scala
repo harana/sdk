@@ -26,16 +26,16 @@ object Base64 {
   }
 
   implicit class Encoder(b: Array[Byte]) {
-    private[this] val r = new java.lang.StringBuilder((b.length + 3) * 4 / 3)
+    private val r = new java.lang.StringBuilder((b.length + 3) * 4 / 3)
     lazy val pad = (3 - b.length % 3) % 3
 
     def toBase64(implicit scheme: B64Scheme = base64): String = {
       def sixBits(x: Byte, y: Byte, z: Byte): Unit = {
         val zz = (x & 0xff) << 16 | (y & 0xff) << 8 | (z & 0xff)
-        r append scheme.encodeTable(zz >> 18)
-        r append scheme.encodeTable(zz >> 12 & 0x3f)
-        r append scheme.encodeTable(zz >> 6 & 0x3f)
-        r append scheme.encodeTable(zz & 0x3f)
+        r .append(scheme.encodeTable(zz >> 18))
+        r.append(scheme.encodeTable(zz >> 12 & 0x3f))
+        r.append(scheme.encodeTable(zz >> 6 & 0x3f))
+        r.append(scheme.encodeTable(zz & 0x3f))
       }
       for (p <- 0 until b.length - 2 by 3) {
         sixBits(b(p), b(p + 1), b(p + 2))
@@ -45,8 +45,8 @@ object Base64 {
         case 1 => sixBits(b(b.length - 2), b(b.length - 1), 0)
         case 2 => sixBits(b(b.length - 1), 0, 0)
       }
-      r setLength (r.length - pad)
-      r append "=" * pad
+      r.setLength(r.length - pad)
+      r.append("=" * pad)
       scheme.postEncode(r.toString())
     }
   }

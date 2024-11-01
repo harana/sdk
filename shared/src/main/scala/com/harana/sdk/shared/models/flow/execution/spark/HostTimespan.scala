@@ -1,11 +1,10 @@
 package com.harana.sdk.shared.models.flow.execution.spark
 
-import io.circe.generic.JsonCodec
+import io.circe.{Decoder, Encoder}
 
 import java.time.Instant
 
-@JsonCodec
 case class HostTimespan(hostId: String,
                         startTime: Instant,
                         endTime: Instant,
-                        metrics: AggregateMetrics)
+                        metrics: AggregateMetrics) derives Decoder, Encoder

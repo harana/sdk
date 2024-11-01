@@ -1,14 +1,11 @@
 package com.harana.sdk.shared.models.common
 
 import java.time.Instant
-
 import com.harana.sdk.shared.models.common.Entity.EntityId
 import com.harana.sdk.shared.models.common.User.UserId
-import io.circe.generic.JsonCodec
-import com.harana.sdk.shared.utils.CirceCodecs._
 import com.harana.sdk.shared.utils.Random
+import io.circe.{Decoder, Encoder}
 
-@JsonCodec
 case class User(beta: Boolean = false,
 								billing: UserBilling,
 								cluster: Option[String] = None,
@@ -38,7 +35,7 @@ case class User(beta: Boolean = false,
 								updated: Instant = Instant.now,
 								updatedBy: Option[UserId] = None,
 								version: Long = 1L,
-								visibility: Visibility = Visibility.Owner) extends Entity with Serializable {
+								visibility: Visibility = Visibility.Owner) extends Entity with Serializable derives Decoder, Encoder {
 	type EntityType = User
 }
 

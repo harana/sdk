@@ -1,6 +1,6 @@
 package com.harana.sdk.shared.models.flow.actiontypes.output.next
 
-import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup, ParameterValue}
+import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup}
 import com.harana.sdk.shared.models.flow.actiontypes.ActionTypeGroup
 import com.harana.sdk.shared.models.data.ConnectionTypes
 import com.harana.sdk.shared.models.flow.actiontypes.output.OutputActionTypeInfo
@@ -22,20 +22,20 @@ class PutBigQueryInfo extends OutputActionTypeInfo {
   val viewsEnabledParameter = Parameter.Boolean("viewsEnabled")
   val materializationProjectParameter = Parameter.String("materializationProject")
   val readDataFormatParameter = Parameter.String("readDataFormat", options = List(
-    ("arrow", ParameterValue.String("arrow")),
-    ("avro", ParameterValue.String("avro"))
+    ("arrow", "arrow"),
+    ("avro", "avro")
   ))
   val optimizedEmptyProjectionParameter = Parameter.Boolean("optimizedEmptyProjection")
   val createDispositionParameter = Parameter.String("createDisposition", options = List(
-    ("createIfNeeded", ParameterValue.String("createIfNeeded")),
-    ("createNever", ParameterValue.String("createNever"))
+    ("createIfNeeded", "createIfNeeded"),
+    ("createNever", "createNever")
   ))
   val persistentGcsBucketParameter = Parameter.String("persistentGcsBucket")
   val persistentGcsPathParameter = Parameter.String("persistentGcsPath")
   val intermediateFormatParameter = Parameter.String("intermediateFormat", options = List(
-    ("parquet", ParameterValue.String("parquet")),
-    ("orc", ParameterValue.String("orc")),
-    ("avro", ParameterValue.String("avro"))
+    ("parquet", "parquet"),
+    ("orc", "orc"),
+    ("avro", "avro")
   ))
   val datePartitionParameter = Parameter.String("datePartition")
   val partitionFieldParameter = Parameter.String("partitionField")

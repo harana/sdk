@@ -1,6 +1,6 @@
 package com.harana.sdk.shared.models.flow.actiontypes.output.next
 
-import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup, ParameterValue}
+import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup}
 import com.harana.sdk.shared.models.data.ConnectionTypes
 import com.harana.sdk.shared.models.flow.actiontypes.output.OutputActionTypeInfo
 
@@ -18,14 +18,14 @@ class PutRedisInfo extends OutputActionTypeInfo {
 
   // Advanced
   val modelParameter = Parameter.String("model", options = List(
-    ("binary", ParameterValue.String("binary")),
-    ("enum", ParameterValue.String("enum")),
-    ("hash", ParameterValue.String("hash"))
+    ("binary", "binary"),
+    ("enum", "enum"),
+    ("hash", "hash")
   ))
   val filterKeysByTypeParameter = Parameter.Boolean("filterKeysByType")
   val keyColumnParameter = Parameter.String("keyColumn")
-  val ttlParameter = Parameter.Long("ttl", default = Some(ParameterValue.Long(0)))
-  val maxPipelineSizeParameter = Parameter.Long("maxPipelineSize", default = Some(ParameterValue.Long(100)))
+  val ttlParameter = Parameter.Long("ttl", default = Some(0))
+  val maxPipelineSizeParameter = Parameter.Long("maxPipelineSize", default = Some(100))
   val advancedGroup = ParameterGroup("advanced", List(modelParameter, filterKeysByTypeParameter, keyColumnParameter, ttlParameter, maxPipelineSizeParameter))
 
   val parameterGroups = List(generalGroup, advancedGroup)

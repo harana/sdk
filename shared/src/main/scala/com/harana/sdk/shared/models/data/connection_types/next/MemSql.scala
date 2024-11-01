@@ -1,6 +1,6 @@
 package com.harana.sdk.shared.models.data.connection_types.next
 
-import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup, ParameterValue}
+import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup}
 import com.harana.sdk.shared.models.data.{ConnectionType, SyncDirection}
 
 import scala.scalajs.reflect.annotation.EnableReflectiveInstantiation
@@ -19,15 +19,15 @@ class MemSql extends ConnectionType {
   // Advanced
   val defaultDatabaseParameter = Parameter.String("defaultDatabase")
   val defaultSaveModeParameter = Parameter.String("defaultSaveMode", options = List(
-    ("error", ParameterValue.String("error")),
-    ("ignore", ParameterValue.String("ignore")),
-    ("overwrite", ParameterValue.String("overwrite"))
+    ("error", "error"),
+    ("ignore", "ignore"),
+    ("overwrite", "overwrite")
   ))
-  val disablePartitionPushdownParameter = Parameter.Boolean("disablePartitionPushdown", default = Some(ParameterValue.Boolean(false)))
+  val disablePartitionPushdownParameter = Parameter.Boolean("disablePartitionPushdown", default = Some(false))
   val defaultCreateModeParameter = Parameter.String("defaultCreateMode", options = List(
-    ("databaseAndTable", ParameterValue.String("databaseAndTable")),
-    ("skip", ParameterValue.String("skip")),
-    ("table", ParameterValue.String("table"))
+    ("databaseAndTable", "databaseAndTable"),
+    ("skip", "skip"),
+    ("table", "table")
   ))
   val trustServerCertificate = Parameter.Boolean("trustServerCertificate")
   val disableSslHostnameVerification = Parameter.Boolean("disableSslHostnameVerification")

@@ -1,6 +1,6 @@
 package com.harana.sdk.shared.models.flow.actiontypes.output.next
 
-import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup, ParameterValue}
+import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup}
 import com.harana.sdk.shared.models.data.ConnectionTypes
 import com.harana.sdk.shared.models.flow.actiontypes.output.OutputActionTypeInfo
 
@@ -14,8 +14,8 @@ class PutSalesforceInfo extends OutputActionTypeInfo {
   val dataSourceType = ConnectionTypes.Salesforce
   val dataSourceParameter = Parameter.Connection("data-source", dataSourceType, required = true)
   val modeParameter = Parameter.String("mode", options = List(
-    ("createDataset", ParameterValue.String("createDataset")),
-    ("updateObject", ParameterValue.String("updateObject"))
+    ("createDataset", "createDataset"),
+    ("updateObject", "updateObject")
   ), required = true)
   val datasetParameter = Parameter.String("dataset")
   val objectParameter = Parameter.String("object")

@@ -5,11 +5,10 @@ import java.time.Instant
 import com.harana.sdk.shared.models.common.Entity.EntityId
 import com.harana.sdk.shared.models.common.Group.GroupId
 import com.harana.sdk.shared.models.common.User.UserId
-import io.circe.generic.JsonCodec
 import com.harana.sdk.shared.utils.CirceCodecs._
 import com.harana.sdk.shared.utils.Random
+import io.circe.{Decoder, Encoder}
 
-@JsonCodec
 case class Group(name: String,
                  users: Set[UserId],
                  createdBy: Option[UserId],
@@ -22,7 +21,7 @@ case class Group(name: String,
 								 version: Long,
 								 tags: Set[String],
                  relationships: Map[String, EntityId])
-    extends Entity with Serializable {
+    extends Entity with Serializable derives Decoder, Encoder {
 
 	type EntityType = Group
 }

@@ -1,7 +1,6 @@
 package com.harana.sdk.shared.plugin
 
-import com.harana.sdk.shared.models.common.Parameter.ParameterName
-import com.harana.sdk.shared.models.common.{Component, ParameterValue}
+import com.harana.sdk.shared.models.common.{Component, ParameterMap, ParameterName}
 
 trait PanelType extends Service {
 
@@ -11,7 +10,7 @@ trait PanelType extends Service {
 
   def userEditable: Boolean = true
 
-  def layout(parameterValues: Map[ParameterName, ParameterValue]): List[Component]
+  def layout(parameterValues: Map[ParameterName, Any]): List[Component]
 
   def layoutHasChanged: Boolean
 

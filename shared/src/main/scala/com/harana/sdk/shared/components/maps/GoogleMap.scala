@@ -1,10 +1,9 @@
 package com.harana.sdk.shared.components.maps
 
 import com.harana.sdk.shared.models.common.Component
-import io.circe.generic.JsonCodec
 import enumeratum._
+import io.circe.{Decoder, Encoder}
 
-@JsonCodec
 case class GoogleMap(name: String,
                      zoom: Option[Int] = None,
                      center: Option[(Double, Double)] = None,
@@ -27,12 +26,12 @@ case class GoogleMap(name: String,
                      rotatePosition: Option[MapPosition] = None,
                      fullScreenControl: Boolean = false,
                      fullScreenPosition: Option[MapPosition] = None,
-                     markers: List[Marker] = List.empty) extends Component
+                     markers: List[Marker] = List.empty) extends Component derives Decoder, Encoder
 
-@JsonCodec
+
 case class Marker(position: (Double, Double),
                   draggable: Boolean = false,
-                  dropAnimation: Boolean = false)
+                  dropAnimation: Boolean = false) derives Decoder, Encoder
 
 sealed trait MapType extends EnumEntry
 case object MapType extends Enum[MapType] with CirceEnum[MapType] {

@@ -1,6 +1,6 @@
 package com.harana.sdk.shared.models.flow.actiontypes.input
 
-import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup, ParameterValue}
+import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup}
 import com.harana.sdk.shared.models.data.ConnectionTypes
 import com.harana.sdk.shared.models.flow.actiontypes.logGroup
 
@@ -19,23 +19,23 @@ class GetMongoDbInfo extends InputActionTypeInfo {
 
   // Advanced
   val batchSizeParameter = Parameter.Integer("batch-size")
-  val localThresholdInMsParameter = Parameter.Integer("local-threshold-in-ms", Some(ParameterValue.Integer(15)))
+  val localThresholdInMsParameter = Parameter.Integer("local-threshold-in-ms", Some(15))
   val readPreferenceParameter = Parameter.String("read-preference", options = List(
-    ("primary", ParameterValue.String("primary")),
-    ("primary-preferred", ParameterValue.String("primaryPreferred")),
-    ("secondary", ParameterValue.String("secondary")),
-    ("secondary-preferred", ParameterValue.String("secondaryPreferred")),
-    ("nearest", ParameterValue.String("nearest")),
+    ("primary", "primary"),
+    ("primary-preferred", "primaryPreferred"),
+    ("secondary", "secondary"),
+    ("secondary-preferred", "secondaryPreferred"),
+    ("nearest", "nearest"),
   ))
   val readConcernParameter = Parameter.String("read-concern", options = List(
-    ("local", ParameterValue.String("local")),
-    ("available", ParameterValue.String("available")),
-    ("majority", ParameterValue.String("majority")),
-    ("linearizable", ParameterValue.String("linearizable")),
-    ("snapshot", ParameterValue.String("snapshot"))
+    ("local", "local"),
+    ("available", "available"),
+    ("majority", "majority"),
+    ("linearizable", "linearizable"),
+    ("snapshot", "snapshot")
   ))
-  val sampleSizeParameter = Parameter.Integer("sample-size", Some(ParameterValue.Integer(1000)))
-  val samplePoolSizeParameter = Parameter.Integer("sample-pool-size", Some(ParameterValue.Integer(10000)))
+  val sampleSizeParameter = Parameter.Integer("sample-size", Some(1000))
+  val samplePoolSizeParameter = Parameter.Integer("sample-pool-size", Some(10000))
   val advancedGroup = ParameterGroup("advanced", List(batchSizeParameter, localThresholdInMsParameter, readPreferenceParameter, readConcernParameter, sampleSizeParameter, samplePoolSizeParameter))
 
   val parameterGroups = List(generalGroup, advancedGroup, logGroup)

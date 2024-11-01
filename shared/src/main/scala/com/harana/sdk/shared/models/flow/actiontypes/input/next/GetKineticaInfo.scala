@@ -1,6 +1,6 @@
 package com.harana.sdk.shared.models.flow.actiontypes.input.next
 
-import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup, ParameterValue}
+import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup}
 import com.harana.sdk.shared.models.data.ConnectionTypes
 import com.harana.sdk.shared.models.flow.actiontypes.input.InputActionTypeInfo
 
@@ -18,11 +18,11 @@ class GetKineticaInfo extends InputActionTypeInfo {
   val generalGroup = ParameterGroup("general", List(dataSourceParameter, schemaParameter, tableParameter))
 
   // Advanced
-  val initialOffsetParameter = Parameter.Long("initialOffset", default = Some(ParameterValue.Long(0)))
-  val maximumResultsParameter = Parameter.Long("maximumResults", default = Some(ParameterValue.Long(-1)))
-  val partitionsParameter = Parameter.Long("partitions", default = Some(ParameterValue.Long(4)))
-  val appendNewColumnsParameter = Parameter.Boolean("appendNewColumns", default = Some(ParameterValue.Boolean(false)))
-  val mapColumnsByNameParameter = Parameter.Boolean("mapColumnsByName", default = Some(ParameterValue.Boolean(false)))
+  val initialOffsetParameter = Parameter.Long("initialOffset", default = Some(0))
+  val maximumResultsParameter = Parameter.Long("maximumResults", default = Some(-1))
+  val partitionsParameter = Parameter.Long("partitions", default = Some(4))
+  val appendNewColumnsParameter = Parameter.Boolean("appendNewColumns", default = Some(false))
+  val mapColumnsByNameParameter = Parameter.Boolean("mapColumnsByName", default = Some(false))
   val advancedGroup = ParameterGroup("advanced", List(initialOffsetParameter, maximumResultsParameter, partitionsParameter, appendNewColumnsParameter, mapColumnsByNameParameter))
 
   val parameterGroups = List(generalGroup, advancedGroup)

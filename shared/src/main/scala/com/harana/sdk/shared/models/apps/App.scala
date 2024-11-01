@@ -7,10 +7,9 @@ import com.harana.sdk.shared.models.common.User.UserId
 import com.harana.sdk.shared.models.common.{Background, Entity, Status, User, Visibility}
 import App.AppId
 import com.harana.sdk.shared.utils.Random
-import io.circe.generic.JsonCodec
 import com.harana.sdk.shared.utils.CirceCodecs._
+import io.circe.{Decoder, Encoder}
 
-@JsonCodec
 case class App(title: String,
                description: String,
                category: String,
@@ -28,7 +27,7 @@ case class App(title: String,
                background: Option[Background],
                tags: Set[String],
                relationships: Map[String, EntityId])
-  extends Entity with Serializable {
+  extends Entity with Serializable derives Decoder, Encoder {
   type EntityType = App
 }
 

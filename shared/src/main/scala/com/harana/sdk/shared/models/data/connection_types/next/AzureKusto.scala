@@ -1,6 +1,6 @@
 package com.harana.sdk.shared.models.data.connection_types.next
 
-import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup, ParameterValue}
+import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup}
 import com.harana.sdk.shared.models.data.{ConnectionType, SyncDirection}
 
 import scala.scalajs.reflect.annotation.EnableReflectiveInstantiation
@@ -14,9 +14,9 @@ class AzureKusto extends ConnectionType {
   val clusterParameter = Parameter.String("cluster", required = true)
   val regionParameter = Parameter.String("region", required = true)
   val authenticationTypeParameter = Parameter.String("authenticationType", required = true, options = List(
-    ("application", ParameterValue.String("application")),
-    ("keyVault", ParameterValue.String("keyVault")),
-    ("direct", ParameterValue.String("direct"))
+    ("application", "application"),
+    ("keyVault", "keyVault"),
+    ("direct", "direct")
   ))
   val keyValueAppIdParameter = Parameter.String("keyVaultAppId")
   val keyValueAppKeyParameter = Parameter.String("keyVaultAppKey")
@@ -26,7 +26,7 @@ class AzureKusto extends ConnectionType {
   val generalGroup = ParameterGroup("general", List(clusterParameter, regionParameter, authenticationTypeParameter, keyValueAppIdParameter, keyValueAppKeyParameter, aadClientIdParameter, aadAuthorityIdParameter, aadClientPasswordParameter))
 
   // Advanced
-  val asyncParameter = Parameter.Boolean("async", default = Some(ParameterValue.Boolean(false)))
+  val asyncParameter = Parameter.Boolean("async", default = Some(false))
   val advancedGroup = ParameterGroup("advanced", List(asyncParameter))
 
   val parameterGroups = List(generalGroup, advancedGroup)

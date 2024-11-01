@@ -1,11 +1,10 @@
 package com.harana.sdk.shared.models.flow
 
-import com.harana.sdk.shared.models.flow.Action.ActionId
+import com.harana.sdk.shared.models.flow.ActionId
 import com.harana.sdk.shared.models.flow.execution.spark.ExecutionStatus
-import io.circe.generic.JsonCodec
+import io.circe.{Decoder, Encoder}
 
-@JsonCodec
 case class ActionExecution(actionId: ActionId,
                            percentage: Int,
                            executionStatus: ExecutionStatus,
-                           executionFailure: Option[String])
+                           executionFailure: Option[String]) derives Decoder, Encoder

@@ -1,6 +1,6 @@
 package com.harana.sdk.shared.models.data.connection_types
 
-import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup, ParameterValue}
+import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup}
 import com.harana.sdk.shared.models.data.{ConnectionType, JdbcConnectionType, SyncDirection}
 
 class SqlServer extends JdbcConnectionType {
@@ -13,11 +13,11 @@ class SqlServer extends JdbcConnectionType {
 
   // Advanced
   val reliabilityLevelParameter = Parameter.String("reliability-level", options = List(
-    ("best-effort", ParameterValue.String("BEST_EFFORT")),
-    ("no-duplicates", ParameterValue.String("NO_DUPLICATES"))
+    ("best-effort", "BEST_EFFORT"),
+    ("no-duplicates", "NO_DUPLICATES")
   ))
   val dataPoolConnectionParameter = Parameter.String("datapool-datasource")
-  val tableLockParameter = Parameter.Boolean("table-lock", Some(ParameterValue.Boolean(false)))
+  val tableLockParameter = Parameter.Boolean("table-lock", Some(false))
   val advancedGroup = ParameterGroup("advanced", jdbcAdvancedParameters ++ List(reliabilityLevelParameter, dataPoolConnectionParameter, tableLockParameter))
 
   val parameterGroups = List(generalGroup, advancedGroup)

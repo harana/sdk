@@ -1,24 +1,38 @@
-package com.harana.sdk.shared.utils
+import scala.deriving.*
+import scala.compiletime.*
+import scala.quoted.*
+import scala.reflect.ClassTag
 
-import scala.reflect.runtime.universe._
+object MapUtils:
+  inline def from[T](args: Map[String, Any])(using Mirror.Of[T]): T =
+    inline erasedValue[T] match
+      case _: Product =>
+        val mirror = summon[Mirror.Of[T]]
+        inline mirror match
+          case prod: Mirror.ProductOf[T] =>
+            val elements = getElements[prod.MirroredElemLabels, prod.MirroredElemTypes](args)
+            prod.fromProduct(new Product {
+              def canEqual(that: Any): Boolean = true
+              def productArity: Int = elements.length
+              def productElement(n: Int): Any = elements(n)
+            })
 
-object MapUtils {
-
-  def from[T: TypeTag](args: Map[String, Any]): T = {
-    val rMirror = runtimeMirror(getClass.getClassLoader)
-    val cMirror = rMirror.reflectClass(typeOf[T].typeSymbol.asClass)
-    val ctor = typeOf[T].decl(termNames.CONSTRUCTOR).asTerm.alternatives.head.asMethod
-    val argList = ctor.paramLists.flatten.map(param => args(param.name.toString))
-    cMirror.reflectConstructor(ctor)(argList: _*).asInstanceOf[T]
-  }
+  private inline def getElements[L <: Tuple, T <: Tuple](args: Map[String, Any]): Array[Any] =
+    inline erasedValue[L] match
+      case _: EmptyTuple => Array.empty
+      case _: (h *: t) =>
+        val label = constValue[Tuple.Head[L]].asInstanceOf[String]
+        val value = args(label)
+        Array(value) ++ getElements[Tuple.Tail[L], Tuple.Tail[T]](args)
 
   def from(cc: Product): Map[String, Any] =
-    (Map[String, Any]() /: cc.getClass.getDeclaredFields) {(a, f) =>
-      f.setAccessible(true)
-      a + (f.getName -> f.get(cc))
+    cc.getClass.getDeclaredFields.foldLeft(Map.empty[String, Any]) { (acc, field) =>
+      field.setAccessible(true)
+      acc + (field.getName -> field.get(cc))
     }
 
-  def optionFields[T <: Product:Manifest] = {
-    implicitly[Manifest[T]].runtimeClass.getDeclaredFields.filter(_.getType.getSimpleName.equals("Option")).map(_.getName).toList
-  }
-}
+  def optionFields[T <: Product](using ct: ClassTag[T]): List[String] =
+    ct.runtimeClass.getDeclaredFields
+      .filter(_.getType.getSimpleName == "Option")
+      .map(_.getName)
+      .toList

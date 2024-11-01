@@ -1,8 +1,7 @@
 package com.harana.sdk.shared.models.features.chronon
 
-import io.circe.generic.JsonCodec
+import io.circe.{Decoder, Encoder}
 
-@JsonCodec
 case class Derivation(name: Option[String] = None,
-                      expression: Option[String] = None)
+                      expression: Option[String] = None) derives Decoder, Encoder
 

@@ -8,11 +8,9 @@ import com.harana.sdk.shared.models.flow.FlowExecution.FlowExecutionId
 import com.harana.sdk.shared.models.flow.container.EnvironmentVariable
 import com.harana.sdk.shared.models.flow.execution.spark.{ExecutionStatus, SparkMetrics}
 import com.harana.sdk.shared.utils.Random
-import io.circe.generic.JsonCodec
-
+import io.circe.{Decoder, Encoder}
 import java.time.Instant
 
-@JsonCodec
 case class FlowExecution(flowId: FlowId,
                          actionExecutions: List[ActionExecution],
                          outputVariables: Map[ActionTypeInfo.Id, List[EnvironmentVariable]],
@@ -31,7 +29,7 @@ case class FlowExecution(flowId: FlowId,
                          version: Long,
                          tags: Set[String],
                          relationships: Map[String, EntityId])
-  extends Entity with Serializable {
+  extends Entity with Serializable derives Decoder, Encoder {
   type EntityType = FlowExecution
 }
 

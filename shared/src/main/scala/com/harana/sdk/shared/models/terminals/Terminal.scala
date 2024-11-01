@@ -5,11 +5,9 @@ import com.harana.sdk.shared.models.common.User.UserId
 import com.harana.sdk.shared.models.common.{Background, Entity, Status, Visibility}
 import com.harana.sdk.shared.models.terminals.Terminal.TerminalId
 import com.harana.sdk.shared.utils.Random
-import io.circe.generic.JsonCodec
-
+import io.circe.{Decoder, Encoder}
 import java.time.Instant
 
-@JsonCodec
 case class Terminal(title: String,
                     description: String,
                     createdBy: Option[UserId],
@@ -27,7 +25,7 @@ case class Terminal(title: String,
                     background: Option[Background],
                     tags: Set[String],
                     relationships: Map[String, EntityId])
-  extends Entity with Serializable {
+  extends Entity with Serializable derives Decoder, Encoder {
 
   type EntityType = Terminal
 }

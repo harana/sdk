@@ -1,8 +1,7 @@
 package com.harana.sdk.shared.models.features.chronon
 
-import io.circe.generic.JsonCodec
+import io.circe.{Decoder, Encoder}
 
-@JsonCodec
 case class MetaData(name: Option[String] = None,
                     online: Option[Boolean] = None,
                     production: Option[Boolean] = None,
@@ -16,4 +15,4 @@ case class MetaData(name: Option[String] = None,
                     samplePercent: Option[Double] = None,
                     offlineSchedule: Option[String] = None,
                     consistencySamplePercent: Option[Double] = None,
-                    historicalBackfill: Option[Boolean] = None)
+                    historicalBackfill: Option[Boolean] = None) derives Decoder, Encoder

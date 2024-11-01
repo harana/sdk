@@ -1,13 +1,12 @@
 package com.harana.sdk.shared.components.panels
 
 import java.time.Instant
-
-import com.harana.sdk.shared.utils.CirceCodecs._
+import com.harana.sdk.shared.utils.CirceCodecs.*
 import com.harana.sdk.shared.models.common.{Component, Event}
-import io.circe.generic.JsonCodec
-import enumeratum._
+import enumeratum.*
+import io.circe.{Decoder, Encoder}
 
-@JsonCodec
+
 case class CalendarPanel(events: List[Event],
                          eventColors: List[(Event, String)],
                          leftActions: List[CalendarAction],
@@ -19,7 +18,7 @@ case class CalendarPanel(events: List[Event],
                          navigationLinks: Boolean,
                          editable: Boolean,
                          businessHours: Boolean,
-                         eventLimit: Boolean) extends Component
+                         eventLimit: Boolean) extends Component derives Decoder, Encoder
 
 sealed trait CalendarView extends EnumEntry
 case object CalendarView extends Enum[CalendarView] with CirceEnum[CalendarView] {

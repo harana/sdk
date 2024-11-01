@@ -3,7 +3,7 @@ package com.harana.sdk.shared.models.schedules
 import com.harana.sdk.shared.models.data.Connection.ConnectionId
 import Schedule.ScheduleId
 import com.harana.sdk.shared.models.flow.Flow.FlowId
-import io.circe.derivation.{deriveDecoder, deriveEncoder}
+import io.circe.generic.semiauto.{deriveDecoder, deriveEncoder}
 import io.circe.syntax._
 import io.circe.{Decoder, Encoder}
 

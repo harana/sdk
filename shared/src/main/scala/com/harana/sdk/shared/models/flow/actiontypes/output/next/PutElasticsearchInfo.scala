@@ -1,6 +1,6 @@
 package com.harana.sdk.shared.models.flow.actiontypes.output.next
 
-import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup, ParameterValue}
+import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup}
 import com.harana.sdk.shared.models.data.ConnectionTypes
 import com.harana.sdk.shared.models.flow.actiontypes._
 import com.harana.sdk.shared.models.flow.actiontypes.output.OutputActionTypeInfo
@@ -18,10 +18,10 @@ class PutElasticsearchInfo extends OutputActionTypeInfo {
 
   val writeOperationParameter = Parameter.String("write-operation", required = true, options =
     List(
-      ("index", ParameterValue.String("index")),
-      ("create", ParameterValue.String("create")),
-      ("update", ParameterValue.String("update")),
-      ("upsert", ParameterValue.String("upsert"))
+      ("index", "index"),
+      ("create", "create"),
+      ("update", "update"),
+      ("upsert", "upsert")
     ))
 
   val mappingIdParameter = Parameter.String("mapping-id")

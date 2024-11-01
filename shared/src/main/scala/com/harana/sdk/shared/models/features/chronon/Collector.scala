@@ -1,11 +1,10 @@
 package com.harana.sdk.shared.models.features.chronon
 
-import io.circe.generic.JsonCodec
+import io.circe.{Decoder, Encoder}
 
-@JsonCodec
 case class Collector(operation: Operation,
                      k: Option[Int] = None,
-                     percentiles: Option[Array[Double]] = None)
+                     percentiles: Option[Array[Double]] = None) derives Decoder, Encoder
 
 object Collector {
   val approxUniqueCountLgk = Collector(Operation.APPROX_UNIQUE_COUNT)

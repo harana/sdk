@@ -1,9 +1,8 @@
 package com.harana.sdk.shared.models.features.chronon
 
-import io.circe.generic.JsonCodec
+import io.circe.{Decoder, Encoder}
 
-@JsonCodec
 case class StagingQuery(metaData: Option[MetaData] = None,
                         query: Option[String] = None,
                         startPartition: Option[String] = None,
-                        setups: Option[List[String]] = None)
+                        setups: Option[List[String]] = None) derives Decoder, Encoder

@@ -1,6 +1,6 @@
 package com.harana.sdk.shared.models.flow.actiontypes.input.next
 
-import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup, ParameterValue}
+import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup}
 import com.harana.sdk.shared.models.data.ConnectionTypes
 import com.harana.sdk.shared.models.flow.actiontypes.input.InputActionTypeInfo
 
@@ -20,11 +20,11 @@ class GetRedisInfo extends InputActionTypeInfo {
   val filterKeysByTypeParameter = Parameter.Boolean("filterKeysByType")
   val keyColumnParameter = Parameter.String("keyColumn")
   val keysPatternParameter = Parameter.String("keysPattern")
-  val partitionsParameter = Parameter.Long("partitions", default = Some(ParameterValue.Long(3)))
+  val partitionsParameter = Parameter.Long("partitions", default = Some(3))
   val inferSchemaParameter = Parameter.Boolean("inferSchema")
-  val maxPipelineSizeParameter = Parameter.Long("maxPipelineSize", default = Some(ParameterValue.Long(100)))
-  val scanCountParameter = Parameter.Long("scanCount", default = Some(ParameterValue.Long(0)))
-  val iteratorGroupingSizeParameter = Parameter.Long("iteratorGroupingSize", default = Some(ParameterValue.Long(1000)))
+  val maxPipelineSizeParameter = Parameter.Long("maxPipelineSize", default = Some(100))
+  val scanCountParameter = Parameter.Long("scanCount", default = Some(0))
+  val iteratorGroupingSizeParameter = Parameter.Long("iteratorGroupingSize", default = Some(1000))
   val advancedGroup = ParameterGroup("advanced", List(filterKeysByTypeParameter, keyColumnParameter, keysPatternParameter, partitionsParameter, inferSchemaParameter, maxPipelineSizeParameter, scanCountParameter, iteratorGroupingSizeParameter))
 
   val parameterGroups = List(generalGroup, advancedGroup)

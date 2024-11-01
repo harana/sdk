@@ -1,7 +1,6 @@
 package com.harana.sdk.shared.models.features.chronon
 
 import enumeratum._
-import io.circe.generic.JsonCodec
 
 sealed trait Accuracy extends EnumEntry
 

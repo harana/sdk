@@ -1,11 +1,10 @@
 package com.harana.sdk.shared.models.flow
 
-import com.harana.sdk.shared.models.flow.Action.ActionId
-import io.circe.generic.JsonCodec
-import com.harana.sdk.shared.utils.CirceCodecs._
+import com.harana.sdk.shared.models.flow.ActionId
+import com.harana.sdk.shared.utils.CirceCodecs.*
+import io.circe.{Decoder, Encoder}
 
-@JsonCodec
 case class Link(fromAction: ActionId,
                 fromPort: Port,
                 toAction: ActionId,
-                toPort: Port)
+                toPort: Port) derives Decoder, Encoder

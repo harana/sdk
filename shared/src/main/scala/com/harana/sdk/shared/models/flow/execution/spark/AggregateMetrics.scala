@@ -1,11 +1,10 @@
   package com.harana.sdk.shared.models.flow.execution.spark
 
-import enumeratum._
-import io.circe.generic.JsonCodec
+import enumeratum.*
+import io.circe.{Decoder, Encoder}
 
-@JsonCodec
 case class AggregateMetrics(count: Long,
-                            metrics: Map[AggregateMetric, AggregateValue])
+                            metrics: Map[AggregateMetric, AggregateValue]) derives Decoder, Encoder
 
 sealed trait AggregateMetric extends EnumEntry
 case object AggregateMetric extends Enum[AggregateMetric] with CirceKeyEnum[AggregateMetric] {

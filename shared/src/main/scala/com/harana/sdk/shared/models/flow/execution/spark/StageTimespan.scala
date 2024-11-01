@@ -1,10 +1,9 @@
 package com.harana.sdk.shared.models.flow.execution.spark
 
-import io.circe.generic.JsonCodec
+import io.circe.{Decoder, Encoder}
 
 import java.time.Instant
 
-@JsonCodec
 case class StageTimespan(stageId: Int,
                          startTime: Instant,
                          endTime: Instant,
@@ -14,4 +13,4 @@ case class StageTimespan(stageId: Int,
                          maxTaskFinishTime: Instant,
                          parentStageIds: List[Int],
                          taskExecutionTimes: List[Int],
-                         taskPeakMemoryUsage: List[Long])
+                         taskPeakMemoryUsage: List[Long]) derives Decoder, Encoder

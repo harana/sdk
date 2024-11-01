@@ -1,7 +1,6 @@
 package com.harana.sdk.shared.components.widgets
 
 import com.harana.sdk.shared.models.common.Component
-import io.circe.generic.JsonCodec
+import io.circe.{Decoder, Encoder}
 
-@JsonCodec
-case class TimerWidget(fixme: String) extends Component
+case class TimerWidget(fixme: String) extends Component derives Decoder, Encoder

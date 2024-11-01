@@ -1,6 +1,6 @@
 package com.harana.sdk.shared.models.flow.actiontypes.output.next
 
-import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup, ParameterValue}
+import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup}
 import com.harana.sdk.shared.models.data.ConnectionTypes
 import com.harana.sdk.shared.models.flow.actiontypes.output.OutputActionTypeInfo
 
@@ -19,14 +19,14 @@ class PutMemSqlInfo extends OutputActionTypeInfo {
 
   // Advanced
   val overwriteBehaviourParameter = Parameter.String("overwriteBehaviour", options = List(
-    ("dropAndCreate", ParameterValue.String("dropAndCreate")),
-    ("truncate", ParameterValue.String("truncate")),
-    ("merge", ParameterValue.String("merge"))
+    ("dropAndCreate", "dropAndCreate"),
+    ("truncate", "truncate"),
+    ("merge", "merge")
   ))
   val compressionParameter = Parameter.String("compression", options = List(
-    ("lz4", ParameterValue.String("LZ4")),
-    ("gzip", ParameterValue.String("GZip")),
-    ("none", ParameterValue.String("None"))
+    ("lz4", "LZ4"),
+    ("gzip", "GZip"),
+    ("none", "None")
   ))
   val advancedGroup = ParameterGroup("advanced", List(overwriteBehaviourParameter, compressionParameter))
 

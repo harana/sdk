@@ -1,20 +1,17 @@
 package com.harana.sdk.shared.models.catalog
 
 import java.time.Instant
-
 import com.harana.sdk.shared.models.common.Entity.EntityId
 import com.harana.sdk.shared.models.catalog.PageType.PageTypeId
-import com.harana.sdk.shared.models.common.Parameter.ParameterName
+import com.harana.sdk.shared.models.common.{Entity, ParameterMap, ParameterName, Status, User, Visibility}
 import com.harana.sdk.shared.models.common.User.UserId
-import com.harana.sdk.shared.models.common.{Entity, ParameterValue, Status, User, Visibility}
-import io.circe.generic.JsonCodec
-import com.harana.sdk.shared.utils.CirceCodecs._
+import com.harana.sdk.shared.utils.CirceCodecs.*
 import com.harana.sdk.shared.utils.Random
+import io.circe.{Decoder, Encoder}
 
-@JsonCodec
 case class PageType(name: String,
                     description: String,
-                    parameterValues: Map[ParameterName, ParameterValue],
+                    parameterValues: Map[ParameterName, Any],
                     createdBy: Option[UserId],
                     created: Instant,
                     updatedBy: Option[UserId],
@@ -25,7 +22,7 @@ case class PageType(name: String,
 										version: Long,
 										tags: Set[String],
                     relationships: Map[String, EntityId])
-    extends Entity with Serializable {
+    extends Entity with Serializable derives Decoder, Encoder {
 
 	type EntityType = PageType
 }
@@ -33,7 +30,7 @@ case class PageType(name: String,
 object PageType {
 	type PageTypeId = String
 
-	def apply(name: String, description: String, parameterValues: Map[ParameterName, ParameterValue], createdBy: Option[User], visibility: Visibility, tags: Set[String]): PageType = {
+	def apply(name: String, description: String, parameterValues: Map[ParameterName, Any], createdBy: Option[User], visibility: Visibility, tags: Set[String]): PageType = {
 		apply(name, description, parameterValues, createdBy.map(_.id), Instant.now, createdBy.map(_.id), Instant.now, Random.long, Status.Active, visibility, 1L, tags, Map())
 	}
 }

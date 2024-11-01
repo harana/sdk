@@ -1,10 +1,9 @@
 package com.harana.sdk.shared.models.flow.execution.spark
 
-import io.circe.generic.JsonCodec
+import io.circe.{Decoder, Encoder}
 
 import java.time.Instant
 
-@JsonCodec
 case class ExecutionLog(level: String,
                         message: String,
-                        timestamp: Instant)
+                        timestamp: Instant) derives Decoder, Encoder

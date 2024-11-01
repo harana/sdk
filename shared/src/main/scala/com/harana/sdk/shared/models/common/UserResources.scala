@@ -1,12 +1,11 @@
 package com.harana.sdk.shared.models.common
 
-import io.circe.generic.JsonCodec
+import io.circe.{Decoder, Encoder}
 
-@JsonCodec
 case class UserResources(diskSpace: Int,
                          flowsCPU: Int,
                          flowsExecutorCount: Int,
                          flowsExecutorMemory: Int,
                          terminalAllowRoot: Boolean,
                          terminalCPU: Int,
-                         terminalMemory: Int)
+                         terminalMemory: Int) derives Decoder, Encoder

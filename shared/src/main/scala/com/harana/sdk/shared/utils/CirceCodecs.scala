@@ -1,30 +1,36 @@
 package com.harana.sdk.shared.utils
 
-import cats.syntax.either._
-import com.harana.sdk.shared.components.cards._
+import cats.syntax.either.*
+import com.harana.sdk.shared.components.cards.*
 import com.harana.sdk.shared.components.cards.search.SearchResultCard
-import com.harana.sdk.shared.components.lists._
-import com.harana.sdk.shared.components.maps._
-import com.harana.sdk.shared.components.panels._
-import com.harana.sdk.shared.components.structure._
-import com.harana.sdk.shared.components.widgets._
+import com.harana.sdk.shared.components.lists.*
+import com.harana.sdk.shared.components.maps.*
+import com.harana.sdk.shared.components.panels.*
+import com.harana.sdk.shared.components.structure.*
+import com.harana.sdk.shared.components.widgets.*
 import com.harana.sdk.shared.models.catalog.{Page, Panel}
-import com.harana.sdk.shared.models.common._
+import com.harana.sdk.shared.models.common.*
 import com.harana.sdk.shared.models.data.{ConnectionType, ConnectionTypes}
 import com.harana.sdk.shared.models.flow.{ActionTypeInfo, Port}
 import com.harana.sdk.shared.models.flow.actiontypes.ActionTypes
 
 import java.net.URI
 import com.harana.sdk.shared.plugin.Service
-import io.circe._
-import io.circe.derivation.{deriveDecoder, deriveEncoder}
-import io.circe.syntax._
+import io.circe.*
+import io.circe.syntax.*
 import squants.market.{Money, MoneyContext, defaultMoneyContext}
 import com.harana.sdk.utils.ReflectUtils
+import io.circe.generic.semiauto.{deriveDecoder, deriveEncoder}
 
 object CirceCodecs {
 
 	implicit val moneyContext: MoneyContext = defaultMoneyContext
+
+	implicit val parameterValidatorDecoder: Decoder[ParameterValidator] =
+		Decoder.decodeString.emap { str => null }
+
+	implicit val parameterValidatorEncoder: Encoder[ParameterValidator] =
+		Encoder.encodeString.contramap[ParameterValidator](_.toString)
 
 	implicit val portEncoder: Encoder[Port] = Encoder.instance[Port] { port =>
 		Json.obj(
@@ -166,6 +172,21 @@ object CirceCodecs {
 		io.circe.Json.obj("type" -> entityType.asJson, "entity" -> json)
 	}
 
+	implicit val decodeParameter: Decoder[Parameter[?]] = Decoder.instance[Parameter[?]] { c =>
+		val value = c.downField("value").success.get
+		c.downField("type").as[String].getOrElse(throw new Exception("Background type not found")) match {
+			case "Hex" => deriveDecoder[Parameter[String]].apply(value)
+		}
+	}
+
+	implicit val encodeParameter: Encoder[Parameter[?]] = Encoder.instance[Parameter[?]] { parameter =>
+		val name = parameter.getClass.getSimpleName
+		val json = name match {
+			case "Hex" => deriveEncoder[Parameter[String]].apply(parameter.asInstanceOf[Parameter[String]])
+		}
+		io.circe.Json.obj("type" -> name.asJson, "value" -> json)
+	}
+
 	implicit val decodeBackground: Decoder[Background] = Decoder.instance[Background] { c =>
 		val value = c.downField("value").success.get
 		c.downField("type").as[String].getOrElse(throw new Exception("Background type not found")) match {
@@ -189,7 +210,7 @@ object CirceCodecs {
 
 
 	implicit def encodeEither[A, B](implicit encoderA: Encoder[A], encoderB: Encoder[B]): Encoder[Either[A, B]] = {
-		o: Either[A, B] => o.fold(_.asJson, _.asJson)
+		(o: Either[A, B]) => o.fold(_.asJson, _.asJson)
 	}
 
 	implicit def decodeEither[A, B](implicit decoderA: Decoder[A], decoderB: Decoder[B]): Decoder[Either[A, B]] = { c =>
@@ -197,18 +218,6 @@ object CirceCodecs {
 			case Right(a) => Right(Left(a))
 			case _ => c.as[B].map(Right(_))
 		}
-	}
-
-	implicit val encodeStringMap: Encoder[Map[String, Any]] = Encoder.instance[Map[String, Any]] { map =>
-		Json.obj(
-			map.map {
-				case (key, value: String)  => key -> Json.fromString(value)
-				case (key, value: Number)  => key -> Json.fromBigDecimal(value.doubleValue())
-				case (key, value: Boolean) => key -> Json.fromBoolean(value)
-				case (key, value: List[_]) => key -> Json.arr(value.map(_.toString).map(Json.fromString): _*)
-				case (_, value) => throw new NotImplementedError(s"Add support for values of type '${value.getClass}' in the jsons generator")
-			}.toSeq: _*
-		)
 	}
 
 	implicit val optionStringKeyEncoder: KeyEncoder[Option[String]] = (key: Option[String]) => key.getOrElse("")
@@ -222,4 +231,54 @@ object CirceCodecs {
 	implicit val encodeMoney: Encoder[Money] = Encoder.encodeString.contramap[Money](_.toString)
 	implicit def encodeService[A <: Service]: Encoder[A] = Encoder.encodeString.contramap[A](_.getClass.getName)
 	implicit val encodeUri: Encoder[URI] = Encoder.encodeString.contramap[URI](_.toString)
+
+	private def encodeAny(value: Any): Json = value match {
+		case n: Int => Json.fromInt(n)
+		case n: Long => Json.fromLong(n)
+		case n: Double => Json.fromDouble(n).getOrElse(Json.Null)
+		case n: Float => Json.fromFloat(n).getOrElse(Json.Null)
+		case b: Boolean => Json.fromBoolean(b)
+		case s: String => Json.fromString(s)
+		case null => Json.Null
+		case a: Array[_] => Json.arr(a.map(encodeAny)*)
+		case l: List[_] => Json.arr(l.map(encodeAny)*)
+		case m: Map[_, _] => m.asInstanceOf[Map[String, Any]].asJson
+		case None => Json.Null
+		case Some(x) => encodeAny(x)
+		case other => Json.fromString(other.toString)
+	}
+
+	implicit val parameterMapDecoder: Decoder[Map[ParameterName, Any]] = (c: HCursor) => c.as[JsonObject].map { jsonObj =>
+		jsonObj.toMap.map { case (key, json) =>
+			key -> decodeJson(json)
+		}
+	}
+
+	private def decodeJson(json: Json): Any = json.fold(
+		null,
+		b => b,
+		n => n.toInt.getOrElse(n.toDouble),
+		s => s,
+		arr => arr.map(decodeJson).toList,
+		obj => obj.toMap.map { case (k, v) => k -> decodeJson(v) }
+	)
+
+	implicit val parameterMapEncoder: Encoder[Map[ParameterName, Any]] = (map: Map[ParameterName, Any]) => Json.obj(
+		map.map { case (key, value) =>
+			key -> (value match {
+				case n: Int => Json.fromInt(n)
+				case n: Long => Json.fromLong(n)
+				case n: Double => Json.fromDouble(n).getOrElse(Json.Null)
+				case n: Float => Json.fromFloat(n).getOrElse(Json.Null)
+				case b: Boolean => Json.fromBoolean(b)
+				case s: String => Json.fromString(s)
+				case null => Json.Null
+				case a: Array[_] => Json.arr(a.map(encodeAny)*)
+				case l: List[_] => Json.arr(l.map(encodeAny)*)
+				case None => Json.Null
+				case Some(x) => encodeAny(x)
+				case other => Json.fromString(other.toString)
+			})
+		}.toSeq*
+	)
 }
