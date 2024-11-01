@@ -9,10 +9,7 @@ val sdk = haranaCrossProject("sdk").in(file("."))
         Library.izumiReflect.value :+
         Library.squants.value
   )
-  .jsSettings(
-    libraryDependencies +=
-      Library.scalajsDom.value
-  )
+  .jsSettings()
   .jvmSettings(
     libraryDependencies ++=
       Library.googleServiceApi.value ++
