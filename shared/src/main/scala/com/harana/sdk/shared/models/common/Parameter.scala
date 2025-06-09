@@ -7,83 +7,83 @@ import org.latestbit.circe.adt.codec.JsonTaggedAdt
 import java.lang.String as JString
 import java.net.URI
 import java.time.Instant
+import io.circe.{Decoder, Encoder}
 import io.circe.syntax.*
 
 type ParameterName = JString
 
 sealed trait Parameter derives JsonTaggedAdt.Codec:
+  type ValueType: {Decoder, Encoder}
   val name: ParameterName
-  val default: ParameterValue
+  val default: ValueType
   val required: scala.Boolean
   val validators: List[ParameterValidator]
-  type ValueType
 
 object Parameter:
-
   val title = Parameter.String("title")
   val description = Parameter.String("description")
   val tags = Parameter.StringList("tags")
 
   case class Boolean(name: ParameterName,
-                     default: ParameterValue = false.asJson,
+                     default: scala.Boolean = false,
                      required: scala.Boolean = false,
                      validators: List[ParameterValidator] = List()) extends Parameter: 
-    type ValueType = String
+    type ValueType = scala.Boolean
 
   case class Code(name: ParameterName,
-                  default: ParameterValue = "".asJson,
+                  default: JString = "",
                   required: scala.Boolean = false,
                   validators: List[ParameterValidator] = List()) extends Parameter: 
-    type ValueType = String
+    type ValueType = JString
 
   case class Color(name: ParameterName,
-                   default: ParameterValue = "".asJson,
+                   default: JString = "",
                    required: scala.Boolean = false,
                    validators: List[ParameterValidator] = List()) extends Parameter:
-    type ValueType = String
+    type ValueType = JString
   
   case class Connection(name: ParameterName,
                         connectionType: ConnectionType,
-                        default: ParameterValue = "".asJson,
+                        default: JString = "",
                         required: scala.Boolean = false,
                         validators: List[ParameterValidator] = List()) extends Parameter:
-    type ValueType = String
+    type ValueType = JString
 
   case class Country(name: ParameterName,
-                     default: ParameterValue = "".asJson,
+                     default: JString = "",
                      required: scala.Boolean = false,
                      validators: List[ParameterValidator] = List()) extends Parameter:
-    type ValueType = String
+    type ValueType = JString
 
   case class DataTable(name: ParameterName,
-                       default: ParameterValue = "".asJson,
+                       default: JString = "",
                        required: scala.Boolean = false,
                        validators: List[ParameterValidator] = List()) extends Parameter:
-    type ValueType = String
+    type ValueType = JString
 
   case class Date(name: ParameterName,
-                  default: ParameterValue = Instant.now.asJson,
+                  default: Instant = Instant.now,
                   required: scala.Boolean = false,
                   validators: List[ParameterValidator] = List()) extends Parameter:
-    type ValueType = String
+    type ValueType = Instant
 
   case class DateRange(name: ParameterName,
-                       default: ParameterValue = (Instant.now, Instant.now).asJson,
+                       default: (Instant, Instant) = (Instant.now, Instant.now),
                        required: scala.Boolean = false,
                        validators: List[ParameterValidator] = List()) extends Parameter:
-    type ValueType = String
+    type ValueType = (Instant, Instant)
 
   case class DateTime(name: ParameterName,
-                      default: ParameterValue = Instant.now.asJson,
+                      default: Instant = Instant.now,
                       required: scala.Boolean = false,
                       dateStyle: DateTimeStyle = DateTimeStyle.Short,
                       timeStyle: DateTimeStyle = DateTimeStyle.Short,
                       dateOptions: List[Instant] = List(),
                       validators: List[ParameterValidator] = List()) extends Parameter:
-    type ValueType = String
+    type ValueType = Instant
 
   case class Decimal(name: ParameterName,
-                     default: ParameterValue = 0.0.asJson,
+                     default: BigDecimal = 0.0,
                      required: scala.Boolean = false,
                      options: List[JString] = List(),
                      maxLength: Option[Int] = None,
@@ -94,69 +94,69 @@ object Parameter:
                      allowPositive: Option[scala.Boolean] = None,
                      pattern: Option[JString] = None,
                      validators: List[ParameterValidator] = List()) extends Parameter:
-    type ValueType = String
+    type ValueType = BigDecimal
 
   case class DecimalRange(name: ParameterName,
-                          default: ParameterValue = (0.0, 0.0).asJson,
+                          default: (BigDecimal, BigDecimal) = (0.0, 0.0),
                           required: scala.Boolean = false,
                           minimumValue: BigDecimal = 0,
                           maximumValue: BigDecimal = 100,
                           validators: List[ParameterValidator] = List()) extends Parameter:
-    type ValueType = String
+    type ValueType = (BigDecimal, BigDecimal)
 
   case class Email(name: ParameterName,
-                   default: ParameterValue = "".asJson,
+                   default: JString = "",
                    required: scala.Boolean = false,
                    pattern: Option[JString] = None,
                    validators: List[ParameterValidator] = List()) extends Parameter:
-    type ValueType = String
+    type ValueType = JString
 
   case class Emoji(name: ParameterName,
-                   default: ParameterValue = "".asJson,
+                   default: JString = "",
                    required: scala.Boolean = false,
                    validators: List[ParameterValidator] = List()) extends Parameter:
-    type ValueType = String
+    type ValueType = JString
 
   case class File(name: ParameterName,
-                  default: ParameterValue = "".asJson,
+                  default: JString = "",
                   required: scala.Boolean = false,
                   allowDirectories: scala.Boolean = false,
                   allowFiles: scala.Boolean = true,
                   validators: List[ParameterValidator] = List()) extends Parameter:
-    type ValueType = String
+    type ValueType = JString
 
   case class GeoAddress(name: ParameterName,
-                        default: ParameterValue = "".asJson,
+                        default: JString = "",
                         required: scala.Boolean = false,
                         validators: List[ParameterValidator] = List()) extends Parameter:
-    type ValueType = String
+    type ValueType = JString
 
   case class GeoCoordinate(name: ParameterName,
-                           default: ParameterValue = (0.0, 0.0).asJson,
+                           default: (Double, Double) = (0.0, 0.0),
                            required: scala.Boolean = false,
                            validators: List[ParameterValidator] = List()) extends Parameter:
-    type ValueType = String
+    type ValueType = (Double, Double)
 
   case class GeoLocation(name: ParameterName,
-                         default: ParameterValue = (0.0, 0.0).asJson,
+                         default: (Double, Double) = (0.0, 0.0),
                          required: scala.Boolean = false,
                          validators: List[ParameterValidator] = List()) extends Parameter:
-    type ValueType = String
+    type ValueType = (Double, Double)
 
   case class Html(name: ParameterName,
-                  default: ParameterValue = "".asJson,
+                  default: JString = "",
                   required: scala.Boolean = false,
                   validators: List[ParameterValidator] = List()) extends Parameter:
-    type ValueType = String
+    type ValueType = JString
 
   case class Image(name: ParameterName,
-                   default: ParameterValue = "".asJson,
+                   default: JString = "",
                    required: scala.Boolean = false,
                    validators: List[ParameterValidator] = List()) extends Parameter:
-    type ValueType = String
+    type ValueType = JString
 
   case class Integer(name: ParameterName,
-                     default: ParameterValue = 0.asJson,
+                     default: Int = 0,
                      required: scala.Boolean = false,
                      options: List[(JString, Int)] = List(),
                      maxLength: Option[Int] = None,
@@ -169,7 +169,7 @@ object Parameter:
     type ValueType = Int
 
   case class IntegerRange(name: ParameterName,
-                          default: ParameterValue = (0, 0).asJson,
+                          default: (Int, Int) = (0, 0),
                           required: scala.Boolean = false,
                           minimumValue: Int = 0,
                           maximumValue: Int = 100,
@@ -177,31 +177,31 @@ object Parameter:
     type ValueType = (Int, Int)
 
   case class IPAddress(name: ParameterName,
-                       default: ParameterValue = "".asJson,
+                       default: JString = "",
                        required: scala.Boolean = false,
                        port: scala.Boolean = false,
                        portDefault: Option[scala.Long] = None,
                        options: List[(JString, JString)] = List(),
                        validators: List[ParameterValidator] = List()) extends Parameter:
-    type ValueType = String
+    type ValueType = JString
 
   case class IPAddressList(name: ParameterName,
-                           default: ParameterValue = List[JString]().asJson,
+                           default: List[JString] = List.empty[JString],
                            required: scala.Boolean = false,
                            port: scala.Boolean = false,
                            portDefault: Option[Int] = None,
                            options: List[(JString, List[JString])] = List(),
                            validators: List[ParameterValidator] = List()) extends Parameter:
-    type ValueType = String
+    type ValueType = List[JString]
 
   case class Json(name: ParameterName,
-                  default: ParameterValue = "".asJson,
+                  default: JString = "",
                   required: scala.Boolean = false,
                   validators: List[ParameterValidator] = List()) extends Parameter:
-    type ValueType = String
+    type ValueType = JString
 
   case class Long(name: ParameterName,
-                  default: ParameterValue = 0.asJson,
+                  default: scala.Long = 0L,
                   required: scala.Boolean = false,
                   options: List[(JString, scala.Long)] = List(),
                   maxLength: Option[Int] = None,
@@ -211,49 +211,49 @@ object Parameter:
                   allowPositive: Option[scala.Boolean] = None,
                   pattern: Option[JString] = None,
                   validators: List[ParameterValidator] = List()) extends Parameter:
-    type ValueType = Long
+    type ValueType = scala.Long
 
   case class LongRange(name: ParameterName,
-                       default: ParameterValue = (0, 0).asJson,
+                       default: (scala.Long, scala.Long) = (0L, 0L),
                        required: scala.Boolean = false,
                        minimumValue: scala.Long = 0,
                        maximumValue: scala.Long = 100,
                        validators: List[ParameterValidator] = List()) extends Parameter:
-    type ValueType = (Long, Long)
+    type ValueType = (scala.Long, scala.Long)
 
   case class Markdown(name: ParameterName,
-                      default: ParameterValue = "".asJson,
+                      default: JString = "",
                       required: scala.Boolean = false,
                       validators: List[ParameterValidator] = List()) extends Parameter:
-    type ValueType = String
+    type ValueType = JString
 
   case class Money(name: ParameterName,
-                   default: ParameterValue = 0.0.asJson,
+                   default: Double = 0.0,
                    required: scala.Boolean = false,
                    options: List[BigDecimal] = List(),
                    validators: List[ParameterValidator] = List()) extends Parameter:
-    type ValueType = String
+    type ValueType = Double
 
   case class NewPassword(name: ParameterName,
-                         default: ParameterValue = "".asJson,
+                         default: JString = "",
                          required: scala.Boolean = false,
                          validators: List[ParameterValidator] = List()) extends Parameter:
-    type ValueType = String
+    type ValueType = JString
 
   case class Password(name: ParameterName,
-                      default: ParameterValue = "".asJson,
+                      default: JString = "",
                       required: scala.Boolean = false,
                       validators: List[ParameterValidator] = List()) extends Parameter:
-    type ValueType = String
+    type ValueType = JString
 
   case class SearchQuery(name: ParameterName,
-                         default: ParameterValue = "".asJson,
+                         default: JString = "",
                          required: scala.Boolean = false,
                          validators: List[ParameterValidator] = List()) extends Parameter:
-    type ValueType = String
+    type ValueType = JString
 
   case class String(name: ParameterName,
-                    default: ParameterValue = "".asJson,
+                    default: JString = "",
                     required: scala.Boolean = false,
                     options: List[(JString, JString)] = List(),
                     placeholder: Option[JString] = None,
@@ -262,10 +262,10 @@ object Parameter:
                     inputFormat: Option[JString] = None,
                     pattern: Option[JString] = None,
                     validators: List[ParameterValidator] = List()) extends Parameter:
-    type ValueType = String
+    type ValueType = JString
 
   case class StringList(name: ParameterName,
-                        default: ParameterValue = List.empty[JString].asJson,
+                        default: List[JString] = List.empty[JString],
                         required: scala.Boolean = false,
                         options: List[(JString, List[JString])] = List(),
                         maxLength: Option[Int] = None,
@@ -273,35 +273,35 @@ object Parameter:
                         inputFormat: Option[JString] = None,
                         pattern: Option[JString] = None,
                         validators: List[ParameterValidator] = List()) extends Parameter:
-    type ValueType = String
+    type ValueType = List[JString]
 
   case class Time(name: ParameterName,
-                  default: ParameterValue = Instant.now.asJson,
+                  default: Instant = Instant.now,
                   required: scala.Boolean = false,
                   validators: List[ParameterValidator] = List()) extends Parameter:
-    type ValueType = String
+    type ValueType = Instant
 
   case class TimeZone(name: ParameterName,
-                      default: ParameterValue = "".asJson,
+                      default: JString = "",
                       required: scala.Boolean = false,
                       validators: List[ParameterValidator] = List()) extends Parameter:
-    type ValueType = String
+    type ValueType = JString
 
   case class Uri(name: ParameterName,
-                 default: ParameterValue = URI.create("https://").asJson,
+                 default: URI = URI.create("https://"),
                  required: scala.Boolean = false,
                  pattern: Option[JString] = None,
                  validators: List[ParameterValidator] = List()) extends Parameter:
     type ValueType = URI
 
   case class User(name: ParameterName,
-                  default: ParameterValue = "".asJson,
+                  default: JString = "",
                   required: scala.Boolean = false,
                   validators: List[ParameterValidator] = List()) extends Parameter:
-    type ValueType = String
+    type ValueType = JString
 
   case class Video(name: ParameterName,
-                   default: ParameterValue = "".asJson,
+                   default: JString = "",
                    required: scala.Boolean = false,
                    validators: List[ParameterValidator] = List()) extends Parameter:
-    type ValueType = String
+    type ValueType = JString

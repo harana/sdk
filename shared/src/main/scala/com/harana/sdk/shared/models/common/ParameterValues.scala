@@ -1,6 +1,7 @@
 package com.harana.sdk.shared.models.common
 
 import io.circe.{Decoder, Encoder, Json}
+import com.harana.sdk.shared.models.common.given
 
 type ParameterValues = Map[ParameterName, ParameterValue]
 
@@ -13,8 +14,8 @@ object ParameterValues:
 
   extension (values: ParameterValues)
 
-    def getWithDefault[T: Decoder](parameter: Parameter): T =
-      values.get(parameter.name).flatMap(_.as[T].toOption).getOrElse(parameter.default.as[T].toOption.get)
+    def get(parameter: Parameter)(using Decoder[parameter.ValueType]): parameter.ValueType =
+      values.get(parameter.name).flatMap(_.as[parameter.ValueType].toOption).getOrElse(parameter.default)
 
     def put[T: Encoder](parameter: Parameter, value: T): ParameterValues =
       values + (parameter.name -> Encoder[T].apply(value))
