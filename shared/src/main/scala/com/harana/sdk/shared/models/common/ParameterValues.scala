@@ -2,9 +2,11 @@ package com.harana.sdk.shared.models.common
 
 import io.circe.{Decoder, Encoder, Json, HCursor}
 
-type ParameterValues = Map[ParameterName, Any]
+type ParameterValues = Map[ParameterName, ParameterValue]
 
 object ParameterValues:
+
+  def empty: ParameterValues = Map.empty
 
   given Encoder[Any] =
     case b: Boolean => Encoder.encodeBoolean(b)
@@ -27,25 +29,25 @@ object ParameterValues:
 
   given Decoder[Any] = (c: HCursor) =>
     for
-      valueType   <- c.downField("type").as[String]
-      value       <- c.downField("value").as[Json]
+      valueType <- c.downField("type").as[String]
+      value <- c.downField("value").as[Json]
     yield
       valueType match
-        case "Boolean"      => Decoder.decodeBoolean.decodeJson(value).toOption.get
-        case "Double"       => Decoder.decodeDouble.decodeJson(value).toOption.get
-        case "Int"          => Decoder.decodeInt.decodeJson(value).toOption.get
-        case "Float"        => Decoder.decodeFloat.decodeJson(value).toOption.get
-        case "Long"         => Decoder.decodeLong.decodeJson(value).toOption.get
-        case "BigDecimal"   => Decoder.decodeBigDecimal.decodeJson(value).toOption.get
-        case "BigInt"       => Decoder.decodeBigInt.decodeJson(value).toOption.get
-        case "Byte"         => Decoder.decodeByte.decodeJson(value).toOption.get
-        case "Short"        => Decoder.decodeShort.decodeJson(value).toOption.get
-        case "Char"         => Decoder.decodeChar.decodeJson(value).toOption.get
-        case "UUID"         => Decoder.decodeUUID.decodeJson(value).toOption.get
-        case "URI"          => Decoder.decodeURI.decodeJson(value).toOption.get
-        case "JavaInteger"  => Decoder.decodeJavaInteger.decodeJson(value).toOption.get
-        case "Unit"         => Decoder.decodeUnit.decodeJson(value).toOption.get
-        case "String"       => Decoder.decodeString.decodeJson(value).toOption.get
+        case "Boolean" => Decoder.decodeBoolean.decodeJson(value).toOption.get
+        case "Double" => Decoder.decodeDouble.decodeJson(value).toOption.get
+        case "Int" => Decoder.decodeInt.decodeJson(value).toOption.get
+        case "Float" => Decoder.decodeFloat.decodeJson(value).toOption.get
+        case "Long" => Decoder.decodeLong.decodeJson(value).toOption.get
+        case "BigDecimal" => Decoder.decodeBigDecimal.decodeJson(value).toOption.get
+        case "BigInt" => Decoder.decodeBigInt.decodeJson(value).toOption.get
+        case "Byte" => Decoder.decodeByte.decodeJson(value).toOption.get
+        case "Short" => Decoder.decodeShort.decodeJson(value).toOption.get
+        case "Char" => Decoder.decodeChar.decodeJson(value).toOption.get
+        case "UUID" => Decoder.decodeUUID.decodeJson(value).toOption.get
+        case "URI" => Decoder.decodeURI.decodeJson(value).toOption.get
+        case "JavaInteger" => Decoder.decodeJavaInteger.decodeJson(value).toOption.get
+        case "Unit" => Decoder.decodeUnit.decodeJson(value).toOption.get
+        case "String" => Decoder.decodeString.decodeJson(value).toOption.get
 
   extension (values: ParameterValues)
     def get(parameter: Parameter)(using Decoder[parameter.ValueType]): parameter.ValueType =
