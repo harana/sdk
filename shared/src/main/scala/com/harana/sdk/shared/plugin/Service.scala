@@ -1,7 +1,6 @@
 package com.harana.sdk.shared.plugin
 
-import com.harana.sdk.shared.models.common.{Parameter, ParameterName, ParameterValue}
-import io.circe.Json
+import com.harana.sdk.shared.models.common.{Parameter, ParameterName}
 
 trait Service:
   def name: String
@@ -12,7 +11,7 @@ trait Service:
   def onStartup(): Unit
   def onShutdown(): Unit
   def onAppContextChange(newContext: Map[String, ?]): Unit
-  def onUserConfigure(newValues: Map[ParameterName, ParameterValue]): Unit
+  def onUserConfigure(newValues: Map[ParameterName, Any]): Unit
 
 object Service:
 	type ServiceId = String

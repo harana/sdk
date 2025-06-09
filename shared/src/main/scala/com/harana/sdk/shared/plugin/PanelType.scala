@@ -1,6 +1,6 @@
 package com.harana.sdk.shared.plugin
 
-import com.harana.sdk.shared.models.common.{Component, ParameterName, ParameterValue, ParameterValues}
+import com.harana.sdk.shared.models.common.{Component, ParameterName, ParameterValues}
 import io.circe.Json
 
 trait PanelType extends Service:

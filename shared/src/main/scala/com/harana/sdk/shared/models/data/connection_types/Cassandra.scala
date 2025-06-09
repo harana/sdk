@@ -2,7 +2,7 @@ package com.harana.sdk.shared.models.data.connection_types
 
 import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup}
 import com.harana.sdk.shared.models.data.{ConnectionType, SyncDirection}
-import com.harana.sdk.shared.models.common.ParameterValue.given
+//import com.harana.sdk.shared.models.common.ParameterValue.given
 
 class Cassandra extends ConnectionType {
 

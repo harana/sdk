@@ -1,6 +1,6 @@
 package com.harana.sdk.shared.plugin
 
-import com.harana.sdk.shared.models.common.{Layout, ParameterName, ParameterValue, ParameterValues}
+import com.harana.sdk.shared.models.common.{Layout, ParameterName, ParameterValues}
 import com.harana.sdk.shared.plugin.PanelType.PanelTypeId
 import io.circe.Json
 

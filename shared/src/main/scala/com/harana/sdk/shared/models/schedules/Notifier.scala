@@ -1,12 +1,13 @@
 package com.harana.sdk.shared.models.schedules
 
 import com.harana.sdk.shared.models.common.Entity.EntityId
-import com.harana.sdk.shared.models.common.{Entity, ParameterName, ParameterValue, ParameterValues, Status, Visibility}
+import com.harana.sdk.shared.models.common.{Entity, ParameterName, ParameterValues, Status, Visibility}
 import com.harana.sdk.shared.models.common.User.UserId
 import com.harana.sdk.shared.models.schedules.Notifier.NotifierId
 import com.harana.sdk.shared.utils.CirceCodecs.*
 import com.harana.sdk.shared.utils.Random
 import io.circe.{Decoder, Encoder, Json}
+import com.harana.sdk.shared.models.common.ParameterValues.given
 
 import java.time.Instant
 

@@ -8,6 +8,7 @@ import com.harana.sdk.shared.models.common._
 import com.harana.sdk.shared.plugin.PanelType.PanelTypeId
 import com.harana.sdk.shared.utils.CirceCodecs._
 import io.circe.{Decoder, Encoder, Json}
+import com.harana.sdk.shared.models.common.ParameterValues.given
 
 import java.time.Instant
 

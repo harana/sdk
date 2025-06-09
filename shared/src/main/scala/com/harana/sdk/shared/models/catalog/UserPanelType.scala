@@ -7,6 +7,7 @@ import com.harana.sdk.shared.models.common.User.UserId
 import com.harana.sdk.shared.models.common._
 import com.harana.sdk.shared.utils.CirceCodecs._
 import io.circe.{Decoder, Encoder, Json}
+import com.harana.sdk.shared.models.common.ParameterValues.given
 
 import java.time.Instant
 
@@ -39,7 +40,7 @@ case class UserPanelType(name: String,
     override def onShutdown(): Unit = {}
 
     override def onAppContextChange(newContext: Map[String, ?]): Unit = {}
-    override def onUserConfigure(newParameterValues: Map[ParameterName, ParameterValue]): Unit = {}
+    override def onUserConfigure(newParameterValues: Map[ParameterName, Any]): Unit = {}
 
     type EntityType = UserPanelType
 

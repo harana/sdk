@@ -1,7 +1,7 @@
 package com.harana.sdk.shared.models.flow.actiontypes.output
 
 import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup}
-import com.harana.sdk.shared.models.common.ParameterValue.given
+//import com.harana.sdk.shared.models.common.ParameterValue.given
 
 abstract class JdbcOutputActionTypeInfo extends OutputActionTypeInfo {
 

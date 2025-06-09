@@ -13,6 +13,7 @@ import com.harana.sdk.shared.models.common.*
 import com.harana.sdk.shared.models.data.{ConnectionType, ConnectionTypes}
 import com.harana.sdk.shared.models.flow.{ActionTypeInfo, Port}
 import com.harana.sdk.shared.models.flow.actiontypes.ActionTypes
+import com.harana.sdk.shared.models.common.ParameterValues.given
 
 import java.net.URI
 import com.harana.sdk.shared.plugin.Service
@@ -25,7 +26,7 @@ import io.circe.generic.semiauto.{deriveDecoder, deriveEncoder}
 object CirceCodecs {
 
 	implicit val moneyContext: MoneyContext = defaultMoneyContext
-	
+
 	implicit val portEncoder: Encoder[Port] = Encoder.instance[Port] { port =>
 		Json.obj(
 			"type" -> Json.fromString(port.getClass.getSimpleName),

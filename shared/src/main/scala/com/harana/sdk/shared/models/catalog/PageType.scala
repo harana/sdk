@@ -8,7 +8,7 @@ import com.harana.sdk.shared.models.common.User.UserId
 import com.harana.sdk.shared.utils.CirceCodecs.*
 import com.harana.sdk.shared.utils.Random
 import io.circe.{Decoder, Encoder, Json}
-import com.harana.sdk.shared.models.common.ParameterValue.given
+//import com.harana.sdk.shared.models.common.ParameterValue.given
 
 case class PageType(name: String,
                     description: String,

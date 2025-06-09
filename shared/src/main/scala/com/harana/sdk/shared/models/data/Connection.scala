@@ -2,12 +2,13 @@ package com.harana.sdk.shared.models.data
 
 import com.harana.sdk.shared.models.common.Entity.EntityId
 import com.harana.sdk.shared.models.common.User.UserId
-import com.harana.sdk.shared.models.common.{Background, Entity, Parameter, ParameterName, ParameterValue, ParameterValues, Status, Visibility}
+import com.harana.sdk.shared.models.common.{Background, Entity, Parameter, ParameterName, ParameterValues, Status, Visibility}
 import com.harana.sdk.shared.models.data.Connection.ConnectionId
 import com.harana.sdk.shared.models.data.ConnectionType.ConnectionTypeId
 import com.harana.sdk.shared.utils.Random
 import com.harana.sdk.shared.utils.CirceCodecs.*
 import io.circe.{Decoder, Encoder, Json}
+import com.harana.sdk.shared.models.common.ParameterValues.given
 
 import java.time.Instant
 

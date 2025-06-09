@@ -1,13 +1,15 @@
 package com.harana.sdk.shared.models.catalog
 
+import com.harana.sdk.shared.models.common.ParameterValues.given
 import java.time.Instant
 import com.harana.sdk.shared.models.common.Entity.EntityId
 import com.harana.sdk.shared.models.catalog.PageExporter.PageExporterId
-import com.harana.sdk.shared.models.common.{Entity, ParameterName, ParameterValue, ParameterValues, Status, User, Visibility}
+import com.harana.sdk.shared.models.common.{Entity, ParameterName, ParameterValues, Status, User, Visibility}
 import com.harana.sdk.shared.models.common.User.UserId
 import com.harana.sdk.shared.utils.CirceCodecs.*
 import com.harana.sdk.shared.utils.Random
 import io.circe.{Decoder, Encoder, Json}
+import com.harana.sdk.shared.models.common.ParameterValues.given
 
 case class PageExporter(name: String,
                         description: String,
