@@ -8,6 +8,9 @@ object ParameterValues:
 
   def empty: ParameterValues = Map.empty
 
+  def apply(pairs: (Parameter, ParameterValue)*): ParameterValues =
+    pairs.map((parameter, value) => parameter.name -> value).toMap
+
   given Encoder[Any] =
     case b: Boolean => Encoder.encodeBoolean(b)
     case d: Double => Encoder.encodeDouble(d)
@@ -52,3 +55,5 @@ object ParameterValues:
   extension (values: ParameterValues)
     def get(parameter: Parameter)(using Decoder[parameter.ValueType]): parameter.ValueType =
       values.get(parameter.name).map(_.asInstanceOf[parameter.ValueType]).getOrElse(parameter.default)
+
+
