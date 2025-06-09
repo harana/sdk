@@ -5,12 +5,12 @@ import com.harana.sdk.shared.models.common.Entity.EntityId
 import com.harana.sdk.shared.models.catalog.Page.PageId
 import com.harana.sdk.shared.models.catalog.Panel.{PanelId, PanelSlotId}
 import com.harana.sdk.shared.models.catalog.UserPageType.UserPageTypeId
-import com.harana.sdk.shared.models.common.{Entity, ParameterMap, ParameterName, Status, User, Visibility}
+import com.harana.sdk.shared.models.common.{Entity, ParameterName, ParameterValue, ParameterValues, Status, User, Visibility}
 import com.harana.sdk.shared.models.common.User.UserId
 import com.harana.sdk.shared.plugin.PageType.PageTypeId
 import com.harana.sdk.shared.utils.CirceCodecs.*
 import com.harana.sdk.shared.utils.Random
-import io.circe.{Decoder, Encoder}
+import io.circe.{Decoder, Encoder, Json}
 
 case class Page(name: String,
                 title: String,
@@ -18,7 +18,7 @@ case class Page(name: String,
                 category: String,
                 pageTypeId: Either[PageTypeId, UserPageTypeId],
                 panels: Map[PanelSlotId, PanelId],
-                parameterValues: Map[ParameterName, Any],
+                values: ParameterValues,
                 linkId: String,
 								space: String,
                 parentPage: Option[PageId],
@@ -42,8 +42,8 @@ case class Page(name: String,
 object Page {
 	type PageId = String
 
-	def apply(name: String, title: String, description: String, category: String, pageTypeId: Either[PageTypeId, UserPageTypeId], panels: Map[PanelSlotId, Panel], parameterValues: Map[ParameterName, Any], linkId: String, space: String, createdBy: Option[User], visibility: Visibility, tags: Set[String]): Page = {
-		apply(name, title, description, category, pageTypeId, uuidPanels(panels), parameterValues, linkId, space, None, List(), Map(), createdBy.map(_.id), Instant.now, createdBy.map(_.id), Instant.now, Random.long, Status.Active, visibility, 1L, tags, Map())
+	def apply(name: String, title: String, description: String, category: String, pageTypeId: Either[PageTypeId, UserPageTypeId], panels: Map[PanelSlotId, Panel], values: ParameterValues, linkId: String, space: String, createdBy: Option[User], visibility: Visibility, tags: Set[String]): Page = {
+		apply(name, title, description, category, pageTypeId, uuidPanels(panels), values, linkId, space, None, List(), Map(), createdBy.map(_.id), Instant.now, createdBy.map(_.id), Instant.now, Random.long, Status.Active, visibility, 1L, tags, Map())
 	}
 
 	private def uuidPanels(panels: Map[PanelSlotId, Panel]) = panels.map( p => p._1 -> p._2.id)

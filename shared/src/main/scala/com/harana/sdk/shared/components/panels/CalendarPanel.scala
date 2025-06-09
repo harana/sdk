@@ -4,7 +4,7 @@ import java.time.Instant
 import com.harana.sdk.shared.utils.CirceCodecs.*
 import com.harana.sdk.shared.models.common.{Component, Event}
 import enumeratum.*
-import io.circe.{Decoder, Encoder}
+import io.circe.{Decoder, Encoder, Json}
 
 
 case class CalendarPanel(events: List[Event],

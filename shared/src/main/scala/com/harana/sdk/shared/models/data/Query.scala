@@ -8,8 +8,7 @@ import com.harana.sdk.shared.models.common.{Entity, Status, Visibility}
 import com.harana.sdk.shared.models.data.Query.QueryId
 import com.harana.sdk.shared.utils.Random
 import com.harana.sdk.shared.utils.CirceCodecs._
-import io.circe.{Decoder, Encoder}
-
+import io.circe.{Decoder, Encoder, Json}
 
 case class Query(title: String,
                  description: String,

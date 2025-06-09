@@ -1,6 +1,6 @@
 package com.harana.sdk.shared.models.common
 
-import io.circe.{Decoder, Encoder}
+import io.circe.{Decoder, Encoder, Json}
 import io.circe.generic.auto.*
 import org.latestbit.circe.adt.codec.*
 

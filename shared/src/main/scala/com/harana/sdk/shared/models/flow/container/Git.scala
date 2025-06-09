@@ -1,6 +1,6 @@
 package com.harana.sdk.shared.models.flow.container
 
-
+import io.circe.{Decoder, Encoder, Json}
 
 case class Git(url: String,
                path: Option[String],
@@ -9,4 +9,4 @@ case class Git(url: String,
                commit: Option[String],
                username: Option[String],
                password: Option[String],
-               oauthToken: Option[String])
+               oauthToken: Option[String]) derives Decoder, Encoder

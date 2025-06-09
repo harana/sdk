@@ -8,7 +8,7 @@ import com.harana.sdk.shared.models.common.Video.VideoId
 import com.harana.sdk.shared.models.common.Workflow.WorkflowId
 import com.harana.sdk.shared.utils.CirceCodecs._
 import com.harana.sdk.shared.utils.Random
-import io.circe.{Decoder, Encoder}
+import io.circe.{Decoder, Encoder, Json}
 
 case class Workflow(name: String,
 	                  createdBy: Option[UserId],

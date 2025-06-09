@@ -5,7 +5,7 @@ import com.harana.sdk.shared.models.common.User.UserId
 import com.harana.sdk.shared.models.common.{Entity, Status, Visibility}
 import Query.QueryId
 import com.harana.sdk.shared.utils.Random
-import io.circe.{Decoder, Encoder}
+import io.circe.{Decoder, Encoder, Json}
 import java.time.Instant
 
 

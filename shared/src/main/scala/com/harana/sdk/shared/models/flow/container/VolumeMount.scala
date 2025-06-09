@@ -1,10 +1,10 @@
 package com.harana.sdk.shared.models.flow.container
 
-
+import io.circe.{Decoder, Encoder, Json}
 
 case class VolumeMount(mountPath: Option[String] = None,
                        mountPropagation: Option[String] = None,
                        name: String,
                        readOnly: Option[Boolean] = None,
                        subPath: Option[String] = None,
-                       subPathExpr: Option[String] = None)
+                       subPathExpr: Option[String] = None) derives Decoder, Encoder

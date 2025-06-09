@@ -1,13 +1,6 @@
 package com.harana.sdk.shared.models.common
 
-import enumeratum.{CirceEnum, Enum, EnumEntry}
+import org.latestbit.circe.adt.codec.JsonTaggedAdt
 
-sealed trait DateTimeStyle extends EnumEntry
-case object DateTimeStyle extends Enum[DateTimeStyle] with CirceEnum[DateTimeStyle] {
-  case object None extends DateTimeStyle
-  case object Short extends DateTimeStyle
-  case object Medium extends DateTimeStyle
-  case object Long extends DateTimeStyle
-  case object Full extends DateTimeStyle
-  val values = findValues
-}
+enum DateTimeStyle derives JsonTaggedAdt.Codec:
+  case None, Short, Medium, Long, Full

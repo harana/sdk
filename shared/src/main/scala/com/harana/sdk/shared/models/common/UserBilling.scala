@@ -1,7 +1,7 @@
 package com.harana.sdk.shared.models.common
 
 import java.time.Instant
-import io.circe.{Decoder, Encoder}
+import io.circe.{Decoder, Encoder, Json}
 
 case class UserBilling(subscriptionEnded: Option[Instant] = None,
 											 subscriptionCustomerId: Option[String] = None,

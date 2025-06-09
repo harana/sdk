@@ -5,14 +5,13 @@ val sdk = haranaCrossProject("sdk").in(file("."))
   .settings(
     libraryDependencies ++=
       Library.circe.value ++
-        Library.testing.value :+
-        Library.izumiReflect.value :+
-        Library.squants.value
+      Library.testing.value :+
+      Library.izumiReflect.value :+
+      Library.squants.value
   )
   .jsSettings()
   .jvmSettings(
     libraryDependencies ++=
-      Library.googleServiceApi.value ++
       Library.logging.value ++
       Library.osgi.value ++
       Library.spark.value ++
@@ -25,7 +24,6 @@ val sdk = haranaCrossProject("sdk").in(file("."))
       Library.graalvm.value :+
       Library.gson.value :+
       Library.guice.value :+
-      Library.javaMail.value :+
       Library.jodaTime.value :+
       Library.junixSocketCommon.value :+
       Library.nscalaTime.value :+

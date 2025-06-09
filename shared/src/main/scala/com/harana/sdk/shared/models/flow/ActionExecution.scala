@@ -2,7 +2,7 @@ package com.harana.sdk.shared.models.flow
 
 import com.harana.sdk.shared.models.flow.ActionId
 import com.harana.sdk.shared.models.flow.execution.spark.ExecutionStatus
-import io.circe.{Decoder, Encoder}
+import io.circe.{Decoder, Encoder, Json}
 
 case class ActionExecution(actionId: ActionId,
                            percentage: Int,

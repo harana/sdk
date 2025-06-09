@@ -8,7 +8,7 @@ import com.harana.sdk.shared.models.flow.FlowExecution.FlowExecutionId
 import com.harana.sdk.shared.models.flow.container.EnvironmentVariable
 import com.harana.sdk.shared.models.flow.execution.spark.{ExecutionStatus, SparkMetrics}
 import com.harana.sdk.shared.utils.Random
-import io.circe.{Decoder, Encoder}
+import io.circe.{Decoder, Encoder, Json}
 import java.time.Instant
 
 case class FlowExecution(flowId: FlowId,

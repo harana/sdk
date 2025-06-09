@@ -1,6 +1,6 @@
 package com.harana.sdk.shared.models.features.chronon
 
-import io.circe.{Decoder, Encoder}
+import io.circe.{Decoder, Encoder, Json}
 
 case class Join(metaData: Option[MetaData] = None,
                 left: Option[Source] = None,

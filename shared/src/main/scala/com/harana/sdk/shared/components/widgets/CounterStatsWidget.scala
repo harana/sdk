@@ -3,7 +3,7 @@ package com.harana.sdk.shared.components.widgets
 import com.harana.sdk.shared.components._
 import com.harana.sdk.shared.models.common.Component
 import com.harana.sdk.shared.utils.CirceCodecs
-import io.circe.{Decoder, Encoder}
+import io.circe.{Decoder, Encoder, Json}
 
 case class CounterStatsWidget(value: String,
             valueName: String,

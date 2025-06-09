@@ -2,7 +2,7 @@ package com.harana.sdk.shared.models.data.connection_types.next
 
 import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup}
 import com.harana.sdk.shared.models.data.{ConnectionType, SyncDirection}
-
+import com.harana.sdk.shared.models.common.ParameterValue.given
 import scala.scalajs.reflect.annotation.EnableReflectiveInstantiation
 
 @EnableReflectiveInstantiation
@@ -12,21 +12,21 @@ class Cloudant extends ConnectionType {
 
   // General
   val hostParameter = Parameter.IPAddress("host", required = true)
-  val sslParameter = Parameter.Boolean("ssl", default = Some(false))
+  val sslParameter = Parameter.Boolean("ssl")
   val usernameParameter = Parameter.String("username", required = true)
   val passwordParameter = Parameter.Password("password", required = true)
   val generalGroup = ParameterGroup("general", List(hostParameter, sslParameter, usernameParameter, passwordParameter))
 
   // Advanced
-  val queryTimeoutParameter = Parameter.Long("queryTimeout", default = Some(60000))
-  val batchIntervalParameter = Parameter.Long("batchInterval", default = Some(8))
+  val queryTimeoutParameter = Parameter.Long("queryTimeout", default = 60000)
+  val batchIntervalParameter = Parameter.Long("batchInterval", default = 8)
   val endpointParameter = Parameter.String("endpoint", options = List(
     ("allDocs", "_all_docs"),
     ("changes", "_changes")
   ))
-  val useQueryParameter = Parameter.Boolean("useQuery", default = Some(false))
-  val retryCountParameter = Parameter.Long("retryCount", default = Some(3))
-  val queryLimitParameter = Parameter.Long("queryLimit", default = Some(25))
+  val useQueryParameter = Parameter.Boolean("useQuery")
+  val retryCountParameter = Parameter.Long("retryCount", default = 3)
+  val queryLimitParameter = Parameter.Long("queryLimit", default = 25)
 
   val bulkSizeParameter = Parameter.Long("bulkSize", placeholder = Some(200))
   val schemaSampleSizeParameter = Parameter.Long("schemaSampleSize", placeholder = Some(-1))

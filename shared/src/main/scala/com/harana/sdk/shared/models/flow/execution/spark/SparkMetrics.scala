@@ -1,6 +1,6 @@
 package com.harana.sdk.shared.models.flow.execution.spark
 
-import io.circe.{Decoder, Encoder}
+import io.circe.{Decoder, Encoder, Json}
 
 case class SparkMetrics(info: Option[ApplicationInfo],
                         metrics: Option[AggregateMetrics],

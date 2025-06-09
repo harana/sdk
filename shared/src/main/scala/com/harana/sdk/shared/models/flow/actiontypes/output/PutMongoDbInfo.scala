@@ -3,6 +3,7 @@ package com.harana.sdk.shared.models.flow.actiontypes.output
 import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup}
 import com.harana.sdk.shared.models.data.ConnectionTypes
 import com.harana.sdk.shared.models.flow.actiontypes.logGroup
+import com.harana.sdk.shared.models.common.ParameterValue.given
 
 class PutMongoDbInfo extends OutputActionTypeInfo {
 
@@ -18,17 +19,17 @@ class PutMongoDbInfo extends OutputActionTypeInfo {
   val generalGroup = ParameterGroup("general", List(dataSourceParameter, databaseParameter, collectionParameter))
 
   // Advanced
-  val extendedBsonTypesParameter = Parameter.Boolean("extended-bson-types", Some(true))
-  val localThresholdInMsParameter = Parameter.Integer("local-threshold", Some(15))
-  val replaceDocumentParameter = Parameter.Boolean("replace-document", Some(true))
-  val maxBatchSizeParameter = Parameter.Integer("max-batch-size", Some(512))
-  val writeConcernParameter = Parameter.String("write-concern", Some("majority"))
-  val writeConcernAcknowledgeJournalParameter = Parameter.Boolean("write-concern-acknowledge-journal", Some(true))
+  val extendedBsonTypesParameter = Parameter.Boolean("extended-bson-types", true)
+  val localThresholdInMsParameter = Parameter.Integer("local-threshold", 15)
+  val replaceDocumentParameter = Parameter.Boolean("replace-document", true)
+  val maxBatchSizeParameter = Parameter.Integer("max-batch-size", 512)
+  val writeConcernParameter = Parameter.String("write-concern", "majority")
+  val writeConcernAcknowledgeJournalParameter = Parameter.Boolean("write-concern-acknowledge-journal", true)
   val writeConcernTimeoutParameter = Parameter.Integer("write-concern-timeout")
 
-  val shardKeyParameter = Parameter.String("shard-key", Some("_id"))
-  val forceInsertParameter = Parameter.Boolean("force-insert", Some(false))
-  val orderedParameter = Parameter.Boolean("ordered", Some(true))
+  val shardKeyParameter = Parameter.String("shard-key", "_id")
+  val forceInsertParameter = Parameter.Boolean("force-insert")
+  val orderedParameter = Parameter.Boolean("ordered", true)
 
   val parameterGroups = List(ParameterGroup("general", List(dataSourceParameter)), logGroup)
 

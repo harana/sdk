@@ -1,18 +1,13 @@
 package com.harana.sdk.shared.plugin
 
-import com.harana.sdk.shared.models.common.{Layout, ParameterMap, ParameterName}
+import com.harana.sdk.shared.models.common.{Layout, ParameterName, ParameterValue, ParameterValues}
 import com.harana.sdk.shared.plugin.PanelType.PanelTypeId
+import io.circe.Json
 
-trait PageType extends Service {
-
-  def detailLayout[T](parameterValues: Map[ParameterName, Any]): Layout
-
-  def listLayout[T](parameterValues: Map[ParameterName, Any]): Layout
-
+trait PageType extends Service:
+  def detailLayout[T](values: ParameterValues): Layout
+  def listLayout[T](values: ParameterValues): Layout
   def linkedPanelTypes: Set[PanelTypeId] = Set.empty
 
-}
-
-object PageType {
+object PageType:
   type PageTypeId = String
-}

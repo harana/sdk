@@ -8,7 +8,7 @@ import com.harana.sdk.shared.models.common.User.UserId
 import enumeratum._
 import com.harana.sdk.shared.utils.CirceCodecs._
 import com.harana.sdk.shared.utils.Random
-import io.circe.{Decoder, Encoder}
+import io.circe.{Decoder, Encoder, Json}
 
 case class Task(name: String,
                 description: String,

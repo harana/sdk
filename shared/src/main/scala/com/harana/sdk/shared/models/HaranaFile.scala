@@ -1,8 +1,7 @@
 package com.harana.sdk.shared.models
 
-
 import java.time.Instant
-
+import io.circe.{Decoder, Encoder, Json}
 
 case class HaranaFile(name: String,
                       path: String,
@@ -11,4 +10,4 @@ case class HaranaFile(name: String,
                       created: Instant,
                       updated: Instant,
                       size: Long,
-                      tags: List[String])
+                      tags: List[String]) derives Decoder, Encoder

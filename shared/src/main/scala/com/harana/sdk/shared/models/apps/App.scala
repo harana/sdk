@@ -8,7 +8,7 @@ import com.harana.sdk.shared.models.common.{Background, Entity, Status, User, Vi
 import App.AppId
 import com.harana.sdk.shared.utils.Random
 import com.harana.sdk.shared.utils.CirceCodecs._
-import io.circe.{Decoder, Encoder}
+import io.circe.{Decoder, Encoder, Json}
 
 case class App(title: String,
                description: String,

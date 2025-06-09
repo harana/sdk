@@ -3,6 +3,7 @@ package com.harana.sdk.shared.models.flow.actiontypes.output.next
 import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup}
 import com.harana.sdk.shared.models.data.ConnectionTypes
 import com.harana.sdk.shared.models.flow.actiontypes.output.OutputActionTypeInfo
+import com.harana.sdk.shared.models.common.ParameterValue.given
 
 class PutGreenplumInfo extends OutputActionTypeInfo {
 
@@ -16,9 +17,9 @@ class PutGreenplumInfo extends OutputActionTypeInfo {
   val generalGroup = ParameterGroup("general", List(dataSourceParameter))
 
   // Advanced
-  val truncateParameter = Parameter.Boolean("truncate", default = Some(false))
+  val truncateParameter = Parameter.Boolean("truncate")
   val distributedByParameter = Parameter.StringList("distributedBy")
-  val iteratorOptimizationParameter = Parameter.Boolean("iteratorOptimization", default = Some(true))
+  val iteratorOptimizationParameter = Parameter.Boolean("iteratorOptimization", default = true)
 
   val advancedGroup = ParameterGroup("advanced", List(truncateParameter))
 

@@ -2,7 +2,7 @@ package com.harana.sdk.shared.models.flow
 
 import com.harana.sdk.shared.models.common.ParameterGroup
 import com.harana.sdk.shared.models.flow.actiontypes.{ActionTypeGroup, ActionTypes}
-import io.circe.{Decoder, Encoder}
+import io.circe.{Decoder, Encoder, Json}
 import cats.syntax.either._
 
 trait ActionTypeInfo {

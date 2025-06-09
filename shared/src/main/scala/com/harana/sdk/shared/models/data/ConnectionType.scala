@@ -4,7 +4,7 @@ import cats.syntax.either._
 import com.harana.sdk.shared.models.common.ParameterGroup
 import com.harana.sdk.shared.models.data.ConnectionType.ConnectionTypeId
 import enumeratum.values.{StringCirceEnum, StringEnum, StringEnumEntry}
-import io.circe.{Decoder, Encoder}
+import io.circe.{Decoder, Encoder, Json}
 
 import scala.scalajs.reflect.annotation.EnableReflectiveInstantiation
 

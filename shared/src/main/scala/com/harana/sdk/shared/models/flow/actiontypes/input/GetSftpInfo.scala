@@ -3,6 +3,7 @@ package com.harana.sdk.shared.models.flow.actiontypes.input
 import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup}
 import com.harana.sdk.shared.models.data.ConnectionTypes
 import com.harana.sdk.shared.models.flow.actiontypes._
+import com.harana.sdk.shared.models.common.ParameterValue.given
 
 class GetSftpInfo extends InputActionTypeInfo {
 
@@ -23,9 +24,9 @@ class GetSftpInfo extends InputActionTypeInfo {
 
   val inferSchemaParameter = Parameter.Boolean("infer-schema")
   val headerParameter = Parameter.Boolean("header")
-  val delimiterParameter = Parameter.String("delimiter", Some(","))
-  val quoteParameter = Parameter.String("quote", Some("\""))
-  val escapeParameter = Parameter.String("escape", Some("\\"))
+  val delimiterParameter = Parameter.String("delimiter", ",")
+  val quoteParameter = Parameter.String("quote", "\"")
+  val escapeParameter = Parameter.String("escape", "\\")
   val multiLineParameter = Parameter.Boolean("multi-line")
   val csvGroup = ParameterGroup("csv", List(inferSchemaParameter, headerParameter, delimiterParameter, quoteParameter, escapeParameter, multiLineParameter))
 

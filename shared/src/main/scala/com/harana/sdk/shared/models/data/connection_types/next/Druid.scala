@@ -1,5 +1,6 @@
 package com.harana.sdk.shared.models.data.connection_types.next
 
+import com.harana.sdk.shared.models.common.ParameterValue.given
 import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup}
 import com.harana.sdk.shared.models.data.{ConnectionType, SyncDirection}
 
@@ -17,17 +18,17 @@ class Druid extends ConnectionType {
 
   // Advanced
   val columnInfoParameter = Parameter.String("columnInfo", required = true)
-  val zookeeperSessionTimeoutParameter = Parameter.Long("zookeeperSessionTimeout", default = Some(30000))
-  val zookeeperCompressionParameter = Parameter.Boolean("zookeeperCompression", default = Some(true))
-  val zookeeperDruidPath = Parameter.String("zookeeperDruidPath", default = Some("/druid"))
-  val zookeeperQualifyDiscoveryNamesParameter = Parameter.Boolean("zookeeperQualifyDiscoveryNames", default = Some(true))
-  val queryGranularityParameter = Parameter.String("queryGranularity", default = Some("al"))
-  val maxConnectionsPerRouteParameter = Parameter.Long("maxConnectionsPerRoute", default = Some(20))
-  val maxConnectionsParameter = Parameter.Long("maxConnections", default = Some(20))
-  val loadMetadataFromAllSegmentsParameter = Parameter.Boolean("loadMetadataFromAllSegments", default = Some(true))
-  val timeZoneParameter = Parameter.String("timeZone", default = Some("UTC"))
-  val useV2GroupByEngineParameter = Parameter.Boolean("useV2GroupByEngine", default = Some(false))
-  val useSmileParameter = Parameter.Boolean("useSmile", default = Some(false))
+  val zookeeperSessionTimeoutParameter = Parameter.Long("zookeeperSessionTimeout", default = 30000)
+  val zookeeperCompressionParameter = Parameter.Boolean("zookeeperCompression", default = true)
+  val zookeeperDruidPath = Parameter.String("zookeeperDruidPath", default = "/druid")
+  val zookeeperQualifyDiscoveryNamesParameter = Parameter.Boolean("zookeeperQualifyDiscoveryNames", default = true)
+  val queryGranularityParameter = Parameter.String("queryGranularity", default = "al")
+  val maxConnectionsPerRouteParameter = Parameter.Long("maxConnectionsPerRoute", default = 20)
+  val maxConnectionsParameter = Parameter.Long("maxConnections", default = 20)
+  val loadMetadataFromAllSegmentsParameter = Parameter.Boolean("loadMetadataFromAllSegments", default = true)
+  val timeZoneParameter = Parameter.String("timeZone", default = "UTC")
+  val useV2GroupByEngineParameter = Parameter.Boolean("useV2GroupByEngine")
+  val useSmileParameter = Parameter.Boolean("useSmile")
   val advancedGroup = ParameterGroup("advanced", List(columnInfoParameter, zookeeperSessionTimeoutParameter, zookeeperCompressionParameter, zookeeperDruidPath,
     zookeeperQualifyDiscoveryNamesParameter, queryGranularityParameter, maxConnectionsPerRouteParameter, maxConnectionsParameter,
     loadMetadataFromAllSegmentsParameter, timeZoneParameter, useV2GroupByEngineParameter, useSmileParameter))

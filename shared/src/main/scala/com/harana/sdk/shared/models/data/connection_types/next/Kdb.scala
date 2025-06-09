@@ -2,6 +2,7 @@ package com.harana.sdk.shared.models.data.connection_types.next
 
 import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup}
 import com.harana.sdk.shared.models.data.{ConnectionType, SyncDirection}
+import com.harana.sdk.shared.models.common.ParameterValue.given
 
 import scala.scalajs.reflect.annotation.EnableReflectiveInstantiation
 
@@ -14,11 +15,11 @@ class Kdb extends ConnectionType {
   val hostParameter = Parameter.IPAddress("host", port = true, portDefault = Some(8086))
   val usernameParameter = Parameter.String("username")
   val passwordParameter = Parameter.Password("password")
-  val sslParameter = Parameter.Boolean("ssl", default = Some(false))
+  val sslParameter = Parameter.Boolean("ssl")
   val generalGroup = ParameterGroup("general", List(hostParameter, usernameParameter, passwordParameter, sslParameter))
 
   // Advanced
-  val queryTimeoutParameter = Parameter.Long("queryTimeout", default = Some(60))
+  val queryTimeoutParameter = Parameter.Long("queryTimeout", default = 60)
   val advancedGroup = ParameterGroup("advanced", List(queryTimeoutParameter))
 
   val parameterGroups = List(generalGroup, advancedGroup)

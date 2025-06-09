@@ -26,7 +26,7 @@ class AzureKusto extends ConnectionType {
   val generalGroup = ParameterGroup("general", List(clusterParameter, regionParameter, authenticationTypeParameter, keyValueAppIdParameter, keyValueAppKeyParameter, aadClientIdParameter, aadAuthorityIdParameter, aadClientPasswordParameter))
 
   // Advanced
-  val asyncParameter = Parameter.Boolean("async", default = Some(false))
+  val asyncParameter = Parameter.Boolean("async")
   val advancedGroup = ParameterGroup("advanced", List(asyncParameter))
 
   val parameterGroups = List(generalGroup, advancedGroup)

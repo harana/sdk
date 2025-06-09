@@ -3,6 +3,7 @@ package com.harana.sdk.shared.models.flow.actiontypes.output.next
 import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup}
 import com.harana.sdk.shared.models.data.ConnectionTypes
 import com.harana.sdk.shared.models.flow.actiontypes.output.OutputActionTypeInfo
+import com.harana.sdk.shared.models.common.ParameterValue.given
 
 class PutExasolInfo extends OutputActionTypeInfo {
 
@@ -18,7 +19,7 @@ class PutExasolInfo extends OutputActionTypeInfo {
   val generalGroup = ParameterGroup("general", List(dataSourceParameter, tableParameter))
 
   // Advanced
-  val batchSizeParameter = Parameter.Long("batchSize", default = Some(1000))
+  val batchSizeParameter = Parameter.Long("batchSize", default = 1000)
   val createTableParameter = Parameter.Boolean("createTable")
   val dropTableParameter = Parameter.Boolean("dropTable")
 

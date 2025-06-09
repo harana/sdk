@@ -1,6 +1,6 @@
 package com.harana.sdk.shared.models.features.chronon
 
-import io.circe.{Decoder, Encoder}
+import io.circe.{Decoder, Encoder, Json}
 
 case class GroupByServingInfo(groupBy: Option[GroupBy] = None,
                               inputAvroSchema: Option[String] = None,

@@ -17,7 +17,7 @@ class SqlServer extends JdbcConnectionType {
     ("no-duplicates", "NO_DUPLICATES")
   ))
   val dataPoolConnectionParameter = Parameter.String("datapool-datasource")
-  val tableLockParameter = Parameter.Boolean("table-lock", Some(false))
+  val tableLockParameter = Parameter.Boolean("table-lock")
   val advancedGroup = ParameterGroup("advanced", jdbcAdvancedParameters ++ List(reliabilityLevelParameter, dataPoolConnectionParameter, tableLockParameter))
 
   val parameterGroups = List(generalGroup, advancedGroup)

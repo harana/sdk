@@ -5,10 +5,8 @@ import com.harana.sdk.shared.utils.ProgressObserver
 
 import scala.concurrent.Future
 
-trait PageExporter extends Service {
+trait PageExporter extends Service:
   def exportPages(pages: List[Page], progressObserver: ProgressObserver): Future[List[(Page, Boolean, String)]]
-}
 
-object PageExporter {
+object PageExporter:
   type PageExporterId = String
-}

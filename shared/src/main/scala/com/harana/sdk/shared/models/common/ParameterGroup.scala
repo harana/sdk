@@ -1,17 +1,12 @@
 package com.harana.sdk.shared.models.common
 
 import com.harana.sdk.shared.utils.CirceCodecs.*
-import enumeratum.{CirceEnum, Enum, EnumEntry}
+import io.circe.{Decoder, Encoder, Json}
+import org.latestbit.circe.adt.codec.JsonTaggedAdt
 
-import io.circe.{Decoder, Encoder}
-
-sealed trait ParameterGroupLayout extends EnumEntry
-case object ParameterGroupLayout extends Enum[ParameterGroupLayout] with CirceEnum[ParameterGroupLayout] {
-  case object List extends ParameterGroupLayout
-  case object Grid extends ParameterGroupLayout
-  val values = findValues
-}
+enum ParameterGroupLayout derives JsonTaggedAdt.Codec:
+  case List, Grid
 
 case class ParameterGroup(name: String, 
-                          parameters: List[Parameter[?]], 
+                          parameters: List[Parameter],
                           layout: ParameterGroupLayout = ParameterGroupLayout.List) derives Decoder, Encoder

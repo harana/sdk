@@ -14,11 +14,11 @@ class Influx extends ConnectionType {
   val hostParameter = Parameter.IPAddress("host", port = true, portDefault = Some(8086))
   val usernameParameter = Parameter.String("username")
   val passwordParameter = Parameter.Password("password")
-  val sslParameter = Parameter.Boolean("ssl", default = Some(false))
+  val sslParameter = Parameter.Boolean("ssl")
   val generalGroup = ParameterGroup("general", List(hostParameter, usernameParameter, passwordParameter, sslParameter))
 
   // Advanced
-  val compressParameter = Parameter.Boolean("compress", default = Some(false))
+  val compressParameter = Parameter.Boolean("compress")
   val advancedGroup = ParameterGroup("advanced", List(compressParameter))
 
   val parameterGroups = List(generalGroup, advancedGroup)

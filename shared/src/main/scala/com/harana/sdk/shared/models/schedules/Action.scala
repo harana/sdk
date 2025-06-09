@@ -5,7 +5,7 @@ import Schedule.ScheduleId
 import com.harana.sdk.shared.models.flow.Flow.FlowId
 import io.circe.generic.semiauto.{deriveDecoder, deriveEncoder}
 import io.circe.syntax._
-import io.circe.{Decoder, Encoder}
+import io.circe.{Decoder, Encoder, Json}
 
 import scala.scalajs.reflect.annotation.EnableReflectiveInstantiation
 

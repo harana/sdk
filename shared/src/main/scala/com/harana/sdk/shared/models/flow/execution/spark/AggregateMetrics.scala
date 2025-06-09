@@ -1,7 +1,7 @@
   package com.harana.sdk.shared.models.flow.execution.spark
 
 import enumeratum.*
-import io.circe.{Decoder, Encoder}
+import io.circe.{Decoder, Encoder, Json}
 
 case class AggregateMetrics(count: Long,
                             metrics: Map[AggregateMetric, AggregateValue]) derives Decoder, Encoder

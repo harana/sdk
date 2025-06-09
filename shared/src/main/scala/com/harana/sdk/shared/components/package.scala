@@ -1,7 +1,7 @@
 package com.harana.sdk.shared.components
 
 import enumeratum.*
-import io.circe.{Decoder, Encoder}
+import io.circe.{Decoder, Encoder, Json}
 
 sealed trait Border extends EnumEntry
 case object Border extends Enum[Border] with CirceEnum[Border] {

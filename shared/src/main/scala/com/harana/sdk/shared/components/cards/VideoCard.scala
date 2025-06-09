@@ -1,7 +1,7 @@
 package com.harana.sdk.shared.components.cards
 
 import com.harana.sdk.shared.models.common.{Component, Video}
-import io.circe.{Decoder, Encoder}
+import io.circe.{Decoder, Encoder, Json}
 
 case class VideoCard(video: Video,
                      showTitle: Boolean,

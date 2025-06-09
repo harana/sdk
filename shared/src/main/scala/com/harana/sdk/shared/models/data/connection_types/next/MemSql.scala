@@ -23,7 +23,7 @@ class MemSql extends ConnectionType {
     ("ignore", "ignore"),
     ("overwrite", "overwrite")
   ))
-  val disablePartitionPushdownParameter = Parameter.Boolean("disablePartitionPushdown", default = Some(false))
+  val disablePartitionPushdownParameter = Parameter.Boolean("disablePartitionPushdown")
   val defaultCreateModeParameter = Parameter.String("defaultCreateMode", options = List(
     ("databaseAndTable", "databaseAndTable"),
     ("skip", "skip"),

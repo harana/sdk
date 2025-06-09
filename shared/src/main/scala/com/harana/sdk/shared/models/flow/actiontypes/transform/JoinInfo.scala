@@ -3,6 +3,7 @@ package com.harana.sdk.shared.models.flow.actiontypes.transform
 import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup}
 import com.harana.sdk.shared.models.flow.actiontypes.{ActionTypeGroup, logGroup}
 import com.harana.sdk.shared.models.flow.{ActionTypeInfo, Port}
+import com.harana.sdk.shared.models.common.ParameterValue.given
 
 class JoinInfo extends ActionTypeInfo {
 
@@ -13,7 +14,7 @@ class JoinInfo extends ActionTypeInfo {
   val inputPorts = List(Port.DataFrame("left-in"), Port.DataFrame("right-in"))
   val outputPorts = List(Port.DataFrame("out"))
 
-  val modeParameter = Parameter.String("mode", Some("left"), required = true, options = List(
+  val modeParameter = Parameter.String("mode", "left", required = true, options = List(
     ("inner", "inner"),
     ("left", "left"),
     ("right", "right"),

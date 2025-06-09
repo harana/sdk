@@ -9,7 +9,7 @@ import com.harana.sdk.shared.models.schedules.Notifier.NotifierId
 import com.harana.sdk.shared.models.schedules.Schedule.ScheduleId
 import com.harana.sdk.shared.utils.Random
 import com.harana.sdk.shared.utils.CirceCodecs._
-import io.circe.{Decoder, Encoder}
+import io.circe.{Decoder, Encoder, Json}
 import java.time.Instant
 
 

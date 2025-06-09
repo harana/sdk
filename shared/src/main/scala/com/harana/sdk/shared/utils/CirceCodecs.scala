@@ -25,13 +25,7 @@ import io.circe.generic.semiauto.{deriveDecoder, deriveEncoder}
 object CirceCodecs {
 
 	implicit val moneyContext: MoneyContext = defaultMoneyContext
-
-	implicit val parameterValidatorDecoder: Decoder[ParameterValidator] =
-		Decoder.decodeString.emap { str => null }
-
-	implicit val parameterValidatorEncoder: Encoder[ParameterValidator] =
-		Encoder.encodeString.contramap[ParameterValidator](_.toString)
-
+	
 	implicit val portEncoder: Encoder[Port] = Encoder.instance[Port] { port =>
 		Json.obj(
 			"type" -> Json.fromString(port.getClass.getSimpleName),
@@ -172,21 +166,6 @@ object CirceCodecs {
 		io.circe.Json.obj("type" -> entityType.asJson, "entity" -> json)
 	}
 
-	implicit val decodeParameter: Decoder[Parameter[?]] = Decoder.instance[Parameter[?]] { c =>
-		val value = c.downField("value").success.get
-		c.downField("type").as[String].getOrElse(throw new Exception("Background type not found")) match {
-			case "Hex" => deriveDecoder[Parameter[String]].apply(value)
-		}
-	}
-
-	implicit val encodeParameter: Encoder[Parameter[?]] = Encoder.instance[Parameter[?]] { parameter =>
-		val name = parameter.getClass.getSimpleName
-		val json = name match {
-			case "Hex" => deriveEncoder[Parameter[String]].apply(parameter.asInstanceOf[Parameter[String]])
-		}
-		io.circe.Json.obj("type" -> name.asJson, "value" -> json)
-	}
-
 	implicit val decodeBackground: Decoder[Background] = Decoder.instance[Background] { c =>
 		val value = c.downField("value").success.get
 		c.downField("type").as[String].getOrElse(throw new Exception("Background type not found")) match {
@@ -225,34 +204,10 @@ object CirceCodecs {
 	implicit def decodeSubEntity[A <: Entity]: Decoder[Entity] = decodeEntity
 	implicit val decodeMoney: Decoder[Money] = Decoder.decodeString.emap { str => Money(str).toEither.leftMap(_ => "Malformed Money") }
 	implicit def decodeService[A <: Service]: Decoder[A] = Decoder.decodeString.emap { str => Either.catchNonFatal(ReflectUtils.classForName[A](str)).leftMap(_ => "Invalid Service") }
-	implicit val decodeUri: Decoder[URI] = Decoder.decodeString.emap { str => Either.catchNonFatal(URI.create(str)).leftMap(_ => "Malformed URL") }
 
 	implicit def encodeSubEntity[A <: Entity]: Encoder[Entity] = encodeEntity
 	implicit val encodeMoney: Encoder[Money] = Encoder.encodeString.contramap[Money](_.toString)
 	implicit def encodeService[A <: Service]: Encoder[A] = Encoder.encodeString.contramap[A](_.getClass.getName)
-	implicit val encodeUri: Encoder[URI] = Encoder.encodeString.contramap[URI](_.toString)
-
-	private def encodeAny(value: Any): Json = value match {
-		case n: Int => Json.fromInt(n)
-		case n: Long => Json.fromLong(n)
-		case n: Double => Json.fromDouble(n).getOrElse(Json.Null)
-		case n: Float => Json.fromFloat(n).getOrElse(Json.Null)
-		case b: Boolean => Json.fromBoolean(b)
-		case s: String => Json.fromString(s)
-		case null => Json.Null
-		case a: Array[_] => Json.arr(a.map(encodeAny)*)
-		case l: List[_] => Json.arr(l.map(encodeAny)*)
-		case m: Map[_, _] => m.asInstanceOf[Map[String, Any]].asJson
-		case None => Json.Null
-		case Some(x) => encodeAny(x)
-		case other => Json.fromString(other.toString)
-	}
-
-	implicit val parameterMapDecoder: Decoder[Map[ParameterName, Any]] = (c: HCursor) => c.as[JsonObject].map { jsonObj =>
-		jsonObj.toMap.map { case (key, json) =>
-			key -> decodeJson(json)
-		}
-	}
 
 	private def decodeJson(json: Json): Any = json.fold(
 		null,
@@ -261,24 +216,5 @@ object CirceCodecs {
 		s => s,
 		arr => arr.map(decodeJson).toList,
 		obj => obj.toMap.map { case (k, v) => k -> decodeJson(v) }
-	)
-
-	implicit val parameterMapEncoder: Encoder[Map[ParameterName, Any]] = (map: Map[ParameterName, Any]) => Json.obj(
-		map.map { case (key, value) =>
-			key -> (value match {
-				case n: Int => Json.fromInt(n)
-				case n: Long => Json.fromLong(n)
-				case n: Double => Json.fromDouble(n).getOrElse(Json.Null)
-				case n: Float => Json.fromFloat(n).getOrElse(Json.Null)
-				case b: Boolean => Json.fromBoolean(b)
-				case s: String => Json.fromString(s)
-				case null => Json.Null
-				case a: Array[_] => Json.arr(a.map(encodeAny)*)
-				case l: List[_] => Json.arr(l.map(encodeAny)*)
-				case None => Json.Null
-				case Some(x) => encodeAny(x)
-				case other => Json.fromString(other.toString)
-			})
-		}.toSeq*
 	)
 }

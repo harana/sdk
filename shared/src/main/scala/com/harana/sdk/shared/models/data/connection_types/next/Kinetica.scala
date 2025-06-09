@@ -2,6 +2,7 @@ package com.harana.sdk.shared.models.data.connection_types.next
 
 import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup}
 import com.harana.sdk.shared.models.data.{ConnectionType, SyncDirection}
+import com.harana.sdk.shared.models.common.ParameterValue.given
 
 import scala.scalajs.reflect.annotation.EnableReflectiveInstantiation
 
@@ -20,7 +21,7 @@ class Kinetica extends ConnectionType {
   val primaryHostParameter = Parameter.IPAddress("primaryHost", port = true, portDefault = Some(9191), required = true)
   val streamHostParameter = Parameter.IPAddress("streamHost", port = true, portDefault = Some(9092), required = true)
   val retryCountParameter = Parameter.Long("retryCount")
-  val timeoutParameter = Parameter.Long("timeout", default = Some(1800))
+  val timeoutParameter = Parameter.Long("timeout", default = 1800)
   val advancedGroup = ParameterGroup("advanced", List(primaryHostParameter, streamHostParameter, retryCountParameter, timeoutParameter))
 
   val parameterGroups = List(generalGroup, advancedGroup)

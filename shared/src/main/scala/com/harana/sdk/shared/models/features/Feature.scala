@@ -6,7 +6,7 @@ import com.harana.sdk.shared.models.common.User.UserId
 import com.harana.sdk.shared.models.common.{Entity, Status, Visibility}
 import com.harana.sdk.shared.models.features.Feature.FeatureId
 import com.harana.sdk.shared.utils.Random
-import io.circe.{Decoder, Encoder}
+import io.circe.{Decoder, Encoder, Json}
 
 case class Feature(title: String,
                    description: String,

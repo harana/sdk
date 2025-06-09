@@ -2,6 +2,7 @@ package com.harana.sdk.shared.models.data.connection_types
 
 import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup}
 import com.harana.sdk.shared.models.data.{ConnectionType, SyncDirection}
+import com.harana.sdk.shared.models.common.ParameterValue.given
 
 class Elasticsearch extends ConnectionType {
 
@@ -9,14 +10,14 @@ class Elasticsearch extends ConnectionType {
 
   // General
   val hostsParameter = Parameter.IPAddressList("hosts", required = true, port = true, portDefault = Some(9600))
-  val sslParameter = Parameter.Boolean("ssl", Some(false), required = true)
+  val sslParameter = Parameter.Boolean("ssl", required = true)
   val usernameParameter = Parameter.String("username", required = true)
   val passwordParameter = Parameter.Password("password", required = true)
   val generalGroup = ParameterGroup("general", List(hostsParameter, sslParameter, usernameParameter, passwordParameter))
 
   // Advanced
-  val queryRetriesParameter = Parameter.Long("query-retries", Some(3))
-  val queryTimeoutParameter = Parameter.Long("query-timeout", Some(60))
+  val queryRetriesParameter = Parameter.Long("query-retries", 3)
+  val queryTimeoutParameter = Parameter.Long("query-timeout", 60)
   val discoveryParameter = Parameter.Boolean("discovery")
   val clientOnlyParameter = Parameter.Boolean("client-only")
   val pathPrefixParameter = Parameter.String("path-prefix")

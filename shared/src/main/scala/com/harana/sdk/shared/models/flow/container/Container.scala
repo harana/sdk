@@ -1,6 +1,6 @@
 package com.harana.sdk.shared.models.flow.container
 
-
+import io.circe.{Decoder, Encoder, Json}
 
 case class Container(name: String,
                      arguments: Option[List[String]],
@@ -14,4 +14,4 @@ case class Container(name: String,
                      resources: Option[Resources],
                      scala: Option[Scala],
                      version: Option[String],
-                     volumeMounts: Option[List[VolumeMount]])
+                     volumeMounts: Option[List[VolumeMount]]) derives Decoder, Encoder

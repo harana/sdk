@@ -3,6 +3,7 @@ package com.harana.sdk.shared.models.flow.actiontypes.output.next
 import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup}
 import com.harana.sdk.shared.models.data.ConnectionTypes
 import com.harana.sdk.shared.models.flow.actiontypes.output.OutputActionTypeInfo
+import com.harana.sdk.shared.models.common.ParameterValue.given
 
 class PutRedisInfo extends OutputActionTypeInfo {
 
@@ -24,8 +25,8 @@ class PutRedisInfo extends OutputActionTypeInfo {
   ))
   val filterKeysByTypeParameter = Parameter.Boolean("filterKeysByType")
   val keyColumnParameter = Parameter.String("keyColumn")
-  val ttlParameter = Parameter.Long("ttl", default = Some(0))
-  val maxPipelineSizeParameter = Parameter.Long("maxPipelineSize", default = Some(100))
+  val ttlParameter = Parameter.Long("ttl")
+  val maxPipelineSizeParameter = Parameter.Long("maxPipelineSize", default = 100)
   val advancedGroup = ParameterGroup("advanced", List(modelParameter, filterKeysByTypeParameter, keyColumnParameter, ttlParameter, maxPipelineSizeParameter))
 
   val parameterGroups = List(generalGroup, advancedGroup)

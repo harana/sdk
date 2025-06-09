@@ -7,7 +7,7 @@ import com.harana.sdk.shared.models.common.File.FileId
 import com.harana.sdk.shared.models.common.User.UserId
 import com.harana.sdk.shared.utils.CirceCodecs._
 import com.harana.sdk.shared.utils.Random
-import io.circe.{Decoder, Encoder}
+import io.circe.{Decoder, Encoder, Json}
 
 case class File(name: String,
                 description: String,

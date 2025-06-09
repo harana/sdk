@@ -17,7 +17,7 @@ class Neo4j extends ConnectionType {
   val generalGroup = ParameterGroup("general", List(hostParameter, usernameParameter, passwordParameter))
 
   // Password
-  val encryptedParameter = Parameter.Boolean("encrypted", default = Some(false))
+  val encryptedParameter = Parameter.Boolean("encrypted")
   val advancedGroup = ParameterGroup("advanced", List(encryptedParameter))
 
   val parameterGroups = List(generalGroup, advancedGroup)

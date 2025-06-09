@@ -7,9 +7,9 @@ import com.harana.sdk.shared.models.flow.FlowExecution.FlowExecutionId
 import com.harana.sdk.shared.models.flow.execution._
 import com.harana.sdk.shared.models.flow.execution.spark.ExecutionLog
 import com.harana.sdk.shared.utils.Random
-
+import io.circe.{Decoder, Encoder, Json}
 
 case class FlowExecutionLogs(flowId: FlowId,
                              flowExecutionId: FlowExecutionId,
                              logs: List[ExecutionLog],
-                             id: EntityId = Random.long) extends Id
+                             id: EntityId = Random.long) extends Id derives Decoder, Encoder

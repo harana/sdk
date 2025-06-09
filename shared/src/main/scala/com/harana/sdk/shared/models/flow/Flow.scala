@@ -7,7 +7,7 @@ import com.harana.sdk.shared.models.data.Connection
 import com.harana.sdk.shared.models.flow.Flow.FlowId
 import com.harana.sdk.shared.utils.Random
 import com.harana.sdk.shared.utils.CirceCodecs._
-import io.circe.{Decoder, Encoder}
+import io.circe.{Decoder, Encoder, Json}
 import java.time.Instant
 
 

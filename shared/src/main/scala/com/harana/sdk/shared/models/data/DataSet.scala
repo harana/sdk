@@ -7,7 +7,7 @@ import com.harana.sdk.shared.models.common.User.UserId
 import com.harana.sdk.shared.models.common.{Entity, Status, User, Visibility}
 import com.harana.sdk.shared.models.data.DataSet.DataSetId
 import com.harana.sdk.shared.utils.Random
-import io.circe.{Decoder, Encoder}
+import io.circe.{Decoder, Encoder, Json}
 
 case class DataSet(title: String,
 									 description: String,

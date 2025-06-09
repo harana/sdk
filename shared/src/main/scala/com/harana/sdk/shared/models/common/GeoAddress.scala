@@ -1,6 +1,6 @@
 package com.harana.sdk.shared.models.common
 
-import io.circe.{Decoder, Encoder}
+import io.circe.{Decoder, Encoder, Json}
 
 case class GeoAddress(unitNumber: String,
                       streetNumber: String,

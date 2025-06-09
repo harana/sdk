@@ -2,7 +2,7 @@ package com.harana.sdk.shared.models.features.chronon
 
 import io.circe.generic.semiauto.{deriveDecoder, deriveEncoder}
 import io.circe.syntax.EncoderOps
-import io.circe.{Decoder, Encoder}
+import io.circe.{Decoder, Encoder, Json}
 import org.latestbit.circe.adt.codec.JsonTaggedAdt
 
 enum Source derives JsonTaggedAdt.Decoder, JsonTaggedAdt.Encoder {

@@ -1,22 +1,19 @@
 package com.harana.sdk.shared.models.common
 
-import io.circe.{Decoder, Encoder}
+import io.circe.{Decoder, Encoder, Json}
 
 import java.time.Instant
 import java.util.regex.Pattern
 import scala.reflect.ClassTag
 import scala.util.Try
 
-// Base trait for all parameter validators
 trait ParameterValidator:
   def validate[A](value: A): Option[String]
 
-// Composite validator that combines multiple validators
 case class CompositeValidator(validators: List[ParameterValidator]) extends ParameterValidator:
   def validate[A](value: A): Option[String] =
     validators.flatMap(_.validate(value)).headOption
 
-// Required field validator
 case object RequiredValidator extends ParameterValidator:
   def validate[A](value: A): Option[String] =
     Option(value) match
@@ -24,7 +21,6 @@ case object RequiredValidator extends ParameterValidator:
       case Some("") if value.isInstanceOf[String] => Some("Value is required")
       case _ => None
 
-// String-specific validators
 object StringValidators:
   case class MinLength(length: Int) extends ParameterValidator:
     def validate[A](value: A): Option[String] =
@@ -119,6 +115,9 @@ object CollectionValidators:
 
 // Custom validator creation helper
 object ParameterValidator:
+  given Decoder[ParameterValidator] = Decoder.decodeString.emap { str => null }
+  given Encoder[ParameterValidator] = Encoder.encodeString.contramap[ParameterValidator](_.toString)
+
   def custom[A <: AnyRef : ClassTag](f: A => Boolean, errorMsg: String): ParameterValidator =
     new ParameterValidator:
       def validate[B](value: B): Option[String] =

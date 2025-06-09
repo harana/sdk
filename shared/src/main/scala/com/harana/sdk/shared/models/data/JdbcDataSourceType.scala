@@ -12,7 +12,7 @@ abstract class JdbcConnectionType extends ConnectionType {
   // Advanced
   val sessionInitStatementParameter = Parameter.String("session-init-statement")
   val numPartitionsParameter = Parameter.String("num-partitions")
-  val queryTimeoutParameter = Parameter.Long("query-timeout", default = Some(0))
+  val queryTimeoutParameter = Parameter.Long("query-timeout")
   val isolationLevelParameter = Parameter.String("isolation-level", options = List(
     ("none", "NONE"),
     ("read-committed", "READ_COMMITTED"),

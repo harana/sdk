@@ -2,6 +2,7 @@ package com.harana.sdk.shared.models.data.connection_types.next
 
 import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup}
 import com.harana.sdk.shared.models.data.{ConnectionType, SyncDirection}
+import com.harana.sdk.shared.models.common.ParameterValue.given
 
 import scala.scalajs.reflect.annotation.EnableReflectiveInstantiation
 
@@ -14,7 +15,7 @@ class Netsuite extends ConnectionType {
   val passwordParameter = Parameter.Password("password", required = true)
   val accountParameter = Parameter.String("account", required = true)
   val applicationIdParameter = Parameter.String("applicationId", required = true)
-  val roleIdParameter = Parameter.Long("roleId", default = Some(3))
+  val roleIdParameter = Parameter.Long("roleId", default = 3)
   val generalGroup = ParameterGroup("general", List(emailParameter, passwordParameter, accountParameter, applicationIdParameter, roleIdParameter))
 
   val parameterGroups = List(generalGroup)

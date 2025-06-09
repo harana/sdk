@@ -6,7 +6,7 @@ import com.harana.sdk.shared.models.schedules.Action.DataSync
 import com.harana.sdk.shared.models.schedules.Schedule.ScheduleId
 import io.circe.generic.semiauto.{deriveDecoder, deriveEncoder}
 import io.circe.syntax._
-import io.circe.{Decoder, Encoder}
+import io.circe.{Decoder, Encoder, Json}
 
 import scala.scalajs.reflect.annotation.EnableReflectiveInstantiation
 

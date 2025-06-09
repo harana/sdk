@@ -3,6 +3,7 @@ package com.harana.sdk.shared.models.flow.actiontypes.input.next
 import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup}
 import com.harana.sdk.shared.models.data.ConnectionTypes
 import com.harana.sdk.shared.models.flow.actiontypes.input.InputActionTypeInfo
+import com.harana.sdk.shared.models.common.ParameterValue.given
 
 class GetSalesforceInfo extends InputActionTypeInfo {
 
@@ -19,18 +20,18 @@ class GetSalesforceInfo extends InputActionTypeInfo {
   // Bulk
   val bulkParameter = Parameter.Boolean("bulk")
   val primaryKeyChunkingParameter = Parameter.Boolean("primaryKeyChunking")
-  val chunkSizeParameter = Parameter.Long("chunkSize", default = Some(100000))
+  val chunkSizeParameter = Parameter.Long("chunkSize", default = 100000)
   val timeoutParameter = Parameter.Long("timeout")
   val bulkGroup = ParameterGroup("bulk", List(bulkParameter, primaryKeyChunkingParameter, chunkSizeParameter, timeoutParameter))
 
   // Advanced
   val inferSchemaParameter = Parameter.Boolean("inferSchema")
-  val pageSizeParameter = Parameter.Long("pageSize", default = Some(2000))
+  val pageSizeParameter = Parameter.Long("pageSize", default = 2000)
   val metadataConfigParameter = Parameter.Json("metadataConfig")
   val resultVariableParameter = Parameter.String("resultVariable")
-  val externalIdFieldNameParameter = Parameter.String("externalIdFieldName", default = Some("Id"))
+  val externalIdFieldNameParameter = Parameter.String("externalIdFieldName", default = "Id")
   val queryAllParameter = Parameter.Boolean("queryAll")
-  val versionParameter = Parameter.Decimal("version", default = Some(35.0))
+  val versionParameter = Parameter.Decimal("version", default = 35.0)
   val advancedGroup = ParameterGroup("advanced", List(externalIdFieldNameParameter, queryAllParameter))
 
   val parameterGroups = List(generalGroup, bulkGroup, advancedGroup)

@@ -2,7 +2,7 @@ package com.harana.sdk.shared.models.data.connection_types.next
 
 import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup}
 import com.harana.sdk.shared.models.data.{ConnectionType, SyncDirection}
-
+import com.harana.sdk.shared.models.common.ParameterValue.given
 import scala.scalajs.reflect.annotation.EnableReflectiveInstantiation
 
 @EnableReflectiveInstantiation
@@ -17,10 +17,10 @@ class Clickhouse extends ConnectionType {
   val generalGroup = ParameterGroup("general", List(hostsParameter, usernameParameter, passwordParameter))
 
   // Advanced
-  val maxConnectionsPerExecutorParameter = Parameter.Long("maxConnectionsPerExecutor", default = Some(5))
-  val enableMetricsParameter = Parameter.Boolean("enableMetrics", default = Some(false))
-  val socketTimeoutParameter = Parameter.Long("socketTimeout", default = Some(10000))
-  val autoDiscoveryParameter = Parameter.Boolean("autoDiscovery", default = Some(false))
+  val maxConnectionsPerExecutorParameter = Parameter.Long("maxConnectionsPerExecutor", default = 5)
+  val enableMetricsParameter = Parameter.Boolean("enableMetrics")
+  val socketTimeoutParameter = Parameter.Long("socketTimeout", default = 10000)
+  val autoDiscoveryParameter = Parameter.Boolean("autoDiscovery")
   val advancedGroup = ParameterGroup("advanced", List(maxConnectionsPerExecutorParameter, enableMetricsParameter, socketTimeoutParameter, autoDiscoveryParameter))
 
   val parameterGroups = List(generalGroup, advancedGroup)

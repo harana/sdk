@@ -5,22 +5,20 @@ import com.harana.sdk.shared.models.catalog.UserPanelType.UserPanelTypeId
 import com.harana.sdk.shared.plugin.PanelType.PanelTypeId
 import enumeratum._
 import com.harana.sdk.shared.utils.CirceCodecs._
+import io.circe.{Decoder, Encoder, Json}
 
 
-case class Layout(rows: List[Row])
+case class Layout(rows: List[Row]) derives Decoder, Encoder
 
-
-case class Row(columns: List[Column])
-
+case class Row(columns: List[Column]) derives Decoder, Encoder
 
 case class Column(contents: List[PanelSlot],
                   width: ColumnWidth,
-                  offset: ColumnOffset = ColumnOffset.None)
-
+                  offset: ColumnOffset = ColumnOffset.None) derives Decoder, Encoder
 
 case class PanelSlot(panelSlotId: PanelSlotId,
                      panelType: Either[PanelTypeId, UserPanelTypeId],
-                     minimumHeight: Int)
+                     minimumHeight: Int) derives Decoder, Encoder
 
 sealed trait ColumnOffset extends EnumEntry
 case object ColumnOffset extends Enum[ColumnOffset] with CirceEnum[ColumnOffset] {

@@ -2,6 +2,7 @@ package com.harana.sdk.shared.models.data.connection_types
 
 import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup}
 import com.harana.sdk.shared.models.data.{ConnectionType, SyncDirection}
+import com.harana.sdk.shared.models.common.ParameterValue.given
 
 class Cassandra extends ConnectionType {
 
@@ -20,11 +21,11 @@ class Cassandra extends ConnectionType {
     ("snappy", "snappy"),
     ("none", "none")
   ))
-  val minReconnectionDelayParameter = Parameter.Long("min-reconnection-delay", Some(1000))
-  val maxReconnectionDelayParameter = Parameter.Long("max-reconnection-delay", Some(60000))
-  val connectionTimeoutParameter = Parameter.Long("connection-timeout", Some(5000))
-  val queryRetryCountParameter = Parameter.Long("query-retry-count", Some(60))
-  val readTimeoutParameter = Parameter.Long("read-timeout", Some(120000))
+  val minReconnectionDelayParameter = Parameter.Long("min-reconnection-delay", 1000)
+  val maxReconnectionDelayParameter = Parameter.Long("max-reconnection-delay", 60000)
+  val connectionTimeoutParameter = Parameter.Long("connection-timeout", 5000)
+  val queryRetryCountParameter = Parameter.Long("query-retry-count", 60)
+  val readTimeoutParameter = Parameter.Long("read-timeout", 120000)
   val advancedGroup = ParameterGroup("advanced", List(compressionParameter, minReconnectionDelayParameter, maxReconnectionDelayParameter, connectionTimeoutParameter, queryRetryCountParameter, readTimeoutParameter))
 
   val parameterGroups = List(generalGroup, advancedGroup)

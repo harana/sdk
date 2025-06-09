@@ -2,7 +2,7 @@ package com.harana.sdk.shared.components.cards
 
 import com.harana.sdk.shared.components.Orientation
 import com.harana.sdk.shared.models.common.{Component, User}
-import io.circe.{Decoder, Encoder}
+import io.circe.{Decoder, Encoder, Json}
 
 case class UserCard(user: User,
                     orientation: Orientation = Orientation.Horizontal,

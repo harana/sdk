@@ -3,6 +3,7 @@ package com.harana.sdk.shared.models.flow.actiontypes.input
 import com.harana.sdk.shared.models.common.{Parameter, ParameterGroup}
 import com.harana.sdk.shared.models.data.ConnectionTypes
 import com.harana.sdk.shared.models.flow.actiontypes.logGroup
+import com.harana.sdk.shared.models.common.ParameterValue.given
 
 class GetMongoDbInfo extends InputActionTypeInfo {
 
@@ -19,7 +20,7 @@ class GetMongoDbInfo extends InputActionTypeInfo {
 
   // Advanced
   val batchSizeParameter = Parameter.Integer("batch-size")
-  val localThresholdInMsParameter = Parameter.Integer("local-threshold-in-ms", Some(15))
+  val localThresholdInMsParameter = Parameter.Integer("local-threshold-in-ms", 15)
   val readPreferenceParameter = Parameter.String("read-preference", options = List(
     ("primary", "primary"),
     ("primary-preferred", "primaryPreferred"),
@@ -34,8 +35,8 @@ class GetMongoDbInfo extends InputActionTypeInfo {
     ("linearizable", "linearizable"),
     ("snapshot", "snapshot")
   ))
-  val sampleSizeParameter = Parameter.Integer("sample-size", Some(1000))
-  val samplePoolSizeParameter = Parameter.Integer("sample-pool-size", Some(10000))
+  val sampleSizeParameter = Parameter.Integer("sample-size", 1000)
+  val samplePoolSizeParameter = Parameter.Integer("sample-pool-size", 10000)
   val advancedGroup = ParameterGroup("advanced", List(batchSizeParameter, localThresholdInMsParameter, readPreferenceParameter, readConcernParameter, sampleSizeParameter, samplePoolSizeParameter))
 
   val parameterGroups = List(generalGroup, advancedGroup, logGroup)

@@ -2,7 +2,7 @@ package com.harana.sdk.shared.components.maps
 
 import com.harana.sdk.shared.models.common.Component
 import enumeratum._
-import io.circe.{Decoder, Encoder}
+import io.circe.{Decoder, Encoder, Json}
 
 case class GoogleMap(name: String,
                      zoom: Option[Int] = None,

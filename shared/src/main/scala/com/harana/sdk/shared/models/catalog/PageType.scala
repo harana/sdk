@@ -3,15 +3,16 @@ package com.harana.sdk.shared.models.catalog
 import java.time.Instant
 import com.harana.sdk.shared.models.common.Entity.EntityId
 import com.harana.sdk.shared.models.catalog.PageType.PageTypeId
-import com.harana.sdk.shared.models.common.{Entity, ParameterMap, ParameterName, Status, User, Visibility}
+import com.harana.sdk.shared.models.common.{Entity, Parameter, ParameterName, Status, User, Visibility}
 import com.harana.sdk.shared.models.common.User.UserId
 import com.harana.sdk.shared.utils.CirceCodecs.*
 import com.harana.sdk.shared.utils.Random
-import io.circe.{Decoder, Encoder}
+import io.circe.{Decoder, Encoder, Json}
+import com.harana.sdk.shared.models.common.ParameterValue.given
 
 case class PageType(name: String,
                     description: String,
-                    parameterValues: Map[ParameterName, Any],
+										parameters: List[Parameter],
                     createdBy: Option[UserId],
                     created: Instant,
                     updatedBy: Option[UserId],
@@ -30,7 +31,7 @@ case class PageType(name: String,
 object PageType {
 	type PageTypeId = String
 
-	def apply(name: String, description: String, parameterValues: Map[ParameterName, Any], createdBy: Option[User], visibility: Visibility, tags: Set[String]): PageType = {
-		apply(name, description, parameterValues, createdBy.map(_.id), Instant.now, createdBy.map(_.id), Instant.now, Random.long, Status.Active, visibility, 1L, tags, Map())
+	def apply(name: String, description: String, parameters: List[Parameter], createdBy: Option[User], visibility: Visibility, tags: Set[String]): PageType = {
+		apply(name, description, parameters, createdBy.map(_.id), Instant.now, createdBy.map(_.id), Instant.now, Random.long, Status.Active, visibility, 1L, tags, Map())
 	}
 }

@@ -2,10 +2,11 @@ package com.harana.sdk.shared.models.catalog
 
 import com.harana.sdk.shared.models.catalog.UserPanelType.UserPanelTypeId
 import com.harana.sdk.shared.models.common.Entity.EntityId
-import com.harana.sdk.shared.models.common.ParameterName
+import com.harana.sdk.shared.models.common.ParameterValues
 import com.harana.sdk.shared.models.common.User.UserId
 import com.harana.sdk.shared.models.common._
 import com.harana.sdk.shared.utils.CirceCodecs._
+import io.circe.{Decoder, Encoder, Json}
 
 import java.time.Instant
 
@@ -14,8 +15,8 @@ case class UserPanelType(name: String,
                          title: String,
                          description: String,
                          layout: List[Component],
-                         override val instanceParameters: List[Parameter[?]],
-                         override val globalParameters: List[Parameter[?]],
+                         override val instanceParameters: List[Parameter],
+                         override val globalParameters: List[Parameter],
                          override val scripts: List[String],
                          override val stylesheets: List[String],
                          override val userEditable: Boolean,
@@ -29,20 +30,19 @@ case class UserPanelType(name: String,
                          version: Long,
                          tags: Set[String],
                          relationships: Map[String, EntityId])
-		extends Entity with Serializable with com.harana.sdk.shared.plugin.PanelType {
+		extends Entity with Serializable with com.harana.sdk.shared.plugin.PanelType:
 
-  override def layout(parameterValues: Map[ParameterName, Any]) = layout
-  override def layoutHasChanged: Boolean = false
+    override def layout(values: ParameterValues) = layout
+    override def layoutHasChanged: Boolean = false
 
-  override def onStartup(): Unit = {}
-  override def onShutdown(): Unit = {}
+    override def onStartup(): Unit = {}
+    override def onShutdown(): Unit = {}
 
-  override def onAppContextChange(newContext: Map[String, ?]): Unit = {}
-  override def onUserConfigure(newParameterValues: Map[ParameterName, Any]): Unit = {}
+    override def onAppContextChange(newContext: Map[String, ?]): Unit = {}
+    override def onUserConfigure(newParameterValues: Map[ParameterName, ParameterValue]): Unit = {}
 
-  type EntityType = UserPanelType
-}
+    type EntityType = UserPanelType
 
-object UserPanelType {
+
+object UserPanelType:
 	type UserPanelTypeId = String
-}

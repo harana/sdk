@@ -1,9 +1,9 @@
 package com.harana.sdk.shared.models.jwt
 
 import com.harana.sdk.shared.models.common.{MarketingChannel, UserBilling, UserResources}
+import io.circe.{Decoder, Encoder, Json}
 
 import java.time.Instant
-
 
 case class HaranaClaims(
   audiences: List[String],
@@ -22,7 +22,7 @@ case class HaranaClaims(
   notBefore: Instant,
   onboarded: Boolean,
   resources: UserResources,
-  userId: String) extends JWTClaims {
+  userId: String) extends JWTClaims derives Decoder, Encoder {
 
     type JWTClaimsType = HaranaClaims
     val subject = emailAddress

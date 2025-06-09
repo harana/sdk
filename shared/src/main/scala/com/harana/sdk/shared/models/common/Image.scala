@@ -7,7 +7,7 @@ import com.harana.sdk.shared.models.common.Image.ImageId
 import com.harana.sdk.shared.models.common.User.UserId
 import com.harana.sdk.shared.utils.CirceCodecs._
 import com.harana.sdk.shared.utils.Random
-import io.circe.{Decoder, Encoder}
+import io.circe.{Decoder, Encoder, Json}
 
 case class Image(name: String,
                  description: String,

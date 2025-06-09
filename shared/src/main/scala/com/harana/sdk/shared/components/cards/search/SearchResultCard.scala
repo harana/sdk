@@ -1,7 +1,7 @@
 package com.harana.sdk.shared.components.cards.search
 
 import com.harana.sdk.shared.models.common.Component
-import io.circe.{Decoder, Encoder}
+import io.circe.{Decoder, Encoder, Json}
 
 case class SearchResultCard(title: String,
                             subtitleOne: String,

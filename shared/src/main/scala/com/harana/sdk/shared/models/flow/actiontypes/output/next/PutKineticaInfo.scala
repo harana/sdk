@@ -18,17 +18,17 @@ class PutKineticaInfo extends OutputActionTypeInfo {
   val generalGroup = ParameterGroup("general", List(dataSourceParameter, schemaParameter, tableParameter))
 
   // Advanced
-  val targetTableIsReplicatedParameter = Parameter.Boolean("targetTableIsReplicated", default = Some(false))
-  val truncateTableParameter = Parameter.Boolean("truncateTable", default = Some(false))
-  val truncateTableToSizeParameter = Parameter.Boolean("truncateTableToSize", default = Some(false))
-  val updateOnExistingPrimaryKeyParameter = Parameter.Boolean("updateOnExistingPrimaryKey", default = Some(false))
-  val analyzeDataParameter = Parameter.Boolean("analyzeData", default = Some(false))
-  val failOnErrorsParameter = Parameter.Boolean("failOnErrors", default = Some(false))
-  val flattenSourceSchemaParameter = Parameter.Boolean("flattenSourceSchema", default = Some(false))
-  val useSnappyCompressionParameter = Parameter.Boolean("useSnappyCompression", default = Some(false))
+  val targetTableIsReplicatedParameter = Parameter.Boolean("targetTableIsReplicated")
+  val truncateTableParameter = Parameter.Boolean("truncateTable")
+  val truncateTableToSizeParameter = Parameter.Boolean("truncateTableToSize")
+  val updateOnExistingPrimaryKeyParameter = Parameter.Boolean("updateOnExistingPrimaryKey")
+  val analyzeDataParameter = Parameter.Boolean("analyzeData")
+  val failOnErrorsParameter = Parameter.Boolean("failOnErrors")
+  val flattenSourceSchemaParameter = Parameter.Boolean("flattenSourceSchema")
+  val useSnappyCompressionParameter = Parameter.Boolean("useSnappyCompression")
   val timeZoneParameter = Parameter.String("timeZone")
-  val appendNewColumnsParameter = Parameter.Boolean("appendNewColumns", default = Some(false))
-  val mapColumnsByNameParameter = Parameter.Boolean("mapColumnsByName", default = Some(false))
+  val appendNewColumnsParameter = Parameter.Boolean("appendNewColumns")
+  val mapColumnsByNameParameter = Parameter.Boolean("mapColumnsByName")
   val advancedGroup = ParameterGroup("advanced", List(targetTableIsReplicatedParameter, truncateTableParameter, truncateTableToSizeParameter, analyzeDataParameter,
     failOnErrorsParameter, flattenSourceSchemaParameter, useSnappyCompressionParameter, timeZoneParameter, appendNewColumnsParameter, mapColumnsByNameParameter))
 
