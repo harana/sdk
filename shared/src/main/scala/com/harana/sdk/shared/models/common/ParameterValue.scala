@@ -5,4 +5,4 @@ type ParameterValue = Any
 object ParameterValue:
 
   extension (value: ParameterValue)
-    def to(parameter: Parameter): parameter.ValueType = value.asInstanceOf[parameter.ValueType]
+    def to(parameter: Parameter): Option[parameter.ValueType] = value.asInstanceOf[parameter.ValueType]

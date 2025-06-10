@@ -9,7 +9,6 @@ import com.harana.sdk.shared.models.common.ParameterValues.given
 
 import java.time.Instant
 
-
 case class UserPanelType(name: String,
                          title: String,
                          description: String,
